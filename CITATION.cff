@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use CAAP-200 or the CAAP Benchmark, cite this repository and the release version."
+title: "Cogensec Agent Attack Patterns: CAAP-200 Benchmark"
+type: software
+version: 0.1.0
+date-released: 2026-08-25
+authors:
+  - name: Cogensec Standards Working Group
+contact:
+  - email: caap@cogensec.com
+url: "https://github.com/Cogensec/caap"
+repository-code: "https://github.com/Cogensec/caap"
+license: Apache-2.0
+keywords:
+  - autonomous agents
+  - AI security
+  - security benchmark
+  - agent attack patterns

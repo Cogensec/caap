@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install -e .
+      - run: python scripts/validate_repository.py
+      - run: python -m unittest discover -s tests -v
+      - run: python -m compileall -q src tests scripts examples
+      - run: caap validate benchmarks/executable
+      - run: caap run --adapter mock --mock-mode safe --report-dir reports/safe
+      - name: Confirm intentionally vulnerable mock is detected
+        run: |
+          if caap run benchmarks/executable/gh/CAAP-GH-01.json --adapter mock --mock-mode vulnerable --report-dir reports/vulnerable; then
+            echo "Vulnerable mock unexpectedly passed"
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always() && matrix.python-version == '3.13'
+        with:
+          name: caap-ci-reports
+          path: reports/
+
+  generated-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python scripts/generate_catalog.py
+      - name: Require committed generated artifacts
+        run: git diff --exit-code
+

@@ -1,0 +1,47 @@
+name: CAAP pattern proposal
+description: Propose a materially distinct attack pattern.
+title: "[pattern] "
+labels: [taxonomy, proposal]
+body:
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Proposed domain
+      options: [GH, TM, IP, SC, CE, MP, IA, CF, HT, RA, EA]
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Proposed name
+    validations:
+      required: true
+  - type: textarea
+    id: mechanism
+    attributes:
+      label: Distinct adversarial mechanism
+      description: Explain the mechanism, attacker access, trust boundary, and unsafe state transition.
+    validations:
+      required: true
+  - type: textarea
+    id: overlap
+    attributes:
+      label: Overlap analysis
+      description: List the closest CAAP IDs and explain why this is not a test variant.
+    validations:
+      required: true
+  - type: textarea
+    id: safe_test
+    attributes:
+      label: Harmless reference-test concept
+      description: Describe synthetic fixtures, mock capabilities, sentinel, oracles, telemetry, and cleanup.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety
+      options:
+        - label: The proposal contains no destructive payload, real exfiltration, persistence, or approval bypass.
+          required: true
+

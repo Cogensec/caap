@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "caap-benchmark"
+version = "0.1.0"
+description = "Safe, reproducible benchmarks for the Cogensec Agent Attack Patterns taxonomy"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Cogensec Standards Working Group", email = "caap@cogensec.com" }]
+keywords = ["ai-agents", "security", "benchmark", "red-team", "caap"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Security",
+]
+dependencies = []
+
+[project.optional-dependencies]
+yaml = ["PyYAML>=6.0"]
+dev = ["build>=1.2", "ruff>=0.8"]
+
+[project.scripts]
+caap = "caap_benchmark.cli:main"
+
+[project.urls]
+Homepage = "https://cogensec.com/resources/caap"
+Documentation = "https://github.com/Cogensec/caap#readme"
+Issues = "https://github.com/Cogensec/caap/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+caap_benchmark = ["py.typed"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

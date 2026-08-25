@@ -1,0 +1,6 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Private security report
+    url: mailto:caap@cogensec.com
+    about: Report runner vulnerabilities or benchmark-safety issues privately.
+

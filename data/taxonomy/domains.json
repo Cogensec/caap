@@ -1,0 +1,195 @@
+[
+  {
+    "id": "GH",
+    "name": "Goal & Instruction Hijacking",
+    "owasp": [
+      "ASI01"
+    ],
+    "nist": [
+      "MAP",
+      "MEASURE"
+    ],
+    "atlas": [
+      "AML.T0051"
+    ],
+    "scope": "Manipulation of objectives, instruction priority, plans, and decision paths across trust boundaries.",
+    "pattern_count": 22
+  },
+  {
+    "id": "TM",
+    "name": "Tool Misuse & Exploitation",
+    "owasp": [
+      "ASI02"
+    ],
+    "nist": [
+      "GOVERN",
+      "MEASURE",
+      "MANAGE"
+    ],
+    "atlas": [
+      "Execution",
+      "Exfiltration"
+    ],
+    "scope": "Unsafe selection, invocation, sequencing, parameterization, or repeated use of legitimate tools.",
+    "pattern_count": 24
+  },
+  {
+    "id": "IP",
+    "name": "Identity & Privilege Abuse",
+    "owasp": [
+      "ASI03"
+    ],
+    "nist": [
+      "GOVERN",
+      "MAP",
+      "MANAGE"
+    ],
+    "atlas": [
+      "Credential Access",
+      "Privilege Escalation"
+    ],
+    "scope": "Abuse of identities, delegated credentials, authorization state, tenant context, and inherited authority.",
+    "pattern_count": 20
+  },
+  {
+    "id": "SC",
+    "name": "Agentic Supply-Chain Attacks",
+    "owasp": [
+      "ASI04"
+    ],
+    "nist": [
+      "GOVERN",
+      "MAP",
+      "MANAGE"
+    ],
+    "atlas": [
+      "Resource Development",
+      "Initial Access"
+    ],
+    "scope": "Compromise of models, prompts, agent cards, registries, tools, servers, packages, templates, adapters, or containers.",
+    "pattern_count": 20
+  },
+  {
+    "id": "CE",
+    "name": "Unexpected Code Execution",
+    "owasp": [
+      "ASI05"
+    ],
+    "nist": [
+      "MEASURE",
+      "MANAGE"
+    ],
+    "atlas": [
+      "Execution"
+    ],
+    "scope": "Unintended execution of generated, retrieved, embedded, or tool-supplied code and containment failure.",
+    "pattern_count": 15
+  },
+  {
+    "id": "MP",
+    "name": "Memory, RAG & Context Poisoning",
+    "owasp": [
+      "ASI06"
+    ],
+    "nist": [
+      "MAP",
+      "MEASURE",
+      "MANAGE"
+    ],
+    "atlas": [
+      "Collection",
+      "Persistence"
+    ],
+    "scope": "Corruption of context, state, memory, retrieval corpora, indexes, summaries, or self-generated knowledge.",
+    "pattern_count": 21
+  },
+  {
+    "id": "IA",
+    "name": "Insecure Inter-Agent Communication",
+    "owasp": [
+      "ASI07"
+    ],
+    "nist": [
+      "GOVERN",
+      "MAP",
+      "MEASURE"
+    ],
+    "atlas": [
+      "Command and Control"
+    ],
+    "scope": "Spoofing, tampering, replay, downgrade, routing manipulation, or ambiguity between agents and orchestrators.",
+    "pattern_count": 19
+  },
+  {
+    "id": "CF",
+    "name": "Cascading & Systemic Failures",
+    "owasp": [
+      "ASI08"
+    ],
+    "nist": [
+      "MAP",
+      "MEASURE",
+      "MANAGE"
+    ],
+    "atlas": [
+      "Impact"
+    ],
+    "scope": "Failures that propagate across agents, tasks, tools, queues, environments, users, or tenants.",
+    "pattern_count": 16
+  },
+  {
+    "id": "HT",
+    "name": "Human-Agent Trust Exploitation",
+    "owasp": [
+      "ASI09"
+    ],
+    "nist": [
+      "GOVERN",
+      "MAP",
+      "MEASURE"
+    ],
+    "atlas": [
+      "Initial Access"
+    ],
+    "scope": "Manipulation of human oversight through misleading authority, explanations, approvals, consent, or risk suppression.",
+    "pattern_count": 15
+  },
+  {
+    "id": "RA",
+    "name": "Rogue & Emergent Agent Behavior",
+    "owasp": [
+      "ASI10"
+    ],
+    "nist": [
+      "GOVERN",
+      "MEASURE",
+      "MANAGE"
+    ],
+    "atlas": [
+      "Persistence",
+      "Defense Evasion",
+      "Impact"
+    ],
+    "scope": "Unsafe autonomous behavior through goal drift, reward exploitation, collusion, replication, shutdown resistance, or evidence manipulation.",
+    "pattern_count": 16
+  },
+  {
+    "id": "EA",
+    "name": "Embodied & Physical-Agent Attacks",
+    "owasp": [
+      "ASI02",
+      "ASI08",
+      "ASI10"
+    ],
+    "nist": [
+      "MAP",
+      "MEASURE",
+      "MANAGE"
+    ],
+    "atlas": [
+      "Impact"
+    ],
+    "scope": "Attacks on agents that perceive and act in physical or simulated environments.",
+    "pattern_count": 12
+  }
+]
