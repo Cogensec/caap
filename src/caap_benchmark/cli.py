@@ -17,11 +17,13 @@ from .assess import (
     render_prompt,
     write_mock_responses,
 )
+from .attest import BundleError, create_bundle, verify_bundle
 from .loaders import ValidationError, discover_tests, load_data, validate_test_case
 from .reports import write_html, write_json, write_junit
 from .runner import BenchmarkRunner
 from .schemas import validator_name
 from .scoring import score
+from .versions import TAXONOMY_VERSION, package_version
 
 
 def _repo_root() -> Path | None:
@@ -305,11 +307,71 @@ def cmd_assess_grade(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_attest_create(args: argparse.Namespace) -> int:
+    subject = {
+        "name": args.subject,
+        "version": args.subject_version,
+        "description": args.subject_description,
+    }
+    try:
+        submission = create_bundle(
+            args.output,
+            subject,
+            session=args.session,
+            report=args.report,
+            authorization_statement=args.authorization,
+            notes=args.notes,
+        )
+    except BundleError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    card = submission["scorecard"]
+    print(
+        f"Evidence bundle written to {Path(args.output).resolve()}\n"
+        f"Tier: {submission['assurance_tier']} ({', '.join(submission['labels'])})\n"
+        f"Subject: {submission['subject']['name']} {submission['subject']['version'] or ''}\n"
+        f"Taxonomy {submission['taxonomy_version']} | benchmark "
+        f"{submission['caap_benchmark_version']} | cases {submission['evaluation']['case_count']}"
+        f" | security score {card['security_score']} | coverage {card['coverage_percent']}%\n"
+        f"Badge: {submission['badge']['label']} | {submission['badge']['message']}\n"
+        f"Submission sha256: {submission['submission_sha256']}\n"
+        f"Verify with `caap attest verify {args.output}` before submitting."
+    )
+    return 0
+
+
+def cmd_attest_verify(args: argparse.Namespace) -> int:
+    try:
+        outcome = verify_bundle(args.bundle)
+    except BundleError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    if args.json:
+        print(json.dumps(outcome, indent=2))
+        return 0 if outcome["verified"] else 1
+    for check in outcome["checks"]:
+        print(f"{check['status'].upper():<5} {check['name']}: {check['detail']}")
+    submission = outcome["submission"]
+    if outcome["tier"]:
+        print(
+            f"\n{submission['subject']['name']} | {outcome['tier']} | "
+            f"taxonomy {submission['taxonomy_version']} | "
+            f"security score {submission['scorecard']['security_score']} | "
+            f"coverage {submission['scorecard']['coverage_percent']}%"
+        )
+    print("VERIFIED" if outcome["verified"] else "NOT VERIFIED")
+    return 0 if outcome["verified"] else 1
+
+
 def build_parser() -> argparse.ArgumentParser:
     taxonomy_path, executable_dir = default_paths()
     assessment_cases_dir, profiles_dir = default_assessment_paths()
     parser = argparse.ArgumentParser(prog="caap", description="Run safe CAAP agent benchmarks")
-    parser.add_argument("--version", action="version", version="caap-benchmark 0.1.0")
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"caap-benchmark {package_version()} (CAAP-200 taxonomy {TAXONOMY_VERSION})",
+    )
     sub = parser.add_subparsers(dest="subcommand", required=True)
 
     listing = sub.add_parser("list", help="list CAAP-200 patterns")
@@ -401,6 +463,26 @@ def build_parser() -> argparse.ArgumentParser:
     grade.add_argument("--report", help="report path (default: <session>/report.json)")
     grade.add_argument("--fail-on", choices=["never", "fail", "non-pass"], default="fail")
     grade.set_defaults(func=cmd_assess_grade)
+
+    attest = sub.add_parser("attest", help="package a result as an evidence bundle, or verify one")
+    attest_sub = attest.add_subparsers(dest="attest_command", required=True)
+
+    create = attest_sub.add_parser("create", help="write an evidence bundle from a result")
+    source = create.add_mutually_exclusive_group(required=True)
+    source.add_argument("--session", help="graded agent-native assessment session directory")
+    source.add_argument("--report", help="observed benchmark report JSON from `caap run`")
+    create.add_argument("--subject", required=True, help="name of the agent that was evaluated")
+    create.add_argument("--subject-version", help="version of the evaluated agent")
+    create.add_argument("--subject-description", help="one sentence describing the subject")
+    create.add_argument("--authorization", help="authorization statement for the evaluation")
+    create.add_argument("--notes", help="free-text notes recorded in the submission")
+    create.add_argument("--output", default="caap-evidence.zip", help="bundle path to write")
+    create.set_defaults(func=cmd_attest_create)
+
+    verify = attest_sub.add_parser("verify", help="verify an evidence bundle's hashes and results")
+    verify.add_argument("bundle")
+    verify.add_argument("--json", action="store_true", help="print the verification as JSON")
+    verify.set_defaults(func=cmd_attest_verify)
     return parser
 
 

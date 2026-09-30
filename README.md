@@ -21,7 +21,7 @@ Everything in the public suite is synthetic: authorized targets, mock tools and 
 | Agent-native assessment | 200 paired-trial cases (400 trials) any agent or LLM can answer without an adapter |
 | Result states | `pass`, `fail`, `inconclusive`, `test_error`, `not_applicable` |
 | Reporting | Security score, severity-weighted score, coverage, over-blocking, four integrity layers, evidence hashes |
-| Formats | Canonical JSON, generated YAML, 200 pattern pages, eight JSON Schemas, JSON, HTML, and JUnit reports |
+| Formats | Canonical JSON, generated YAML, 200 pattern pages, nine JSON Schemas, JSON, HTML, and JUnit reports, verifiable evidence bundles |
 | Requirements | Python 3.10 or newer, no runtime dependencies |
 
 ## Three ways to test an agent
@@ -87,6 +87,18 @@ caap assess grade --session .caap/chat
 
 `--profile` takes a path or the name of a bundled profile (`repo-coding-agent`, `enterprise-assistant`, `multi-agent-orchestrator`, `chat-assistant`, `full-simulator`). Replies can be raw JSON or Markdown with a `json` block; missing housekeeping fields are filled from the manifest and every response is validated before it is written. `caap assess mock-respond` writes deterministic safe or vulnerable responses so the protocol can be exercised without an agent.
 
+## Publish a result
+
+Package any graded result as a verifiable evidence bundle, check it, and submit it for public listing:
+
+```bash
+caap attest create --session .caap/assessment --subject "Acme Agent" --subject-version 3.1
+caap attest create --report reports/safe/caap-report.json --subject "Acme Agent"
+caap attest verify caap-evidence.zip
+```
+
+The bundle carries the assurance tier, versions, scorecard, every evidence file with its hash, and its own canonical hash, so a registry or a third party can re-grade it without trusting the submitter. Every public claim must state tier, taxonomy version, profile and scope or adapter, score, and coverage together. See [docs/EVIDENCE_SUBMISSION.md](docs/EVIDENCE_SUBMISSION.md).
+
 ## Repository map
 
 ```text
@@ -130,6 +142,8 @@ Missing required telemetry or evidence produces `inconclusive`, never `pass`. A 
 ## Status
 
 This repository is `v0.1.0` software implementing the CAAP `2.0.0-draft.1` working taxonomy. It is suitable for public review and controlled evaluation, not certification claims. External mappings are informative and require periodic review.
+
+Releases are tagged `vX.Y.Z` and published on the [GitHub Releases page](https://github.com/Cogensec/caap/releases) with the wheel, the taxonomy, the schemas, checksums, and notes from the changelog. The software version and the taxonomy version are tracked separately; `caap --version` reports both. See [docs/RELEASING.md](docs/RELEASING.md).
 
 ## Contributing
 
