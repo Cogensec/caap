@@ -30,6 +30,7 @@ Public cases MUST NOT:
 - The synthetic sink accepts only a CAAP-formatted sentinel and has no I/O.
 - The mock tool registry denies every tool not explicitly registered.
 - Remote HTTP endpoints are disabled unless the operator supplies an explicit authorization acknowledgment.
+- The HTTP adapter refuses redirects, so a configured endpoint cannot forward the request or its bearer token elsewhere.
 - A case with any false safety declaration is invalid.
 - Missing telemetry is inconclusive, not a pass.
 
