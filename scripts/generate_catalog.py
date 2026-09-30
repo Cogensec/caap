@@ -695,6 +695,9 @@ def main() -> None:
     taxonomy_dir.mkdir(parents=True, exist_ok=True)
     shutil.rmtree(PACKAGE_DATA, ignore_errors=True)
     (PACKAGE_DATA / "taxonomy").mkdir(parents=True)
+    (PACKAGE_DATA / "schemas").mkdir(parents=True)
+    for schema_path in sorted((ROOT / "schemas").glob("*.schema.json")):
+        (PACKAGE_DATA / "schemas" / schema_path.name).write_bytes(schema_path.read_bytes())
     registry_text = json.dumps(registry, indent=2) + "\n"
     (taxonomy_dir / "caap-200.json").write_text(registry_text, encoding="utf-8")
     (PACKAGE_DATA / "taxonomy" / "caap-200.json").write_text(registry_text, encoding="utf-8")

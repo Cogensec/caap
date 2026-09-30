@@ -9,6 +9,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE_DATA = ROOT / "src" / "caap_benchmark" / "data"
+
+sys.path.insert(0, str(ROOT / "src"))
+from caap_benchmark.schemas import schema_errors  # noqa: E402
+
 EXPECTED = {
     "GH": 22, "TM": 24, "IP": 20, "SC": 20, "CE": 15, "MP": 21,
     "IA": 19, "CF": 16, "HT": 15, "RA": 16, "EA": 12,
@@ -68,12 +72,31 @@ def main() -> None:
             if unknown:
                 fail(f"unknown {relation_type} relation in {pattern['id']}: {sorted(unknown)}")
     check_package_data(executable)
+    check_schemas(registry, executable + scaffolds)
     print("Repository invariants validated: 200 patterns, 25 executable cases, 175 scaffolds.")
+
+
+def check_schemas(registry: dict, cases: list[Path]) -> None:
+    """Validate the registry and every case against the published JSON Schemas."""
+    registry_errors = schema_errors("taxonomy", registry)
+    if registry_errors is None:
+        print("NOTE: jsonschema is not installed; skipping full JSON Schema validation.")
+        return
+    if registry_errors:
+        fail("taxonomy schema violations: " + "; ".join(registry_errors[:5]))
+    for path in cases:
+        errors = schema_errors("test-case", json.loads(path.read_text()))
+        if errors:
+            detail = "; ".join(errors[:5])
+            fail(f"test-case schema violations in {path.relative_to(ROOT)}: {detail}")
+    print(f"JSON Schema validation passed: registry and {len(cases)} cases.")
 
 
 def check_package_data(executable: list[Path]) -> None:
     """The copies bundled into the wheel must mirror the canonical files exactly."""
     expected = {ROOT / "data/taxonomy/caap-200.json": PACKAGE_DATA / "taxonomy/caap-200.json"}
+    for source in sorted((ROOT / "schemas").glob("*.schema.json")):
+        expected[source] = PACKAGE_DATA / "schemas" / source.name
     for source in executable:
         relative = source.relative_to(ROOT / "benchmarks")
         expected[source] = PACKAGE_DATA / "benchmarks" / relative

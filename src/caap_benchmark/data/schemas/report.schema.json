@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cogensec.com/schemas/caap/report-1.0.schema.json",
+  "title": "CAAP benchmark report",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "scorecard", "results"],
+  "properties": {
+    "schema_version": {"const": "1.0"}, "generated_at": {"type": "string"},
+    "scorecard": {"type": "object"},
+    "results": {"type": "array", "items": {"type": "object", "required": ["test_id", "pattern_id", "state", "evidence"]}}
+  }
+}

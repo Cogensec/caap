@@ -15,6 +15,7 @@ All notable changes are recorded here.
 
 ### Changed
 
+- The published JSON Schemas are now enforced. The runner validates cases against the test-case schema, the HTTP and command adapters validate target payloads against the adapter-response schema and turn a malformed payload into `test_error`, and repository validation checks the registry against the taxonomy schema. Full validation uses the new `schema` extra (`jsonschema`), installed in CI; without it a structural fallback derives its required fields from the schema, which closes the previous gap where the hand-rolled check required three fewer fields than the schema. The schemas are bundled with the package.
 - The 25 executable reference cases now carry mechanism-specific fixtures, attack-success oracles, and secure-behavior evidence instead of one shared template. Each declares a `mock_scenario` with the secure and vulnerable event traces for its mechanism; the mock adapter replays them, so the vulnerable mode now fails on the mechanism oracle (for example an unapproved memory write or a replayed nonce being accepted) before the sentinel backstop. A shared event vocabulary in `caap_benchmark.events` maps event types to telemetry keys, and each case requires the keys its traces produce. Scaffolds are unchanged.
 - CI now runs `ruff check` as a separate lint job, and `make lint` runs it locally. Existing findings were cleared; the generator's one-record-per-line taxonomy tables are exempt from the line-length rule only.
 

@@ -32,7 +32,9 @@ python3 -m venv .venv
 python -m pip install -e .
 ```
 
-The package bundles the CAAP-200 registry and the 25 executable cases, so an installed `caap` works from any directory. Inside a repository checkout the checkout's files take precedence, so edits in progress are picked up.
+Install `caap-benchmark[schema]` to enable full JSON Schema validation of cases and adapter responses, and `caap-benchmark[yaml]` for YAML input. Without the `schema` extra the runner applies a structural subset of the schema.
+
+The package bundles the CAAP-200 registry, the 25 executable cases, and the schemas, so an installed `caap` works from any directory. Inside a repository checkout the checkout's files take precedence, so edits in progress are picked up.
 
 ## Quick start
 

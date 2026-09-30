@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cogensec.com/schemas/caap/taxonomy-2.0.schema.json",
+  "title": "CAAP-200 taxonomy registry",
+  "type": "object",
+  "required": ["standard", "version", "normative_baseline", "counts", "domains", "patterns"],
+  "properties": {
+    "standard": {"const": "Cogensec Agent Attack Patterns"},
+    "version": {"type": "string"},
+    "normative_baseline": {"const": "CAAP v1.0.0-draft.1"},
+    "counts": {
+      "type": "object",
+      "required": ["total", "domains", "reference", "candidate", "catalog", "executable", "scaffold"],
+      "properties": {"total": {"const": 200}, "domains": {"const": 11}}
+    },
+    "domains": {"type": "array", "minItems": 11, "maxItems": 11, "items": {"$ref": "#/$defs/domain"}},
+    "patterns": {"type": "array", "minItems": 200, "maxItems": 200, "items": {"$ref": "#/$defs/pattern"}}
+  },
+  "$defs": {
+    "domain": {
+      "type": "object", "required": ["id", "name", "scope", "owasp", "pattern_count"],
+      "properties": {"id": {"pattern": "^[A-Z]{2}$"}, "name": {"type": "string"}, "scope": {"type": "string"}, "pattern_count": {"type": "integer", "minimum": 1}}
+    },
+    "pattern": {
+      "type": "object",
+      "required": ["id", "name", "definition", "domain_id", "family_id", "family", "maturity", "implementation_status", "threat_model", "telemetry", "mitigations", "mappings", "relationships", "safety"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^CAAP-(GH|TM|IP|SC|CE|MP|IA|CF|HT|RA|EA)-[0-9]{2}$"},
+        "name": {"type": "string", "minLength": 5},
+        "definition": {"type": "string", "minLength": 30},
+        "domain_id": {"enum": ["GH", "TM", "IP", "SC", "CE", "MP", "IA", "CF", "HT", "RA", "EA"]},
+        "family_id": {"type": "string", "pattern": "^[A-Z]{2}\\.F[1-9][0-9]*$"},
+        "maturity": {"enum": ["reference", "candidate", "catalog"]},
+        "implementation_status": {"enum": ["executable", "scaffold"]},
+        "status": {"enum": ["active", "deprecated", "withdrawn"]},
+        "threat_model": {"type": "object", "required": ["attacker_goal", "attacker_access", "preconditions", "trust_boundaries", "protected_assets", "target_agent_types", "exclusions"]},
+        "telemetry": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "mitigations": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "mappings": {"type": "object"}, "relationships": {"type": "object"}, "safety": {"type": "object"}
+      }
+    }
+  }
+}

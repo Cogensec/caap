@@ -15,7 +15,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
-      - run: python -m pip install build
+      - run: python -m pip install -e ".[dev]"
+      - run: python -m ruff check src tests scripts examples
       - run: python scripts/validate_repository.py
       - run: python -m unittest discover -s tests -v
       - run: python -m build
