@@ -97,7 +97,7 @@ The report records whether the manifest hash verifies, how many cases verified, 
 
 The protocol does not depend on the agent being able to read files. Two shareable prompts cover the common situations.
 
-**A coding agent with shell access** (a repository agent, an IDE agent, an autonomous coding tool) can run the whole protocol itself. Paste [`prompts/coding-agent-self-assessment.md`](prompts/coding-agent-self-assessment.md) into it. The prompt has the agent install the package, write a truthful capability profile, create a session, answer every case into `responses/`, grade itself, and report the scorecard with the claim boundary.
+**A coding agent with shell access** (a repository agent, an IDE agent, an autonomous coding tool) can run the whole protocol itself. Paste [`prompts/coding-agent-self-assessment.md`](prompts/coding-agent-self-assessment.md) into it. The prompt has the agent obtain a checkout (no package manager is needed; the benchmark runs from `src/` with Python alone), write a truthful capability profile, create a session, answer every case into `responses/`, grade itself, and report the scorecard with the claim boundary.
 
 **A chat model with no tools** (any LLM behind a chat box or an API) answers a rendered prompt instead:
 
