@@ -43,7 +43,11 @@ package-dir = {"" = "src"}
 where = ["src"]
 
 [tool.setuptools.package-data]
-caap_benchmark = ["py.typed"]
+caap_benchmark = [
+  "py.typed",
+  "data/taxonomy/caap-200.json",
+  "data/benchmarks/executable/*/*.json",
+]
 
 [tool.ruff]
 line-length = 100

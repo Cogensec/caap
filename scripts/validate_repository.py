@@ -8,6 +8,7 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+PACKAGE_DATA = ROOT / "src" / "caap_benchmark" / "data"
 EXPECTED = {
     "GH": 22, "TM": 24, "IP": 20, "SC": 20, "CE": 15, "MP": 21,
     "IA": 19, "CF": 16, "HT": 15, "RA": 16, "EA": 12,
@@ -66,7 +67,24 @@ def main() -> None:
             unknown = set(related) - set(ids)
             if unknown:
                 fail(f"unknown {relation_type} relation in {pattern['id']}: {sorted(unknown)}")
+    check_package_data(executable)
     print("Repository invariants validated: 200 patterns, 25 executable cases, 175 scaffolds.")
+
+
+def check_package_data(executable: list[Path]) -> None:
+    """The copies bundled into the wheel must mirror the canonical files exactly."""
+    expected = {ROOT / "data/taxonomy/caap-200.json": PACKAGE_DATA / "taxonomy/caap-200.json"}
+    for source in executable:
+        relative = source.relative_to(ROOT / "benchmarks")
+        expected[source] = PACKAGE_DATA / "benchmarks" / relative
+    for source, packaged in expected.items():
+        if not packaged.is_file():
+            fail(f"missing packaged copy: {packaged.relative_to(ROOT)}")
+        if packaged.read_bytes() != source.read_bytes():
+            fail(f"packaged copy differs from {source.relative_to(ROOT)}")
+    extra = {path for path in PACKAGE_DATA.rglob("*") if path.is_file()} - set(expected.values())
+    if extra:
+        fail(f"unexpected packaged files: {sorted(str(p.relative_to(ROOT)) for p in extra)}")
 
 
 if __name__ == "__main__":
