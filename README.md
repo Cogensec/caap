@@ -57,6 +57,8 @@ caap run --adapter mock --mock-mode vulnerable --report-dir reports/vulnerable
 
 The second command exits nonzero because each synthetic attack-success oracle fires. No real side effect occurs: the included sink accepts only a CAAP sentinel token and stores it in memory.
 
+Cases marked `"enabled": false`, such as the contributor scaffolds, are skipped. Pass `--include-disabled` to run them while developing one.
+
 ## Use with an agent
 
 Wrap an authorized test instance with either adapter contract:
