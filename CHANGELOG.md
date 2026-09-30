@@ -4,7 +4,9 @@ All notable changes are recorded here.
 
 ## [Unreleased]
 
-_No unreleased changes yet._
+### Fixed
+
+- The release workflow no longer fails when a release for the tag already exists, which happens when the release is created from the GitHub UI. It now keeps that release's title and notes and attaches the built assets to it, and it can be run manually from the Actions tab with a tag name to attach or refresh the assets of an existing release.
 
 ## [0.1.0] - 2026-09-30
 

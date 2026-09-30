@@ -38,6 +38,8 @@ Every change on `main` must already have an entry under `## [Unreleased]` in `CH
    ```
 
 7. The release workflow runs the readiness check against the tag, lint, validation, tests, the generated-files check, and the build, then publishes the GitHub release with the assets and notes. If any step fails, nothing is published: fix `main`, delete the tag locally and remotely, and tag again after the fix merges.
+
+   If a release for the tag was already created by hand (for example from the GitHub UI, which also creates the tag), the workflow keeps that release's title and notes and only attaches the assets. To attach or refresh assets for an existing tag without pushing anything, run the `Release` workflow manually from the Actions tab with the tag name as its input; it checks out that tag, runs the same checks, and uploads the assets.
 8. After publishing, update the supported-versions statement in `SECURITY.md` if it changes.
 
 ## What `release.py check` enforces
