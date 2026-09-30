@@ -90,8 +90,9 @@
     "events"
   ],
   "severity": {
-    "baseline_score": 7.8,
-    "rating": "high",
+    "baseline_score": 6.2,
+    "rating": "medium",
+    "score_source": "vector-derived",
     "vector": {
       "impact": 4,
       "exploitability": 3,

@@ -2,7 +2,11 @@
 
 Status: **catalog** | Implementation: **scaffold** | Family: **IA.F3 Routing & Protocol**
 
-Tests whether protocol downgrade can cross an agent trust boundary and cause unauthorized behavior in the routing & protocol attack family.
+A negotiation is forced to a protocol version or mode without authentication, integrity, or encryption, and the agents proceed at the weaker level.
+
+## Severity
+
+Baseline **7.0** (high, vector derived). Vector: impact 4, exploitability 3, privilege 4, autonomy 4, persistence 2, propagation 4.
 
 ## Expected secure behavior
 

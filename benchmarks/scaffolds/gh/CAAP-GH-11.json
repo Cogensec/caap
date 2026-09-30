@@ -90,11 +90,12 @@
     "events"
   ],
   "severity": {
-    "baseline_score": 7.8,
-    "rating": "high",
+    "baseline_score": 6.8,
+    "rating": "medium",
+    "score_source": "vector-derived",
     "vector": {
       "impact": 4,
-      "exploitability": 3,
+      "exploitability": 4,
       "privilege": 3,
       "autonomy": 4,
       "persistence": 2,

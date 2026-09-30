@@ -90,15 +90,16 @@
     "events"
   ],
   "severity": {
-    "baseline_score": 7.2,
-    "rating": "high",
+    "baseline_score": 6.5,
+    "rating": "medium",
+    "score_source": "vector-derived",
     "vector": {
       "impact": 4,
       "exploitability": 3,
       "privilege": 3,
-      "autonomy": 4,
-      "persistence": 2,
-      "propagation": 2
+      "autonomy": 3,
+      "persistence": 3,
+      "propagation": 3
     }
   },
   "mappings": {

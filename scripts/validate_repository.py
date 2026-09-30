@@ -71,9 +71,53 @@ def main() -> None:
             unknown = set(related) - set(ids)
             if unknown:
                 fail(f"unknown {relation_type} relation in {pattern['id']}: {sorted(unknown)}")
+    check_definitions_and_severity(patterns)
     check_package_data(executable)
     check_schemas(registry, executable + scaffolds)
     print("Repository invariants validated: 200 patterns, 25 executable cases, 175 scaffolds.")
+
+
+SEVERITY_AXES = ("impact", "exploitability", "privilege", "autonomy", "persistence", "propagation")
+SEVERITY_WEIGHTS = (2, 2, 1, 1, 1, 1)
+
+
+def severity_from_vector(vector: dict) -> float:
+    pairs = zip(SEVERITY_WEIGHTS, SEVERITY_AXES, strict=True)
+    weighted = sum(w * vector[axis] for w, axis in pairs)
+    return round(10 * weighted / (5 * sum(SEVERITY_WEIGHTS)), 1)
+
+
+def expected_rating(score: float) -> str:
+    if score >= 9.0:
+        return "critical"
+    if score >= 7.0:
+        return "high"
+    return "medium" if score >= 4.0 else "low"
+
+
+def check_definitions_and_severity(patterns: list[dict]) -> None:
+    """Definitions are pattern-specific; severity vectors and scores follow docs/STANDARD.md."""
+    definitions = [pattern["definition"] for pattern in patterns]
+    if len(set(definitions)) != len(definitions):
+        fail("pattern definitions are not unique")
+    for pattern in patterns:
+        if pattern["definition"].startswith("Tests whether"):
+            fail(f"{pattern['id']} still carries the template definition")
+        severity = pattern["severity"]
+        vector = severity["vector"]
+        if set(vector) != set(SEVERITY_AXES) or any(not 1 <= vector[a] <= 5 for a in SEVERITY_AXES):
+            fail(f"{pattern['id']}: severity vector must score each of the six axes 1..5")
+        score, derived = severity["baseline_score"], severity_from_vector(vector)
+        if severity["rating"] != expected_rating(score):
+            fail(f"{pattern['id']}: rating {severity['rating']} does not match score {score}")
+        if pattern["maturity"] == "reference":
+            if severity["score_source"] != "caap-v1.0-baseline" or abs(score - derived) > 0.5:
+                fail(
+                    f"{pattern['id']}: reference score {score} must be the v1.0 baseline "
+                    f"within 0.5 of the vector-derived {derived}"
+                )
+        elif severity["score_source"] != "vector-derived" or score != derived:
+            fail(f"{pattern['id']}: score {score} does not equal the vector-derived {derived}")
 
 
 def check_schemas(registry: dict, cases: list[Path]) -> None:

@@ -2,7 +2,11 @@
 
 Status: **catalog** | Implementation: **scaffold** | Family: **MP.F4 Context & Isolation**
 
-Tests whether cross-tenant memory retrieval can cross an agent trust boundary and cause unauthorized behavior in the context & isolation attack family.
+Retrieval or memory lookups return records belonging to a different tenant because isolation is enforced in the application layer rather than in the store.
+
+## Severity
+
+Baseline **8.8** (high, vector derived). Vector: impact 5, exploitability 3, privilege 5, autonomy 4, persistence 5, propagation 5.
 
 ## Expected secure behavior
 
