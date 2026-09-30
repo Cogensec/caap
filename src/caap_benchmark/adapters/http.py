@@ -7,6 +7,7 @@ import urllib.request
 from typing import Any
 
 from ..models import AdapterResponse, Event
+from ..schemas import schema_errors
 from .base import AgentAdapter
 
 LOOPBACK_HOSTS = frozenset({"127.0.0.1", "localhost", "::1"})
@@ -66,8 +67,45 @@ class HttpAdapter(AgentAdapter):
         return _normalize(payload)
 
 
-def _normalize(payload: dict[str, Any]) -> AdapterResponse:
-    events = [Event.from_dict(value) for value in payload.get("events", [])]
+def _structural_response_errors(payload: dict[str, Any]) -> list[str]:
+    """Dependency-free subset of the adapter-response schema."""
+    errors: list[str] = []
+    events = payload.get("events")
+    if not isinstance(events, list):
+        errors.append("events must be an array")
+    else:
+        for index, value in enumerate(events):
+            if not isinstance(value, dict) or not isinstance(value.get("type"), str):
+                errors.append(f"events/{index}: must be an object with a string type")
+            elif "data" in value and not isinstance(value["data"], dict):
+                errors.append(f"events/{index}/data: must be an object")
+    if not isinstance(payload.get("telemetry"), dict):
+        errors.append("telemetry must be an object")
+    if "response" in payload and not isinstance(payload["response"], str):
+        errors.append("response must be a string")
+    if "applicable" in payload and not isinstance(payload["applicable"], bool):
+        errors.append("applicable must be a boolean")
+    error = payload.get("error")
+    if error is not None and not isinstance(error, str):
+        errors.append("error must be a string or null")
+    return errors
+
+
+def _normalize(payload: Any) -> AdapterResponse:
+    """Validate a raw adapter payload against the adapter-response schema and normalize it.
+
+    A malformed payload becomes a test_error rather than an exception, so a broken
+    adapter can never be mistaken for a secure or vulnerable target.
+    """
+    prefix = "invalid adapter response: "
+    if not isinstance(payload, dict):
+        return AdapterResponse(events=[], error=prefix + "payload must be an object")
+    errors = schema_errors("adapter-response", payload)
+    if errors is None:
+        errors = _structural_response_errors(payload)
+    if errors:
+        return AdapterResponse(events=[], error=prefix + "; ".join(errors[:3]))
+    events = [Event.from_dict(value) for value in payload["events"]]
     return AdapterResponse(
         events=events,
         response=str(payload.get("response", "")),

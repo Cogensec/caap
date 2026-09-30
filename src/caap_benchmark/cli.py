@@ -12,6 +12,7 @@ from .adapters import CommandAdapter, HttpAdapter, MockAdapter
 from .loaders import ValidationError, discover_tests, load_data, validate_test_case
 from .reports import write_html, write_json, write_junit
 from .runner import BenchmarkRunner
+from .schemas import validator_name
 from .scoring import score
 
 
@@ -86,7 +87,7 @@ def cmd_validate(args: argparse.Namespace) -> int:
                 print(f"  - {error}")
         elif args.verbose:
             print(f"PASS {path}")
-    print(f"Validated {len(files)} case(s); {failures} failed")
+    print(f"Validated {len(files)} case(s); {failures} failed | validator: {validator_name()}")
     return 1 if failures else 0
 
 

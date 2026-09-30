@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cogensec.com/schemas/caap/test-case-1.0.schema.json",
+  "title": "CAAP conformant benchmark test case",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version", "id", "pattern_id", "pattern_version", "title", "authorization",
+    "target_profile", "benign_objective", "adversarial_condition", "safe_sentinel", "procedure",
+    "success_oracles", "secure_behavior_oracles", "telemetry_required", "severity", "mappings",
+    "expected_secure_behavior", "recovery", "safety"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "id": {"type": "string", "pattern": "^CAAP-[A-Z]{2}-[0-9]{2}-(REF|SCAFFOLD)-[0-9]{3}$"},
+    "pattern_id": {"type": "string", "pattern": "^CAAP-[A-Z]{2}-[0-9]{2}$"},
+    "pattern_version": {"type": "string"},
+    "title": {"type": "string", "minLength": 8},
+    "implementation_status": {"enum": ["executable", "scaffold"]},
+    "enabled": {"type": "boolean"},
+    "tags": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "authorization": {
+      "type": "object", "required": ["required", "statement"],
+      "properties": {"required": {"const": true}, "statement": {"type": "string", "minLength": 20}}
+    },
+    "target_profile": {"type": "object"},
+    "required_capabilities": {"type": "array", "items": {"type": "string"}},
+    "benign_objective": {"type": "string", "minLength": 10},
+    "adversarial_condition": {"type": "string", "minLength": 10},
+    "attack_fixture": {"type": "object"},
+    "safe_sentinel": {"type": "string", "pattern": "^CAAP_[A-Z]{2}_[0-9]{2}_SENTINEL$"},
+    "procedure": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "success_oracles": {"$ref": "#/$defs/oracles"},
+    "secure_behavior_oracles": {"$ref": "#/$defs/oracles"},
+    "telemetry_required": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+    "severity": {"$ref": "#/$defs/severity"},
+    "mappings": {"type": "object"},
+    "expected_secure_behavior": {"type": "string", "minLength": 20},
+    "recovery": {"type": "object", "required": ["procedure"]},
+    "safety": {"$ref": "#/$defs/safety"},
+    "mock_scenario": {
+      "type": "object", "required": ["safe", "vulnerable"],
+      "properties": {
+        "note": {"type": "string"},
+        "safe": {"$ref": "#/$defs/trace"},
+        "vulnerable": {"$ref": "#/$defs/trace"}
+      }
+    }
+  },
+  "$defs": {
+    "trace": {
+      "type": "object", "required": ["response", "events"],
+      "properties": {
+        "response": {"type": "string"},
+        "events": {"type": "array", "items": {"type": "object", "required": ["type"], "properties": {"type": {"type": "string"}, "data": {"type": "object"}}}}
+      }
+    },
+    "oracles": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/oracle"}},
+    "oracle": {
+      "type": "object", "required": ["id", "type"],
+      "properties": {
+        "id": {"type": "string"},
+        "type": {"enum": ["event_present", "event_absent", "response_contains", "response_excludes", "telemetry_equals"]},
+        "event_type": {"type": "string"}, "where": {"type": "object"}, "value": {}, "key": {"type": "string"}
+      }
+    },
+    "severity": {
+      "type": "object", "required": ["baseline_score", "rating", "vector"],
+      "properties": {
+        "baseline_score": {"type": "number", "minimum": 0, "maximum": 10},
+        "rating": {"enum": ["low", "medium", "high", "critical"]},
+        "vector": {"type": "object", "required": ["impact", "exploitability", "privilege", "autonomy", "persistence", "propagation"]}
+      }
+    },
+    "safety": {
+      "type": "object",
+      "required": ["authorized_targets_only", "synthetic_data_only", "mock_tools_only", "no_destructive_payloads", "no_real_exfiltration", "no_persistence"],
+      "properties": {
+        "authorized_targets_only": {"const": true}, "synthetic_data_only": {"const": true},
+        "mock_tools_only": {"const": true}, "no_destructive_payloads": {"const": true},
+        "no_real_exfiltration": {"const": true}, "no_persistence": {"const": true}
+      }
+    }
+  }
+}
+

@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from typing import Any
+
+from .schemas import load_schema, schema_errors
 
 
 class ValidationError(ValueError):
@@ -39,30 +42,27 @@ def discover_tests(paths: list[str | Path]) -> list[Path]:
 
 
 def validate_test_case(case: dict[str, Any]) -> list[str]:
+    """Validate a case against the published test-case schema.
+
+    Uses full JSON Schema validation when `jsonschema` is installed and the
+    structural check below otherwise. Either way an empty list means valid.
+    """
+    errors = schema_errors("test-case", case)
+    if errors is None:
+        errors = structural_test_case_errors(case)
+    return errors
+
+
+def structural_test_case_errors(case: dict[str, Any]) -> list[str]:
+    """Dependency-free subset of the schema: required fields, ID shape, oracles, safety."""
+    schema = load_schema("test-case")
     errors: list[str] = []
-    required = {
-        "schema_version",
-        "id",
-        "pattern_id",
-        "title",
-        "authorization",
-        "benign_objective",
-        "adversarial_condition",
-        "safe_sentinel",
-        "procedure",
-        "success_oracles",
-        "secure_behavior_oracles",
-        "telemetry_required",
-        "severity",
-        "mappings",
-        "recovery",
-        "safety",
-    }
-    missing = sorted(required - case.keys())
+    missing = sorted(set(schema["required"]) - case.keys())
     if missing:
         errors.append("missing required fields: " + ", ".join(missing))
-    if not str(case.get("pattern_id", "")).startswith("CAAP-"):
-        errors.append("pattern_id must start with CAAP-")
+    id_pattern = schema["properties"]["pattern_id"]["pattern"]
+    if not re.fullmatch(id_pattern, str(case.get("pattern_id", ""))):
+        errors.append(f"pattern_id must match {id_pattern}")
     if not isinstance(case.get("procedure", []), list) or not case.get("procedure"):
         errors.append("procedure must be a non-empty list")
     for field_name in ("success_oracles", "secure_behavior_oracles"):
@@ -70,17 +70,9 @@ def validate_test_case(case: dict[str, Any]) -> list[str]:
             errors.append(f"{field_name} must be a non-empty list")
     safety = case.get("safety", {})
     if isinstance(safety, dict):
-        for key in (
-            "authorized_targets_only",
-            "synthetic_data_only",
-            "mock_tools_only",
-            "no_destructive_payloads",
-            "no_real_exfiltration",
-            "no_persistence",
-        ):
+        for key in schema["$defs"]["safety"]["required"]:
             if safety.get(key) is not True:
                 errors.append(f"safety.{key} must be true")
     else:
         errors.append("safety must be an object")
     return errors
-
