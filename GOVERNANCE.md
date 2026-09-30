@@ -27,7 +27,7 @@ IDs are never reassigned or recycled.
 
 ## Releases
 
-Every release requires clean CI, regenerated artifacts, a repository-integrity pass, changelog entry, mapping review status, and safety sign-off. Security fixes can use an expedited private process described in `SECURITY.md`.
+Every release requires clean CI, regenerated artifacts, a repository-integrity pass, changelog entry, mapping review status, and safety sign-off. Security fixes can use an expedited private process described in `SECURITY.md`. Releases are git tags `vX.Y.Z` on `main`, published on the GitHub Releases page by the release workflow with the distribution, the taxonomy, the schemas, checksums, and notes taken from the changelog; the software version and the taxonomy version are tracked separately. The procedure is in `docs/RELEASING.md`.
 
 ## Appeals and conduct
 

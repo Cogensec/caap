@@ -143,6 +143,8 @@ Missing required telemetry or evidence produces `inconclusive`, never `pass`. A 
 
 This repository is `v0.1.0` software implementing the CAAP `2.0.0-draft.1` working taxonomy. It is suitable for public review and controlled evaluation, not certification claims. External mappings are informative and require periodic review.
 
+Releases are tagged `vX.Y.Z` and published on the [GitHub Releases page](https://github.com/Cogensec/caap/releases) with the wheel, the taxonomy, the schemas, checksums, and notes from the changelog. The software version and the taxonomy version are tracked separately; `caap --version` reports both. See [docs/RELEASING.md](docs/RELEASING.md).
+
 ## Contributing
 
 Start with [CONTRIBUTING.md](CONTRIBUTING.md). New patterns must satisfy the distinct-mechanism admission rule. New executable cases must pass all safety declarations and demonstrate both a secure pass and an intentionally vulnerable synthetic fail. Branch from `main` with a descriptive name and sign off every commit under your own identity.

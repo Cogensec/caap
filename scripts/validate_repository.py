@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PACKAGE_DATA = ROOT / "src" / "caap_benchmark" / "data"
 
 sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "scripts"))
 from caap_benchmark.schemas import schema_errors  # noqa: E402
 
 EXPECTED = {
@@ -75,6 +76,7 @@ def main() -> None:
     assessments = check_assessment_cases(patterns)
     check_package_data(executable, assessments)
     check_schemas(registry, executable + scaffolds, assessments)
+    check_versions()
     print(
         "Repository invariants validated: 200 patterns, 25 executable cases, 175 scaffolds, "
         "200 assessment cases."
@@ -212,6 +214,24 @@ def check_package_data(executable: list[Path], assessments: list[Path]) -> None:
     extra = {path for path in PACKAGE_DATA.rglob("*") if path.is_file()} - set(expected.values())
     if extra:
         fail(f"unexpected packaged files: {sorted(str(p.relative_to(ROOT)) for p in extra)}")
+
+
+def check_versions() -> None:
+    """pyproject.toml, versions.py, the README, and the changelog must agree on the version."""
+    import release  # noqa: PLC0415
+
+    pyproject = release._match(release.PYPROJECT_RE, (ROOT / "pyproject.toml").read_text(), "p")
+    problems = [
+        problem
+        for problem in release.check(pyproject, ROOT)
+        if not problem.startswith("CHANGELOG.md has no `## [")
+        and not problem.startswith("CHANGELOG.md still has entries under [Unreleased]")
+    ]
+    if problems:
+        fail("version drift: " + "; ".join(problems))
+    if "## [Unreleased]" not in (ROOT / "CHANGELOG.md").read_text():
+        fail("CHANGELOG.md has no [Unreleased] section")
+    print(f"Version {pyproject} is consistent across pyproject.toml, versions.py, and README.md.")
 
 
 if __name__ == "__main__":

@@ -23,6 +23,7 @@ from .reports import write_html, write_json, write_junit
 from .runner import BenchmarkRunner
 from .schemas import validator_name
 from .scoring import score
+from .versions import TAXONOMY_VERSION, package_version
 
 
 def _repo_root() -> Path | None:
@@ -366,7 +367,11 @@ def build_parser() -> argparse.ArgumentParser:
     taxonomy_path, executable_dir = default_paths()
     assessment_cases_dir, profiles_dir = default_assessment_paths()
     parser = argparse.ArgumentParser(prog="caap", description="Run safe CAAP agent benchmarks")
-    parser.add_argument("--version", action="version", version="caap-benchmark 0.1.0")
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"caap-benchmark {package_version()} (CAAP-200 taxonomy {TAXONOMY_VERSION})",
+    )
     sub = parser.add_subparsers(dest="subcommand", required=True)
 
     listing = sub.add_parser("list", help="list CAAP-200 patterns")
