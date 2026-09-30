@@ -28,6 +28,42 @@ class TaxonomyTests(unittest.TestCase):
             for related in pattern["relationships"].values():
                 self.assertFalse(set(related) - ids, pattern["id"])
 
+    def test_generated_yaml_matches_canonical_json(self) -> None:
+        try:
+            import yaml
+        except ImportError:
+            self.skipTest("PyYAML is not installed")
+        parsed = yaml.safe_load((ROOT / "data/taxonomy/caap-200.yaml").read_text(encoding="utf-8"))
+        self.assertEqual(parsed, self.registry)
+
+
+class YamlEmitterTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        import importlib.util
+
+        spec = importlib.util.spec_from_file_location(
+            "generate_catalog", ROOT / "scripts" / "generate_catalog.py"
+        )
+        module = importlib.util.module_from_spec(spec)
+        assert spec.loader is not None
+        spec.loader.exec_module(module)
+        cls.dump_yaml = staticmethod(module.dump_yaml)
+
+    def test_empty_containers_round_trip(self) -> None:
+        try:
+            import yaml
+        except ImportError:
+            self.skipTest("PyYAML is not installed")
+        value = {
+            "empty_list": [],
+            "empty_dict": {},
+            "items": [{"first": [], "second": {}}, [], {}, "text"],
+            "nested": {"inner": {"deep": []}},
+        }
+        text = "\n".join(self.dump_yaml(value)) + "\n"
+        self.assertEqual(yaml.safe_load(text), value)
+
 
 if __name__ == "__main__":
     unittest.main()
