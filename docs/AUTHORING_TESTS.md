@@ -2,6 +2,8 @@
 
 Start from the disabled scaffold matching the stable pattern ID. A pull request that enables a case must replace the generic fixture with a mechanism-specific harmless scenario.
 
+`caap run` skips any case marked `"enabled": false` and reports how many it skipped. While developing a scaffold, pass `--include-disabled` to execute it; set `enabled` to `true` only when the case meets the checklist below.
+
 ## Acceptance checklist
 
 - The target and every side effect are owner-authorized and isolated.

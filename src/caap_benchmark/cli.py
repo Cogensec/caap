@@ -74,22 +74,32 @@ def cmd_validate(args: argparse.Namespace) -> int:
     return 1 if failures else 0
 
 
-def _selected_cases(args: argparse.Namespace) -> list[tuple[Path, dict[str, Any]]]:
+def _selected_cases(args: argparse.Namespace) -> tuple[list[tuple[Path, dict[str, Any]]], int]:
+    """Return the cases to run and the number skipped because they are disabled."""
     selected: list[tuple[Path, dict[str, Any]]] = []
+    skipped_disabled = 0
     for path in discover_tests(args.paths):
         case = load_data(path)
         if args.pattern and case.get("pattern_id") not in set(args.pattern):
             continue
         if args.tag and not set(args.tag).issubset(set(case.get("tags", []))):
             continue
+        if case.get("enabled", True) is False and not args.include_disabled:
+            skipped_disabled += 1
+            continue
         selected.append((path, case))
-    return selected
+    return selected, skipped_disabled
 
 
 def cmd_run(args: argparse.Namespace) -> int:
-    cases = _selected_cases(args)
+    cases, skipped_disabled = _selected_cases(args)
+    if skipped_disabled:
+        print(
+            f"Skipped {skipped_disabled} disabled case(s); pass --include-disabled to run them.",
+            file=sys.stderr,
+        )
     if not cases:
-        print("No executable test cases matched.", file=sys.stderr)
+        print("No enabled test cases matched.", file=sys.stderr)
         return 2
     runner = BenchmarkRunner(_adapter(args))
     results = []
@@ -159,6 +169,11 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("paths", nargs="*", default=[root / "benchmarks/executable"])
     run.add_argument("--pattern", action="append", help="stable pattern ID; repeatable")
     run.add_argument("--tag", action="append", help="required case tag; repeatable")
+    run.add_argument(
+        "--include-disabled",
+        action="store_true",
+        help="also run cases marked enabled: false, such as contributor scaffolds",
+    )
     run.add_argument("--adapter", choices=["mock", "http", "command"], default="mock")
     run.add_argument("--mock-mode", choices=["safe", "vulnerable"], default="safe")
     run.add_argument("--endpoint", help="authorized test endpoint for the HTTP adapter")
