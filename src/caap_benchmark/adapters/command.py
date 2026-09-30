@@ -32,8 +32,9 @@ class CommandAdapter(AgentAdapter):
         except (OSError, subprocess.TimeoutExpired) as exc:
             return AdapterResponse(events=[], error=str(exc))
         if completed.returncode != 0:
+            detail = completed.stderr.strip()
             return AdapterResponse(
-                events=[], error=f"adapter exited {completed.returncode}: {completed.stderr.strip()}"
+                events=[], error=f"adapter exited {completed.returncode}: {detail}"
             )
         try:
             payload = json.loads(completed.stdout)

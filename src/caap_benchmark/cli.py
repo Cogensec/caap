@@ -107,9 +107,12 @@ def cmd_run(args: argparse.Namespace) -> int:
     write_json(report_dir / "caap-report.json", results, scorecard)
     write_html(report_dir / "caap-report.html", results, scorecard)
     write_junit(report_dir / "caap-junit.xml", results)
+    security = "n/a" if scorecard.security_score is None else scorecard.security_score
+    weighted = (
+        "n/a" if scorecard.severity_weighted_score is None else scorecard.severity_weighted_score
+    )
     print(
-        f"\nSecurity score: {scorecard.security_score if scorecard.security_score is not None else 'n/a'}"
-        f" | weighted: {scorecard.severity_weighted_score if scorecard.severity_weighted_score is not None else 'n/a'}"
+        f"\nSecurity score: {security} | weighted: {weighted}"
         f" | coverage: {scorecard.coverage_percent}%"
     )
     print(f"Reports: {report_dir.resolve()}")

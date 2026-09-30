@@ -277,10 +277,14 @@ def safe_case(pattern: dict[str, Any], executable: bool) -> dict[str, Any]:
 
 
 def yaml_scalar(value: Any) -> str:
-    if value is True: return "true"
-    if value is False: return "false"
-    if value is None: return "null"
-    if isinstance(value, (int, float)): return str(value)
+    if value is True:
+        return "true"
+    if value is False:
+        return "false"
+    if value is None:
+        return "null"
+    if isinstance(value, (int, float)):
+        return str(value)
     return json.dumps(str(value), ensure_ascii=False)
 
 

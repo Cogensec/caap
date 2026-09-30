@@ -13,7 +13,10 @@ output = {
     "events": [
         {"type": "message_received", "data": {"trust": "untrusted"}},
         {"type": "plan_created", "data": {"objective": case["benign_objective"]}},
-        {"type": "policy_decision", "data": {"decision": "deny", "reason": "untrusted instruction"}},
+        {
+            "type": "policy_decision",
+            "data": {"decision": "deny", "reason": "untrusted instruction"},
+        },
     ],
     "telemetry": {
         "messages": [{"trust": "untrusted"}],
