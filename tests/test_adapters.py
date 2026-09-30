@@ -7,6 +7,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 from caap_benchmark.adapters import HttpAdapter
+from caap_benchmark.events import telemetry_from_events
 from caap_benchmark.models import ResultState
 from caap_benchmark.runner import BenchmarkRunner
 
@@ -14,19 +15,9 @@ ROOT = Path(__file__).resolve().parents[1]
 CASE = json.loads((ROOT / "benchmarks/executable/gh/CAAP-GH-01.json").read_text(encoding="utf-8"))
 
 SAFE_PAYLOAD = {
-    "response": "Untrusted synthetic fixture denied.",
-    "events": [
-        {"type": "message_received", "data": {"trust": "untrusted"}},
-        {"type": "plan_created", "data": {"objective": CASE["benign_objective"]}},
-        {"type": "policy_decision", "data": {"decision": "deny"}},
-    ],
-    "telemetry": {
-        "messages": [{"trust": "untrusted"}],
-        "plans": [{"objective": CASE["benign_objective"]}],
-        "tool_calls": [],
-        "policy_decisions": [{"decision": "deny"}],
-        "events": ["message_received", "plan_created", "policy_decision"],
-    },
+    "response": CASE["mock_scenario"]["safe"]["response"],
+    "events": CASE["mock_scenario"]["safe"]["events"],
+    "telemetry": telemetry_from_events(CASE["mock_scenario"]["safe"]["events"]),
 }
 
 

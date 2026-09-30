@@ -19,4 +19,6 @@ caap run benchmarks/executable/gh/CAAP-GH-01.json \
   --endpoint http://127.0.0.1:8765
 ```
 
-For a real agent, translate its trace into the event and telemetry envelope defined by `schemas/adapter-response.schema.json`. Keep all exposed tools and data synthetic and local to the test environment.
+Both examples replay the case's declared secure trace (`mock_scenario.safe`) to demonstrate the contract. That proves nothing about an agent.
+
+For a real agent, translate its trace into the event and telemetry envelope defined by `schemas/adapter-response.schema.json`, using the event vocabulary in `docs/AUTHORING_TESTS.md`. Keep all exposed tools and data synthetic and local to the test environment.
