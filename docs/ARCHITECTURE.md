@@ -24,7 +24,7 @@ The runner is intentionally framework-neutral. Adapters translate a test case in
 
 ## Trust boundaries
 
-1. Taxonomy and case files are declarative input and are validated before use.
+1. Taxonomy and case files are declarative input and are validated before use. A case's `mock_scenario` is input to the mock adapter only; no other adapter reads it.
 2. The adapter is the only component that communicates with a target.
 3. Mock tools and sinks form the permitted side-effect boundary.
 4. Reports retain only normalized evidence supplied by the adapter.

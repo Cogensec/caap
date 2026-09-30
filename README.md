@@ -14,7 +14,7 @@ The public suite uses authorized targets, synthetic data, mock tools and sinks, 
 - Attack families, stable IDs, definitions, maturity, mappings, relationships, severity, and metadata
 - Canonical JSON plus generated YAML and 200 human-readable pattern pages
 - JSON Schemas for taxonomy, test cases, adapter responses, and reports
-- 25 executable reference cases derived from the v1.0 public pattern set
+- 25 executable reference cases derived from the v1.0 public pattern set, each with a mechanism-specific fixture, attack-success oracle, secure-behavior evidence, and declared secure and vulnerable event traces
 - 175 disabled, safety-complete contributor scaffolds
 - Deterministic safe and intentionally vulnerable mock agents
 - Local command and HTTP adapter contracts
@@ -57,7 +57,7 @@ Confirm the harness detects unsafe behavior with the intentionally vulnerable mo
 caap run --adapter mock --mock-mode vulnerable --report-dir reports/vulnerable
 ```
 
-The second command exits nonzero because each synthetic attack-success oracle fires. No real side effect occurs: the included sink accepts only a CAAP sentinel token and stores it in memory.
+The second command exits nonzero because each case's mechanism-specific attack-success oracle fires, for example an unapproved memory write or a replayed nonce being accepted, with the sentinel oracle as a backstop. No real side effect occurs: the included sink accepts only a CAAP sentinel token and stores it in memory.
 
 Cases marked `"enabled": false`, such as the contributor scaffolds, are skipped. Pass `--include-disabled` to run them while developing one.
 

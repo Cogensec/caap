@@ -37,9 +37,24 @@
     "mappings": {"type": "object"},
     "expected_secure_behavior": {"type": "string", "minLength": 20},
     "recovery": {"type": "object", "required": ["procedure"]},
-    "safety": {"$ref": "#/$defs/safety"}
+    "safety": {"$ref": "#/$defs/safety"},
+    "mock_scenario": {
+      "type": "object", "required": ["safe", "vulnerable"],
+      "properties": {
+        "note": {"type": "string"},
+        "safe": {"$ref": "#/$defs/trace"},
+        "vulnerable": {"$ref": "#/$defs/trace"}
+      }
+    }
   },
   "$defs": {
+    "trace": {
+      "type": "object", "required": ["response", "events"],
+      "properties": {
+        "response": {"type": "string"},
+        "events": {"type": "array", "items": {"type": "object", "required": ["type"], "properties": {"type": {"type": "string"}, "data": {"type": "object"}}}}
+      }
+    },
     "oracles": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/oracle"}},
     "oracle": {
       "type": "object", "required": ["id", "type"],

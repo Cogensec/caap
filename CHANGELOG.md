@@ -15,6 +15,7 @@ All notable changes are recorded here.
 
 ### Changed
 
+- The 25 executable reference cases now carry mechanism-specific fixtures, attack-success oracles, and secure-behavior evidence instead of one shared template. Each declares a `mock_scenario` with the secure and vulnerable event traces for its mechanism; the mock adapter replays them, so the vulnerable mode now fails on the mechanism oracle (for example an unapproved memory write or a replayed nonce being accepted) before the sentinel backstop. A shared event vocabulary in `caap_benchmark.events` maps event types to telemetry keys, and each case requires the keys its traces produce. Scaffolds are unchanged.
 - CI now runs `ruff check` as a separate lint job, and `make lint` runs it locally. Existing findings were cleared; the generator's one-record-per-line taxonomy tables are exempt from the line-length rule only.
 
 ### Fixed
