@@ -12,6 +12,10 @@ All notable changes are recorded here.
 - Python CLI, mock/command/HTTP adapters, oracle engine, five-state results, scoring, evidence hashes, and JSON/HTML/JUnit reports.
 - Schemas, tests, CI, safety policy, governance, and contributor workflow.
 
+### Changed
+
+- CI now runs `ruff check` as a separate lint job, and `make lint` runs it locally. Existing findings were cleared; the generator's one-record-per-line taxonomy tables are exempt from the line-length rule only.
+
 ### Fixed
 
 - The HTTP adapter no longer follows redirects. Previously a loopback endpoint could answer with a 3xx and have the request body and bearer token re-sent to an arbitrary remote host, bypassing the loopback-only default. A redirect now yields a `test_error` result naming the refused target.

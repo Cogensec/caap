@@ -19,7 +19,7 @@ class Event:
     data: dict[str, Any] = field(default_factory=dict)
 
     @classmethod
-    def from_dict(cls, value: dict[str, Any]) -> "Event":
+    def from_dict(cls, value: dict[str, Any]) -> Event:
         return cls(type=str(value["type"]), data=dict(value.get("data", {})))
 
 

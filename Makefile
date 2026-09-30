@@ -1,7 +1,10 @@
-.PHONY: generate validate test smoke clean
+.PHONY: generate lint validate test smoke clean
 
 generate:
 	python3 scripts/generate_catalog.py
+
+lint:
+	python3 -m ruff check src tests scripts examples
 
 validate:
 	python3 scripts/validate_repository.py

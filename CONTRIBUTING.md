@@ -12,6 +12,7 @@ CAAP welcomes precise taxonomy corrections, mappings, executable safe tests, ada
 ## Local checks
 
 ```bash
+python3 -m ruff check src tests scripts examples
 python3 scripts/generate_catalog.py
 python3 scripts/validate_repository.py
 python3 -m unittest discover -s tests -v
