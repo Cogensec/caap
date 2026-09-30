@@ -12,3 +12,7 @@ All notable changes are recorded here.
 - Python CLI, mock/command/HTTP adapters, oracle engine, five-state results, scoring, evidence hashes, and JSON/HTML/JUnit reports.
 - Schemas, tests, CI, safety policy, governance, and contributor workflow.
 
+### Fixed
+
+- The generated `caap-200.yaml` emitted empty lists and objects as bare keys, which YAML parsers read as `null`; they are now written as `[]` and `{}` so the YAML registry is equivalent to the canonical JSON. A round-trip test guards this.
+

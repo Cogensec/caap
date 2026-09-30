@@ -230,7 +230,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-04"
         - "CAAP-GH-06"
@@ -323,7 +323,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-03"
         - "CAAP-GH-10"
@@ -416,7 +416,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-02"
         - "CAAP-GH-10"
@@ -509,7 +509,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-01"
         - "CAAP-GH-06"
@@ -602,7 +602,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-20"
         - "CAAP-GH-21"
@@ -694,7 +694,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-01"
         - "CAAP-GH-04"
@@ -787,7 +787,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-01"
         - "CAAP-GH-04"
@@ -880,7 +880,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-01"
         - "CAAP-GH-04"
@@ -973,7 +973,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-01"
         - "CAAP-GH-04"
@@ -1066,7 +1066,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-02"
         - "CAAP-GH-03"
@@ -1159,7 +1159,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-02"
         - "CAAP-GH-03"
@@ -1252,7 +1252,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-02"
         - "CAAP-GH-03"
@@ -1345,7 +1345,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-14"
         - "CAAP-GH-15"
@@ -1437,7 +1437,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-13"
         - "CAAP-GH-15"
@@ -1529,7 +1529,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-13"
         - "CAAP-GH-14"
@@ -1621,7 +1621,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-13"
         - "CAAP-GH-14"
@@ -1713,7 +1713,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-18"
         - "CAAP-GH-19"
@@ -1804,7 +1804,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-17"
         - "CAAP-GH-19"
@@ -1895,7 +1895,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-17"
         - "CAAP-GH-18"
@@ -1986,7 +1986,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-05"
         - "CAAP-GH-21"
@@ -2078,7 +2078,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-05"
         - "CAAP-GH-20"
@@ -2170,7 +2170,7 @@ patterns:
         - "AML.T0051"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-GH-05"
         - "CAAP-GH-20"
@@ -2265,7 +2265,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-02"
         - "CAAP-TM-04"
@@ -2361,7 +2361,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-01"
         - "CAAP-TM-04"
@@ -2457,7 +2457,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-05"
         - "CAAP-TM-14"
@@ -2553,7 +2553,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-01"
         - "CAAP-TM-02"
@@ -2649,7 +2649,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-03"
         - "CAAP-TM-14"
@@ -2745,7 +2745,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-23"
         - "CAAP-TM-24"
@@ -2839,7 +2839,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-01"
         - "CAAP-TM-02"
@@ -2935,7 +2935,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-01"
         - "CAAP-TM-02"
@@ -3031,7 +3031,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-01"
         - "CAAP-TM-02"
@@ -3127,7 +3127,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-11"
         - "CAAP-TM-12"
@@ -3222,7 +3222,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-10"
         - "CAAP-TM-12"
@@ -3317,7 +3317,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-10"
         - "CAAP-TM-11"
@@ -3412,7 +3412,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-10"
         - "CAAP-TM-11"
@@ -3507,7 +3507,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-03"
         - "CAAP-TM-05"
@@ -3603,7 +3603,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-03"
         - "CAAP-TM-05"
@@ -3699,7 +3699,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-03"
         - "CAAP-TM-05"
@@ -3795,7 +3795,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-03"
         - "CAAP-TM-05"
@@ -3891,7 +3891,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-03"
         - "CAAP-TM-05"
@@ -3987,7 +3987,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-20"
         - "CAAP-TM-21"
@@ -4082,7 +4082,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-19"
         - "CAAP-TM-21"
@@ -4177,7 +4177,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-19"
         - "CAAP-TM-20"
@@ -4272,7 +4272,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-19"
         - "CAAP-TM-20"
@@ -4367,7 +4367,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-06"
         - "CAAP-TM-24"
@@ -4461,7 +4461,7 @@ patterns:
         - "Exfiltration"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-TM-06"
         - "CAAP-TM-23"
@@ -4554,7 +4554,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-03"
         - "CAAP-IP-04"
@@ -4649,7 +4649,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-08"
         - "CAAP-IP-09"
@@ -4743,7 +4743,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-01"
         - "CAAP-IP-04"
@@ -4838,7 +4838,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-01"
         - "CAAP-IP-03"
@@ -4933,7 +4933,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-16"
         - "CAAP-IP-17"
@@ -5028,7 +5028,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-01"
         - "CAAP-IP-03"
@@ -5123,7 +5123,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-01"
         - "CAAP-IP-03"
@@ -5218,7 +5218,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-02"
         - "CAAP-IP-09"
@@ -5312,7 +5312,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-02"
         - "CAAP-IP-08"
@@ -5406,7 +5406,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-02"
         - "CAAP-IP-08"
@@ -5500,7 +5500,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-12"
         - "CAAP-IP-13"
@@ -5595,7 +5595,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-11"
         - "CAAP-IP-13"
@@ -5690,7 +5690,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-11"
         - "CAAP-IP-12"
@@ -5785,7 +5785,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-11"
         - "CAAP-IP-12"
@@ -5880,7 +5880,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-11"
         - "CAAP-IP-12"
@@ -5975,7 +5975,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-05"
         - "CAAP-IP-17"
@@ -6070,7 +6070,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-05"
         - "CAAP-IP-16"
@@ -6165,7 +6165,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-05"
         - "CAAP-IP-16"
@@ -6260,7 +6260,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-05"
         - "CAAP-IP-16"
@@ -6355,7 +6355,7 @@ patterns:
         - "Privilege Escalation"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IP-05"
         - "CAAP-IP-16"
@@ -6451,7 +6451,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-03"
         - "CAAP-SC-05"
@@ -6547,7 +6547,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-08"
         - "CAAP-SC-09"
@@ -6642,7 +6642,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-01"
         - "CAAP-SC-05"
@@ -6738,7 +6738,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-15"
         - "CAAP-SC-16"
@@ -6834,7 +6834,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-01"
         - "CAAP-SC-03"
@@ -6930,7 +6930,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-01"
         - "CAAP-SC-03"
@@ -7026,7 +7026,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-01"
         - "CAAP-SC-03"
@@ -7122,7 +7122,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-02"
         - "CAAP-SC-09"
@@ -7217,7 +7217,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-02"
         - "CAAP-SC-08"
@@ -7312,7 +7312,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-02"
         - "CAAP-SC-08"
@@ -7407,7 +7407,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-12"
         - "CAAP-SC-13"
@@ -7502,7 +7502,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-11"
         - "CAAP-SC-13"
@@ -7597,7 +7597,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-11"
         - "CAAP-SC-12"
@@ -7692,7 +7692,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-11"
         - "CAAP-SC-12"
@@ -7787,7 +7787,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-04"
         - "CAAP-SC-16"
@@ -7883,7 +7883,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-04"
         - "CAAP-SC-15"
@@ -7979,7 +7979,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-04"
         - "CAAP-SC-15"
@@ -8075,7 +8075,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-04"
         - "CAAP-SC-15"
@@ -8171,7 +8171,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-04"
         - "CAAP-SC-15"
@@ -8267,7 +8267,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-SC-04"
         - "CAAP-SC-15"
@@ -8360,7 +8360,7 @@ patterns:
         - "Execution"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CE-02"
         - "CAAP-CE-03"
@@ -8452,7 +8452,7 @@ patterns:
         - "Execution"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CE-01"
         - "CAAP-CE-03"
@@ -8544,7 +8544,7 @@ patterns:
         - "Execution"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CE-01"
         - "CAAP-CE-02"
@@ -8636,7 +8636,7 @@ patterns:
         - "Execution"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CE-01"
         - "CAAP-CE-02"
@@ -8728,7 +8728,7 @@ patterns:
         - "Execution"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CE-15"
       can_enable:
@@ -8818,7 +8818,7 @@ patterns:
         - "Execution"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CE-07"
         - "CAAP-CE-08"
@@ -8910,7 +8910,7 @@ patterns:
         - "Execution"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CE-06"
         - "CAAP-CE-08"
@@ -9002,7 +9002,7 @@ patterns:
         - "Execution"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CE-06"
         - "CAAP-CE-07"
@@ -9094,7 +9094,7 @@ patterns:
         - "Execution"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CE-06"
         - "CAAP-CE-07"
@@ -9186,7 +9186,7 @@ patterns:
         - "Execution"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CE-11"
         - "CAAP-CE-12"
@@ -9279,7 +9279,7 @@ patterns:
         - "Execution"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CE-10"
         - "CAAP-CE-12"
@@ -9372,7 +9372,7 @@ patterns:
         - "Execution"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CE-10"
         - "CAAP-CE-11"
@@ -9465,7 +9465,7 @@ patterns:
         - "Execution"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CE-10"
         - "CAAP-CE-11"
@@ -9558,7 +9558,7 @@ patterns:
         - "Execution"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CE-10"
         - "CAAP-CE-11"
@@ -9651,7 +9651,7 @@ patterns:
         - "Execution"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CE-05"
       can_enable:
@@ -9746,7 +9746,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-03"
         - "CAAP-MP-05"
@@ -9844,7 +9844,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-08"
         - "CAAP-MP-09"
@@ -9941,7 +9941,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-01"
         - "CAAP-MP-05"
@@ -10039,7 +10039,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-11"
         - "CAAP-MP-12"
@@ -10137,7 +10137,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-01"
         - "CAAP-MP-03"
@@ -10235,7 +10235,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-01"
         - "CAAP-MP-03"
@@ -10333,7 +10333,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-01"
         - "CAAP-MP-03"
@@ -10431,7 +10431,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-02"
         - "CAAP-MP-09"
@@ -10528,7 +10528,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-02"
         - "CAAP-MP-08"
@@ -10625,7 +10625,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-02"
         - "CAAP-MP-08"
@@ -10722,7 +10722,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-04"
         - "CAAP-MP-12"
@@ -10820,7 +10820,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-04"
         - "CAAP-MP-11"
@@ -10918,7 +10918,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-04"
         - "CAAP-MP-11"
@@ -11016,7 +11016,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-04"
         - "CAAP-MP-11"
@@ -11114,7 +11114,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-04"
         - "CAAP-MP-11"
@@ -11212,7 +11212,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-17"
         - "CAAP-MP-18"
@@ -11310,7 +11310,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-16"
         - "CAAP-MP-18"
@@ -11408,7 +11408,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-16"
         - "CAAP-MP-17"
@@ -11506,7 +11506,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-16"
         - "CAAP-MP-17"
@@ -11604,7 +11604,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-16"
         - "CAAP-MP-17"
@@ -11702,7 +11702,7 @@ patterns:
         - "Persistence"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-MP-16"
         - "CAAP-MP-17"
@@ -11798,7 +11798,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-02"
         - "CAAP-IA-04"
@@ -11893,7 +11893,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-01"
         - "CAAP-IA-04"
@@ -11988,7 +11988,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-06"
         - "CAAP-IA-07"
@@ -12083,7 +12083,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-01"
         - "CAAP-IA-02"
@@ -12178,7 +12178,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-01"
         - "CAAP-IA-02"
@@ -12273,7 +12273,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-03"
         - "CAAP-IA-07"
@@ -12368,7 +12368,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-03"
         - "CAAP-IA-06"
@@ -12463,7 +12463,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-03"
         - "CAAP-IA-06"
@@ -12558,7 +12558,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-10"
         - "CAAP-IA-11"
@@ -12653,7 +12653,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-09"
         - "CAAP-IA-11"
@@ -12748,7 +12748,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-09"
         - "CAAP-IA-10"
@@ -12843,7 +12843,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-09"
         - "CAAP-IA-10"
@@ -12938,7 +12938,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-14"
         - "CAAP-IA-15"
@@ -13032,7 +13032,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-13"
         - "CAAP-IA-15"
@@ -13126,7 +13126,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-13"
         - "CAAP-IA-14"
@@ -13220,7 +13220,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-17"
         - "CAAP-IA-18"
@@ -13315,7 +13315,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-16"
         - "CAAP-IA-18"
@@ -13410,7 +13410,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-16"
         - "CAAP-IA-17"
@@ -13505,7 +13505,7 @@ patterns:
         - "Command and Control"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-IA-16"
         - "CAAP-IA-17"
@@ -13599,7 +13599,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CF-02"
         - "CAAP-CF-03"
@@ -13693,7 +13693,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CF-01"
         - "CAAP-CF-03"
@@ -13787,7 +13787,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CF-01"
         - "CAAP-CF-02"
@@ -13881,7 +13881,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CF-01"
         - "CAAP-CF-02"
@@ -13975,7 +13975,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CF-06"
         - "CAAP-CF-07"
@@ -14068,7 +14068,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CF-05"
         - "CAAP-CF-07"
@@ -14161,7 +14161,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CF-05"
         - "CAAP-CF-06"
@@ -14254,7 +14254,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CF-09"
         - "CAAP-CF-10"
@@ -14348,7 +14348,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CF-08"
         - "CAAP-CF-10"
@@ -14442,7 +14442,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CF-08"
         - "CAAP-CF-09"
@@ -14536,7 +14536,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CF-08"
         - "CAAP-CF-09"
@@ -14630,7 +14630,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CF-13"
         - "CAAP-CF-14"
@@ -14725,7 +14725,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CF-12"
         - "CAAP-CF-14"
@@ -14820,7 +14820,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CF-12"
         - "CAAP-CF-13"
@@ -14915,7 +14915,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CF-12"
         - "CAAP-CF-13"
@@ -15010,7 +15010,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-CF-12"
         - "CAAP-CF-13"
@@ -15104,7 +15104,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-HT-02"
         - "CAAP-HT-03"
@@ -15198,7 +15198,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-HT-01"
         - "CAAP-HT-03"
@@ -15292,7 +15292,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-HT-01"
         - "CAAP-HT-02"
@@ -15386,7 +15386,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-HT-07"
         - "CAAP-HT-08"
@@ -15480,7 +15480,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-HT-01"
         - "CAAP-HT-02"
@@ -15574,7 +15574,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-HT-01"
         - "CAAP-HT-02"
@@ -15668,7 +15668,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-HT-04"
         - "CAAP-HT-08"
@@ -15762,7 +15762,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-HT-04"
         - "CAAP-HT-07"
@@ -15856,7 +15856,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-HT-04"
         - "CAAP-HT-07"
@@ -15950,7 +15950,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-HT-04"
         - "CAAP-HT-07"
@@ -16044,7 +16044,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-HT-12"
         - "CAAP-HT-13"
@@ -16138,7 +16138,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-HT-11"
         - "CAAP-HT-13"
@@ -16232,7 +16232,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-HT-11"
         - "CAAP-HT-12"
@@ -16326,7 +16326,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-HT-11"
         - "CAAP-HT-12"
@@ -16420,7 +16420,7 @@ patterns:
         - "Initial Access"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-HT-11"
         - "CAAP-HT-12"
@@ -16517,7 +16517,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-RA-02"
         - "CAAP-RA-03"
@@ -16613,7 +16613,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-RA-01"
         - "CAAP-RA-03"
@@ -16709,7 +16709,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-RA-01"
         - "CAAP-RA-02"
@@ -16805,7 +16805,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-RA-01"
         - "CAAP-RA-02"
@@ -16901,7 +16901,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-RA-06"
         - "CAAP-RA-07"
@@ -16998,7 +16998,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-RA-05"
         - "CAAP-RA-07"
@@ -17095,7 +17095,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-RA-05"
         - "CAAP-RA-06"
@@ -17192,7 +17192,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-RA-05"
         - "CAAP-RA-06"
@@ -17289,7 +17289,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-RA-05"
         - "CAAP-RA-06"
@@ -17386,7 +17386,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-RA-11"
         - "CAAP-RA-12"
@@ -17481,7 +17481,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-RA-10"
         - "CAAP-RA-12"
@@ -17576,7 +17576,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-RA-10"
         - "CAAP-RA-11"
@@ -17671,7 +17671,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-RA-14"
         - "CAAP-RA-15"
@@ -17767,7 +17767,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-RA-13"
         - "CAAP-RA-15"
@@ -17863,7 +17863,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-RA-13"
         - "CAAP-RA-14"
@@ -17959,7 +17959,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-RA-13"
         - "CAAP-RA-14"
@@ -18055,7 +18055,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-EA-02"
         - "CAAP-EA-04"
@@ -18151,7 +18151,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-EA-01"
         - "CAAP-EA-04"
@@ -18247,7 +18247,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-EA-10"
         - "CAAP-EA-11"
@@ -18342,7 +18342,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-EA-01"
         - "CAAP-EA-02"
@@ -18438,7 +18438,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-EA-01"
         - "CAAP-EA-02"
@@ -18534,7 +18534,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-EA-07"
         - "CAAP-EA-08"
@@ -18630,7 +18630,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-EA-06"
         - "CAAP-EA-08"
@@ -18726,7 +18726,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-EA-06"
         - "CAAP-EA-07"
@@ -18822,7 +18822,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-EA-06"
         - "CAAP-EA-07"
@@ -18918,7 +18918,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-EA-03"
         - "CAAP-EA-11"
@@ -19013,7 +19013,7 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
+      prerequisites: []
       related:
         - "CAAP-EA-03"
         - "CAAP-EA-10"
@@ -19108,8 +19108,8 @@ patterns:
         - "Impact"
       mapping_status: "informative"
     relationships:
-      prerequisites:
-      related:
+      prerequisites: []
+      related: []
       can_enable:
         - "CAAP-CF-01"
       commonly_chained_with:

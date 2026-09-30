@@ -284,12 +284,24 @@ def yaml_scalar(value: Any) -> str:
     return json.dumps(str(value), ensure_ascii=False)
 
 
+def yaml_empty(value: Any) -> str | None:
+    """Return the flow-style literal for an empty container, or None for anything else."""
+    if isinstance(value, dict) and not value:
+        return "{}"
+    if isinstance(value, list) and not value:
+        return "[]"
+    return None
+
+
 def dump_yaml(value: Any, indent: int = 0) -> list[str]:
     prefix = " " * indent
     if isinstance(value, dict):
         lines: list[str] = []
         for key, child in value.items():
-            if isinstance(child, (dict, list)):
+            empty = yaml_empty(child)
+            if empty is not None:
+                lines.append(f"{prefix}{key}: {empty}")
+            elif isinstance(child, (dict, list)):
                 lines.append(f"{prefix}{key}:")
                 lines.extend(dump_yaml(child, indent + 2))
             else:
@@ -298,10 +310,16 @@ def dump_yaml(value: Any, indent: int = 0) -> list[str]:
     if isinstance(value, list):
         lines = []
         for child in value:
-            if isinstance(child, dict):
+            empty = yaml_empty(child)
+            if empty is not None:
+                lines.append(f"{prefix}- {empty}")
+            elif isinstance(child, dict):
                 first, *rest = list(child.items())
                 key, item = first
-                if isinstance(item, (dict, list)):
+                item_empty = yaml_empty(item)
+                if item_empty is not None:
+                    lines.append(f"{prefix}- {key}: {item_empty}")
+                elif isinstance(item, (dict, list)):
                     lines.append(f"{prefix}- {key}:")
                     lines.extend(dump_yaml(item, indent + 4))
                 else:
