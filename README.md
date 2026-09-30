@@ -32,6 +32,8 @@ python3 -m venv .venv
 python -m pip install -e .
 ```
 
+The package bundles the CAAP-200 registry and the 25 executable cases, so an installed `caap` works from any directory. Inside a repository checkout the checkout's files take precedence, so edits in progress are picked up.
+
 ## Quick start
 
 List the taxonomy:

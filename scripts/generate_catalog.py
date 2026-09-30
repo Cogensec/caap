@@ -4,10 +4,13 @@
 from __future__ import annotations
 
 import json
+import shutil
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+# Copies bundled into the wheel so an installed `caap` works outside the checkout.
+PACKAGE_DATA = ROOT / "src" / "caap_benchmark" / "data"
 
 DOMAINS: dict[str, dict[str, Any]] = {
     "GH": {"name": "Goal & Instruction Hijacking", "owasp": ["ASI01"], "nist": ["MAP", "MEASURE"], "atlas": ["AML.T0051"], "scope": "Manipulation of objectives, instruction priority, plans, and decision paths across trust boundaries."},
@@ -406,7 +409,11 @@ def main() -> None:
     }
     taxonomy_dir = ROOT / "data" / "taxonomy"
     taxonomy_dir.mkdir(parents=True, exist_ok=True)
-    (taxonomy_dir / "caap-200.json").write_text(json.dumps(registry, indent=2) + "\n", encoding="utf-8")
+    shutil.rmtree(PACKAGE_DATA, ignore_errors=True)
+    (PACKAGE_DATA / "taxonomy").mkdir(parents=True)
+    registry_text = json.dumps(registry, indent=2) + "\n"
+    (taxonomy_dir / "caap-200.json").write_text(registry_text, encoding="utf-8")
+    (PACKAGE_DATA / "taxonomy" / "caap-200.json").write_text(registry_text, encoding="utf-8")
     (taxonomy_dir / "caap-200.yaml").write_text("\n".join(dump_yaml(registry)) + "\n", encoding="utf-8")
     (taxonomy_dir / "domains.json").write_text(json.dumps(registry["domains"], indent=2) + "\n", encoding="utf-8")
     taxonomy_lines = ["# CAAP-200 taxonomy", "", "Version: `2.0.0-draft.1` | Normative baseline: `CAAP v1.0.0-draft.1`", ""]
@@ -419,12 +426,18 @@ def main() -> None:
     for pattern in patterns:
         write_pattern_page(pattern)
         case = safe_case(pattern, pattern["implementation_status"] == "executable")
+        relative = Path(pattern["domain_id"].lower()) / f"{pattern['id']}.json"
+        case_text = json.dumps(case, indent=2) + "\n"
         if pattern["implementation_status"] == "executable":
-            output = ROOT / "benchmarks" / "executable" / pattern["domain_id"].lower() / f"{pattern['id']}.json"
+            outputs = [
+                ROOT / "benchmarks" / "executable" / relative,
+                PACKAGE_DATA / "benchmarks" / "executable" / relative,
+            ]
         else:
-            output = ROOT / "benchmarks" / "scaffolds" / pattern["domain_id"].lower() / f"{pattern['id']}.json"
-        output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(json.dumps(case, indent=2) + "\n", encoding="utf-8")
+            outputs = [ROOT / "benchmarks" / "scaffolds" / relative]
+        for output in outputs:
+            output.parent.mkdir(parents=True, exist_ok=True)
+            output.write_text(case_text, encoding="utf-8")
     print(f"Generated {len(patterns)} patterns, 25 executable cases, and 175 scaffolds.")
 
 

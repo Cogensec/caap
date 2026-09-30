@@ -25,5 +25,5 @@ Supported core oracle types are `event_present`, `event_absent`, `response_conta
 
 ## Adding a pattern
 
-Taxonomy edits originate in `scripts/generate_catalog.py`; generated JSON, YAML, pattern pages, and scaffolds MUST be regenerated and committed together. Explain how the proposed mechanism differs from existing IDs and identify the trust boundary, unsafe state transition, and relationship edges.
+Taxonomy edits originate in `scripts/generate_catalog.py`; generated JSON, YAML, pattern pages, scaffolds, and the copies under `src/caap_benchmark/data/` that ship in the package MUST be regenerated and committed together. Explain how the proposed mechanism differs from existing IDs and identify the trust boundary, unsafe state transition, and relationship edges.
 

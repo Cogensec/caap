@@ -4,6 +4,7 @@ import argparse
 import json
 import os
 import sys
+from importlib import resources
 from pathlib import Path
 from typing import Any
 
@@ -14,12 +15,27 @@ from .runner import BenchmarkRunner
 from .scoring import score
 
 
-def _repo_root() -> Path:
+def _repo_root() -> Path | None:
+    """Return the repository checkout containing the working directory, if any."""
     current = Path.cwd()
     for candidate in (current, *current.parents):
         if (candidate / "data" / "taxonomy" / "caap-200.json").exists():
             return candidate
-    return current
+    return None
+
+
+def default_paths() -> tuple[Path, Path]:
+    """Return the default taxonomy file and executable-case directory.
+
+    A repository checkout takes precedence so edits in progress are picked up.
+    Outside a checkout the copies bundled with the package are used, which lets
+    an installed `caap` list, show, validate, and run without the repository.
+    """
+    repo = _repo_root()
+    if repo is not None:
+        return repo / "data/taxonomy/caap-200.json", repo / "benchmarks/executable"
+    packaged = Path(str(resources.files("caap_benchmark") / "data"))
+    return packaged / "taxonomy/caap-200.json", packaged / "benchmarks/executable"
 
 
 def _adapter(args: argparse.Namespace):
@@ -144,29 +160,29 @@ def cmd_show(args: argparse.Namespace) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    root = _repo_root()
+    taxonomy_path, executable_dir = default_paths()
     parser = argparse.ArgumentParser(prog="caap", description="Run safe CAAP agent benchmarks")
     parser.add_argument("--version", action="version", version="caap-benchmark 0.1.0")
     sub = parser.add_subparsers(dest="subcommand", required=True)
 
     listing = sub.add_parser("list", help="list CAAP-200 patterns")
-    listing.add_argument("--taxonomy", default=root / "data/taxonomy/caap-200.json")
+    listing.add_argument("--taxonomy", default=taxonomy_path)
     listing.add_argument("--domain")
     listing.add_argument("--maturity", choices=["reference", "candidate", "catalog"])
     listing.set_defaults(func=cmd_list)
 
     show = sub.add_parser("show", help="show one taxonomy record")
     show.add_argument("pattern_id")
-    show.add_argument("--taxonomy", default=root / "data/taxonomy/caap-200.json")
+    show.add_argument("--taxonomy", default=taxonomy_path)
     show.set_defaults(func=cmd_show)
 
     validate = sub.add_parser("validate", help="validate benchmark test definitions")
-    validate.add_argument("paths", nargs="*", default=[root / "benchmarks/executable"])
+    validate.add_argument("paths", nargs="*", default=[executable_dir])
     validate.add_argument("--verbose", action="store_true")
     validate.set_defaults(func=cmd_validate)
 
     run = sub.add_parser("run", help="execute benchmark cases")
-    run.add_argument("paths", nargs="*", default=[root / "benchmarks/executable"])
+    run.add_argument("paths", nargs="*", default=[executable_dir])
     run.add_argument("--pattern", action="append", help="stable pattern ID; repeatable")
     run.add_argument("--tag", action="append", help="required case tag; repeatable")
     run.add_argument(

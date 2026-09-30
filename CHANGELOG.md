@@ -11,6 +11,7 @@ All notable changes are recorded here.
 - 25 executable v1.0-aligned safe-sentinel cases and 175 disabled scaffolds.
 - Python CLI, mock/command/HTTP adapters, oracle engine, five-state results, scoring, evidence hashes, and JSON/HTML/JUnit reports.
 - Schemas, tests, CI, safety policy, governance, and contributor workflow.
+- The package now bundles the CAAP-200 registry and the 25 executable cases, so an installed `caap` can list, show, validate, and run outside a repository checkout. The generator writes these copies and repository validation checks they match the canonical files.
 
 ### Changed
 
