@@ -154,6 +154,13 @@ class ReleaseScriptTests(unittest.TestCase):
             shutil.copy(ROOT / name, copy / name)
         relative = "src/caap_benchmark/versions.py"
         shutil.copy(ROOT / relative, copy / relative)
+        # A freshly cut tree has nothing under Unreleased; seed one entry so the bump has work.
+        changelog = copy / "CHANGELOG.md"
+        changelog.write_text(
+            changelog.read_text().replace(
+                "## [Unreleased]\n", "## [Unreleased]\n\n### Added\n\n- Seeded test entry.\n", 1
+            )
+        )
         release.bump("0.9.9", copy, today=date(2026, 9, 30))
         self.assertEqual(release.check("0.9.9", copy, tag="v0.9.9"), [])
         text = release.notes("0.9.9", copy)
