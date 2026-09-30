@@ -3,6 +3,12 @@ name: Release
 on:
   push:
     tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing release tag to build and publish assets for, for example v0.1.0"
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -11,9 +17,11 @@ jobs:
   release:
     runs-on: ubuntu-latest
     env:
-      VERSION: ${{ github.ref_name }}
+      VERSION: ${{ inputs.tag || github.ref_name }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.tag || github.ref_name }}
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.13"
@@ -43,7 +51,7 @@ jobs:
           cat release/SHA256SUMS
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: caap-benchmark-${{ github.ref_name }}
+          name: caap-benchmark-${{ env.VERSION }}
           path: |
             release/
             release-notes.md
@@ -52,10 +60,19 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          prerelease=()
-          case "${VERSION#v}" in *-*) prerelease=(--prerelease) ;; esac
-          gh release create "$VERSION" release/* \
-            --verify-tag \
-            --title "caap-benchmark ${VERSION#v}" \
-            --notes-file release-notes.md \
-            "${prerelease[@]}"
+          # A release created by hand for this tag keeps its title and notes; only the
+          # assets are (re)attached. Otherwise the release is created from the changelog.
+          if gh release view "$VERSION" >/dev/null 2>&1; then
+            echo "Release $VERSION exists; uploading assets to it."
+            gh release upload "$VERSION" release/* --clobber
+          else
+            prerelease=()
+            case "${VERSION#v}" in *-*) prerelease=(--prerelease) ;; esac
+            gh release create "$VERSION" release/* \
+              --verify-tag \
+              --title "caap-benchmark ${VERSION#v}" \
+              --notes-file release-notes.md \
+              "${prerelease[@]}"
+          fi
+          gh release view "$VERSION" --json tagName,name,assets \
+            --jq '"\(.name) (\(.tagName)): \(.assets | length) asset(s)"'
