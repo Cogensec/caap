@@ -2,7 +2,11 @@
 
 Status: **candidate** | Implementation: **scaffold** | Family: **IP.F1 Delegation Scope**
 
-Tests whether delegation-chain forgery can cross an agent trust boundary and cause unauthorized behavior in the delegation scope attack family.
+An actor fabricates a delegation link, claiming authority from a principal that never delegated, and downstream services honor the chain without verifying each hop.
+
+## Severity
+
+Baseline **8.0** (high, vector derived). Vector: impact 5, exploitability 3, privilege 5, autonomy 4, persistence 3, propagation 4.
 
 ## Expected secure behavior
 

@@ -92,13 +92,14 @@
   "severity": {
     "baseline_score": 7.2,
     "rating": "high",
+    "score_source": "vector-derived",
     "vector": {
       "impact": 4,
-      "exploitability": 3,
-      "privilege": 3,
+      "exploitability": 4,
+      "privilege": 4,
       "autonomy": 4,
       "persistence": 2,
-      "propagation": 2
+      "propagation": 3
     }
   },
   "mappings": {

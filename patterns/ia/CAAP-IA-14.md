@@ -2,7 +2,11 @@
 
 Status: **catalog** | Implementation: **scaffold** | Family: **IA.F4 Semantic & Negotiation Abuse**
 
-Tests whether semantic ambiguity can cross an agent trust boundary and cause unauthorized behavior in the semantic & negotiation abuse attack family.
+A message is well-formed but its meaning admits more than one interpretation, and an attacker crafts it so the receiver's interpretation yields the attacker's outcome.
+
+## Severity
+
+Baseline **6.5** (medium, vector derived). Vector: impact 4, exploitability 3, privilege 3, autonomy 4, persistence 2, propagation 3.
 
 ## Expected secure behavior
 

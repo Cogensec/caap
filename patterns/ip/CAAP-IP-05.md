@@ -2,7 +2,11 @@
 
 Status: **reference** | Implementation: **executable** | Family: **IP.F4 Authorization State**
 
-Tests whether authorization time-of-check to time-of-use can cross an agent trust boundary and cause unauthorized behavior in the authorization state attack family.
+An authorization decision made when an action is planned is not re-evaluated when the action executes, so a revocation or scope change in between is not enforced.
+
+## Severity
+
+Baseline **7.7** (high, caap v1.0 baseline). Vector: impact 4, exploitability 4, privilege 5, autonomy 4, persistence 3, propagation 3.
 
 ## Expected secure behavior
 

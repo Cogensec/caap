@@ -122,13 +122,14 @@
   "severity": {
     "baseline_score": 8.6,
     "rating": "high",
+    "score_source": "caap-v1.0-baseline",
     "vector": {
       "impact": 4,
-      "exploitability": 3,
+      "exploitability": 5,
       "privilege": 3,
-      "autonomy": 4,
-      "persistence": 2,
-      "propagation": 2
+      "autonomy": 5,
+      "persistence": 4,
+      "propagation": 4
     }
   },
   "mappings": {

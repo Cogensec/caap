@@ -54,6 +54,29 @@ A new pattern MUST represent a materially distinct adversarial mechanism, trust-
 
 Maturity changes are reviewable metadata changes. Deprecation preserves the record and points to a replacement; IDs are never recycled.
 
+## Severity
+
+Every record carries a six-axis severity vector and a baseline score from 0 to 10. Each axis is scored from 1 (least severe) to 5 (most severe):
+
+| Axis | Question |
+|---|---|
+| impact | How much harm can the unsafe outcome cause to data, systems, people, or the objective? |
+| exploitability | How little access, skill, and luck does an attacker need to trigger the mechanism? |
+| privilege | How much authority does the attacker gain or abuse relative to what they held? |
+| autonomy | How far can the unsafe action proceed before a human checkpoint would catch it? |
+| persistence | How long does the effect last after the triggering input is gone? |
+| propagation | How far does the effect spread beyond the agent, session, or tenant where it started? |
+
+The CAAP-200 working method derives the baseline score from the vector, weighting impact and exploitability double:
+
+```text
+score = 10 * (2*impact + 2*exploitability + privilege + autonomy + persistence + propagation) / 40
+```
+
+rounded to one decimal. Ratings follow the score: `critical` at 9.0 or above, `high` at 7.0 or above, `medium` at 4.0 or above, `low` below. Each record states its `score_source`.
+
+The 25 v1.0 reference patterns keep their published baseline scores unchanged (`caap-v1.0-baseline`); their vectors are chosen to land within 0.5 of that score and validation enforces the tolerance. Every other record's score is `vector-derived`. A severity change is a reviewable standards change: correct the vector, regenerate, and the score follows. Scores are working-draft estimates for prioritization, not certification claims.
+
 ## Relationships
 
 Every record can identify prerequisites, related mechanisms, patterns it can enable, and common attack-chain neighbors. Relationships are directional where appropriate and every referenced ID MUST resolve inside the same registry version.
