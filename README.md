@@ -94,6 +94,20 @@ caap assess grade --session .caap/assessment
 
 `caap assess mock-respond --session .caap/assessment --mode safe` writes deterministic responses so the protocol can be exercised without an agent; `--mode vulnerable` must fail.
 
+### Use it with any LLM
+
+No adapter, file access, or shell is required of the model. Paste [docs/prompts/coding-agent-self-assessment.md](docs/prompts/coding-agent-self-assessment.md) into a coding agent that can run commands and it runs the whole protocol on itself. For a chat model, render the session as a prompt, paste it, and import the reply:
+
+```bash
+caap assess init --profile chat-assistant --output .caap/chat
+caap assess prompt --session .caap/chat --chunk-size 10   # writes prompt-01-of-04.md ...
+# paste each part into the model and save each reply
+caap assess import --session .caap/chat reply-1.md reply-2.md reply-3.md reply-4.md
+caap assess grade --session .caap/chat
+```
+
+The reply can be raw JSON or Markdown with a `json` block; missing housekeeping fields are filled from the manifest and every response is validated before it is written.
+
 ## Repository map
 
 ```text
