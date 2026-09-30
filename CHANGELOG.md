@@ -14,5 +14,6 @@ All notable changes are recorded here.
 
 ### Fixed
 
+- The HTTP adapter no longer follows redirects. Previously a loopback endpoint could answer with a 3xx and have the request body and bearer token re-sent to an arbitrary remote host, bypassing the loopback-only default. A redirect now yields a `test_error` result naming the refused target.
 - The generated `caap-200.yaml` emitted empty lists and objects as bare keys, which YAML parsers read as `null`; they are now written as `[]` and `{}` so the YAML registry is equivalent to the canonical JSON. A round-trip test guards this.
 

@@ -29,7 +29,7 @@ The runner is intentionally framework-neutral. Adapters translate a test case in
 3. Mock tools and sinks form the permitted side-effect boundary.
 4. Reports retain only normalized evidence supplied by the adapter.
 
-The command adapter executes only the exact operator-supplied command without a shell. The HTTP adapter permits loopback by default and requires explicit acknowledgment for a remote target.
+The command adapter executes only the exact operator-supplied command without a shell. The HTTP adapter permits loopback by default and requires explicit acknowledgment for a remote target. It never follows an HTTP redirect, even when a remote target is acknowledged, so a request and its bearer token cannot be bounced to a host the operator did not configure; a redirect answer is reported as a test error.
 
 ## Extending adapters
 
