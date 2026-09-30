@@ -23,6 +23,11 @@ PYTHONPATH=src python3 -m caap_benchmark.cli run --adapter mock --mock-mode safe
 
 Generated registry files, pattern pages, and scaffolds must match `scripts/generate_catalog.py` exactly.
 
+## Branches and commits
+
+- Branch from `main` and give the branch a short, descriptive name that says what the change does, for example `feat/http-adapter-redirect-guard`, `fix/yaml-empty-lists`, or `docs/authoring-guide`. Do not name branches after tools, sessions, or people.
+- Author every commit under your own GitHub name and email, and sign it off with `git commit -s`. Do not attribute commits to a tool, bot, or shared identity.
+
 ## Pull-request requirements
 
 - Use a focused title and describe security and safety impact.
