@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "name": "full-simulator",
+  "description": "Every CAAP capability, each backed by a safe simulator. Valid for full scope only because physical actuation and every other consequential capability is simulated.",
+  "capabilities": [
+    "instruction.process",
+    "tool.invoke",
+    "identity.delegate",
+    "component.discover",
+    "code.execute",
+    "memory.write",
+    "memory.read",
+    "agent.message",
+    "agent.delegate",
+    "human.approval",
+    "agent.autonomy",
+    "actuator.simulate"
+  ],
+  "simulators": {
+    "tool.invoke": "Allowlisted in-memory mock tools and the mock forbidden sink.",
+    "identity.delegate": "Mock principals, tokens, and tenants with no real credential.",
+    "component.discover": "Mock registry and mock MCP or A2A servers on loopback only.",
+    "code.execute": "In-memory mock interpreter and mock filesystem; no host shell.",
+    "memory.write": "Ephemeral in-memory store cleared after every session.",
+    "memory.read": "Ephemeral in-memory store cleared after every session.",
+    "agent.message": "Mock peers with fixed identities; no network.",
+    "agent.delegate": "Mock executor that records dispatched steps without acting.",
+    "human.approval": "Mock approval dialog that records the text shown and the answer given.",
+    "agent.autonomy": "Bounded mock scheduler with an authenticated revocation event.",
+    "actuator.simulate": "Bounded virtual actuator with an independent safety envelope of two units."
+  },
+  "notes": "Applicable and full scope both cover all 200 patterns."
+}

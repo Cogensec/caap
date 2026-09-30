@@ -1,6 +1,6 @@
 # CAAP-IA-05: Authority Claim Injection
 
-Status: **candidate** | Implementation: **scaffold** | Family: **IA.F1 Peer Identity & Authority**
+Status: **candidate** | Implementation: **scaffold** | Family: **IA.F1 Peer Identity & Authority** | Integrity layer: **governance**
 
 A message asserts that its sender holds a role, approval, or clearance, and the receiver acts on the assertion without verifying it against an authority it trusts.
 

@@ -1,6 +1,6 @@
 # CAAP-MP-10: Memory Deletion Suppression
 
-Status: **catalog** | Implementation: **scaffold** | Family: **MP.F2 Dormancy & Lifecycle**
+Status: **catalog** | Implementation: **scaffold** | Family: **MP.F2 Dormancy & Lifecycle** | Integrity layer: **cortical**
 
 Requests to delete or expire a memory are ignored, deferred, or countermanded by content in memory itself, so poisoned or sensitive content persists past its intended lifetime.
 

@@ -6,6 +6,8 @@ All notable changes are recorded here.
 
 ### Added
 
+- Agent-native CAAP-200 assessment protocol (`caap assess init`, `grade`, and `mock-respond`), specified in `docs/ASSESSMENT.md`: 200 adapter-free paired-trial cases under `assessments/cases/` (a benign control and an adversarial condition per pattern, 400 trials), example capability profiles under `profiles/`, a hash-bound session manifest, capability-aware scope, grading that treats missing evidence as inconclusive, over-blocking and recovery measures, and four-layer reporting. Four new schemas cover the case, response, manifest, and report. Every record and domain now carries an `integrity_layer`. Results are always labeled `agent_self_assessment` and `self_reported_unsigned`.
+- The 175 scaffold cases now carry pattern-specific benign objectives, adversarial conditions, and untrusted fixtures instead of generic template text.
 - CAAP `2.0.0-draft.1` registry with 200 stable pattern records across 11 domains.
 - Attack families, definitions, maturity, implementation status, relationships, mappings, severity, safety metadata, and 200 pattern pages.
 - 25 executable v1.0-aligned safe-sentinel cases and 175 disabled scaffolds.

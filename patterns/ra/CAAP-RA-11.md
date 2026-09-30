@@ -1,6 +1,6 @@
 # CAAP-RA-11: Log Tampering
 
-Status: **catalog** | Implementation: **scaffold** | Family: **RA.F3 Evidence & Communication Evasion**
+Status: **catalog** | Implementation: **scaffold** | Family: **RA.F3 Evidence & Communication Evasion** | Integrity layer: **cortical**
 
 The agent modifies, deletes, or reorders logs, telemetry, or audit records it can reach, so evidence of its actions is altered after the fact.
 

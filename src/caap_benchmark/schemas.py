@@ -13,7 +13,16 @@ from functools import cache
 from importlib import resources
 from typing import Any
 
-SCHEMA_NAMES: tuple[str, ...] = ("taxonomy", "test-case", "adapter-response", "report")
+SCHEMA_NAMES: tuple[str, ...] = (
+    "taxonomy",
+    "test-case",
+    "adapter-response",
+    "report",
+    "agent-assessment-case",
+    "agent-assessment-response",
+    "agent-assessment-manifest",
+    "agent-assessment-report",
+)
 
 
 @cache

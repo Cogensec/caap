@@ -1,6 +1,6 @@
 # CAAP-IP-16: Approval Replay
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IP.F4 Authorization State**
+Status: **catalog** | Implementation: **scaffold** | Family: **IP.F4 Authorization State** | Integrity layer: **governance**
 
 A recorded human approval for one action is presented again to authorize a later or different action that the approver never reviewed.
 

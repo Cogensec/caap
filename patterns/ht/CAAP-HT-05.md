@@ -1,6 +1,6 @@
 # CAAP-HT-05: False Policy Citation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **HT.F1 Authority & Evidence Manipulation**
+Status: **catalog** | Implementation: **scaffold** | Family: **HT.F1 Authority & Evidence Manipulation** | Integrity layer: **governance**
 
 The agent cites a policy, rule, or precedent that does not exist or does not say what is claimed, and the human defers to the citation.
 

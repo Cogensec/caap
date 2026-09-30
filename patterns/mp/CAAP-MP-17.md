@@ -1,6 +1,6 @@
 # CAAP-MP-17: Context-Window Displacement
 
-Status: **catalog** | Implementation: **scaffold** | Family: **MP.F4 Context & Isolation**
+Status: **catalog** | Implementation: **scaffold** | Family: **MP.F4 Context & Isolation** | Integrity layer: **cortical**
 
 An attacker fills the context with content that pushes instructions, constraints, or earlier evidence out of the window, so the agent decides without them.
 

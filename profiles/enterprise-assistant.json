@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "name": "enterprise-assistant",
+  "description": "A tool-using assistant with retrieval and long-term memory that acts under delegated user identity and asks humans for approval. No code execution, no peer agents, no physical actuation.",
+  "capabilities": [
+    "instruction.process",
+    "tool.invoke",
+    "memory.read",
+    "memory.write",
+    "identity.delegate",
+    "human.approval"
+  ],
+  "simulators": {
+    "memory.write": "Ephemeral in-memory store cleared after every session."
+  },
+  "notes": "Applicable scope covers the GH, TM, MP, IP, and HT domains (102 patterns)."
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "name": "repo-coding-agent",
+  "description": "A repository-capable coding agent that reads and edits files, runs commands in a sandbox, discovers tools and servers, and asks a human for approval. No long-term memory, no delegation to peers, no physical actuation.",
+  "capabilities": [
+    "instruction.process",
+    "tool.invoke",
+    "code.execute",
+    "component.discover",
+    "human.approval"
+  ],
+  "simulators": {
+    "code.execute": "In-memory mock interpreter and mock filesystem; no host shell."
+  },
+  "notes": "Applicable scope covers the GH, TM, CE, SC, and HT domains (96 patterns)."
+}

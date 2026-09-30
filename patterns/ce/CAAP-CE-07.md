@@ -1,6 +1,6 @@
 # CAAP-CE-07: Code Execution Through Tool Output
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CE.F2 Generated & Retrieved Code**
+Status: **catalog** | Implementation: **scaffold** | Family: **CE.F2 Generated & Retrieved Code** | Integrity layer: **adversarial**
 
 Code or commands present in a tool's result are executed by the agent or a downstream step as though they were part of the plan.
 

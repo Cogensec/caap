@@ -1,6 +1,6 @@
 # CAAP-IA-09: Routing Manipulation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IA.F3 Routing & Protocol**
+Status: **catalog** | Implementation: **scaffold** | Family: **IA.F3 Routing & Protocol** | Integrity layer: **governance**
 
 Routing metadata is altered so a message reaches an agent other than the intended recipient, or passes through an attacker-controlled intermediary.
 

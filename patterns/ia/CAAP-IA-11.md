@@ -1,6 +1,6 @@
 # CAAP-IA-11: Schema Downgrade
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IA.F3 Routing & Protocol**
+Status: **catalog** | Implementation: **scaffold** | Family: **IA.F3 Routing & Protocol** | Integrity layer: **governance**
 
 A peer negotiates an older message schema that lacks fields carrying provenance, scope, or safety constraints, so those constraints are silently dropped.
 

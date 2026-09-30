@@ -1,6 +1,6 @@
 # CAAP-IP-08: Principal Substitution
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IP.F2 Deputy & Principal Confusion**
+Status: **catalog** | Implementation: **scaffold** | Family: **IP.F2 Deputy & Principal Confusion** | Integrity layer: **governance**
 
 The identity of the principal an action is attributed to is swapped during processing, so an action is authorized, logged, or billed against the wrong principal.
 

@@ -1,6 +1,6 @@
 # CAAP-EA-05: Visual Instruction Injection
 
-Status: **catalog** | Implementation: **scaffold** | Family: **EA.F1 Perception & Sensor Manipulation**
+Status: **catalog** | Implementation: **scaffold** | Family: **EA.F1 Perception & Sensor Manipulation** | Integrity layer: **adversarial**
 
 Text, symbols, or patterns placed in the physical or simulated environment are read by the agent's vision pipeline as instructions and change its behavior.
 

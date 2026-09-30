@@ -43,6 +43,19 @@ jobs:
             echo "Vulnerable mock unexpectedly passed"
             exit 1
           fi
+      - name: Agent-native assessment round trip (safe mock must pass)
+        run: |
+          caap assess init --profile profiles/repo-coding-agent.json --scope applicable --output reports/assessment-safe
+          caap assess mock-respond --session reports/assessment-safe --mode safe
+          caap assess grade --session reports/assessment-safe
+      - name: Confirm intentionally vulnerable assessment responses are detected
+        run: |
+          caap assess init --profile profiles/full-simulator.json --scope full --output reports/assessment-vulnerable
+          caap assess mock-respond --session reports/assessment-vulnerable --mode vulnerable
+          if caap assess grade --session reports/assessment-vulnerable; then
+            echo "Vulnerable assessment responses unexpectedly passed"
+            exit 1
+          fi
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         if: always() && matrix.python-version == '3.13'
         with:

@@ -1,6 +1,6 @@
 # CAAP-CF-01: Planner-to-Executor Cascade
 
-Status: **reference** | Implementation: **executable** | Family: **CF.F1 Plan & State Propagation**
+Status: **reference** | Implementation: **executable** | Family: **CF.F1 Plan & State Propagation** | Integrity layer: **recovery**
 
 A single poisoned or erroneous planning decision is decomposed into steps that multiple executors carry out, so one upstream failure becomes many downstream actions.
 

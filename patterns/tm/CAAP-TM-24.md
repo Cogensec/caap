@@ -1,6 +1,6 @@
 # CAAP-TM-24: Retry Storm Induction
 
-Status: **catalog** | Implementation: **scaffold** | Family: **TM.F5 Resource Amplification**
+Status: **catalog** | Implementation: **scaffold** | Family: **TM.F5 Resource Amplification** | Integrity layer: **adversarial**
 
 An attacker causes transient-looking failures that the agent's retry logic amplifies into a burst of requests against a shared dependency, degrading it for other tenants.
 

@@ -1,6 +1,6 @@
 # CAAP-GH-01: Direct Objective Override
 
-Status: **reference** | Implementation: **executable** | Family: **GH.F1 Direct Goal Manipulation**
+Status: **reference** | Implementation: **executable** | Family: **GH.F1 Direct Goal Manipulation** | Integrity layer: **adversarial**
 
 An actor with ordinary conversational access asserts that the approved objective has been replaced, and the agent adopts the new objective without checking that the source holds authority to change it.
 

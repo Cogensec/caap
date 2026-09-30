@@ -1,6 +1,6 @@
 # CAAP-HT-14: Urgency Manipulation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **HT.F3 Risk & Choice Manipulation**
+Status: **catalog** | Implementation: **scaffold** | Family: **HT.F3 Risk & Choice Manipulation** | Integrity layer: **governance**
 
 The agent or injected content frames a decision as time-critical to pressure the human into approving without the scrutiny a normal request would receive.
 

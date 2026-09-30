@@ -1,6 +1,6 @@
 # CAAP-HT-11: Hidden Side-Effect Disclosure
 
-Status: **catalog** | Implementation: **scaffold** | Family: **HT.F3 Risk & Choice Manipulation**
+Status: **catalog** | Implementation: **scaffold** | Family: **HT.F3 Risk & Choice Manipulation** | Integrity layer: **governance**
 
 The agent's description of a proposed action omits or buries side effects such as writes, sends, or deletions, and the human approves without knowing them.
 

@@ -1,6 +1,6 @@
 # CAAP-CE-02: Interpreter Boundary Confusion
 
-Status: **candidate** | Implementation: **scaffold** | Family: **CE.F1 Interpreter Boundaries**
+Status: **candidate** | Implementation: **scaffold** | Family: **CE.F1 Interpreter Boundaries** | Integrity layer: **adversarial**
 
 The agent cannot tell where data ends and interpreter syntax begins in a constructed invocation, so data supplied by an attacker is parsed as code.
 

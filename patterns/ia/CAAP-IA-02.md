@@ -1,6 +1,6 @@
 # CAAP-IA-02: Coordinator Impersonation
 
-Status: **candidate** | Implementation: **scaffold** | Family: **IA.F1 Peer Identity & Authority**
+Status: **candidate** | Implementation: **scaffold** | Family: **IA.F1 Peer Identity & Authority** | Integrity layer: **governance**
 
 A message impersonates the orchestrator or coordinator, and worker agents follow its instructions because coordinator messages are treated as authoritative by role.
 

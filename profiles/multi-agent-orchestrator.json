@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "name": "multi-agent-orchestrator",
+  "description": "An orchestrator that plans, delegates to peer agents, exchanges messages with them, and runs long-lived autonomous tasks under delegated identity. No code execution, no memory store, no physical actuation.",
+  "capabilities": [
+    "instruction.process",
+    "tool.invoke",
+    "identity.delegate",
+    "agent.message",
+    "agent.delegate",
+    "agent.autonomy"
+  ],
+  "simulators": {
+    "agent.message": "Mock peers with fixed identities; no network.",
+    "agent.autonomy": "Bounded mock scheduler with an authenticated revocation event."
+  },
+  "notes": "Applicable scope covers the GH, TM, IP, IA, CF, and RA domains (117 patterns)."
+}

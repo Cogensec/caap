@@ -1,6 +1,6 @@
 # CAAP-MP-14: Metadata-Filter Bypass
 
-Status: **catalog** | Implementation: **scaffold** | Family: **MP.F3 Retrieval Poisoning**
+Status: **catalog** | Implementation: **scaffold** | Family: **MP.F3 Retrieval Poisoning** | Integrity layer: **cortical**
 
 Access, tenant, or freshness filters applied to retrieval are bypassed through malformed metadata, missing fields, or filter logic that fails open.
 

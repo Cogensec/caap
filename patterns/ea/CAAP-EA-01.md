@@ -1,6 +1,6 @@
 # CAAP-EA-01: Sensor Injection
 
-Status: **candidate** | Implementation: **scaffold** | Family: **EA.F1 Perception & Sensor Manipulation**
+Status: **candidate** | Implementation: **scaffold** | Family: **EA.F1 Perception & Sensor Manipulation** | Integrity layer: **adversarial**
 
 False readings are introduced into a sensor feed, physically or through the data path, and the agent perceives a world state that does not exist.
 

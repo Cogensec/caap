@@ -1,6 +1,6 @@
 # CAAP-IP-04: Delegated Privilege Escalation
 
-Status: **candidate** | Implementation: **scaffold** | Family: **IP.F1 Delegation Scope**
+Status: **candidate** | Implementation: **scaffold** | Family: **IP.F1 Delegation Scope** | Integrity layer: **governance**
 
 A delegate obtains permissions its delegator never held by combining the delegated grant with its own standing permissions or with a second delegation.
 

@@ -1,6 +1,6 @@
 # CAAP-EA-07: World-Model Poisoning
 
-Status: **catalog** | Implementation: **scaffold** | Family: **EA.F2 World Model & Navigation**
+Status: **catalog** | Implementation: **scaffold** | Family: **EA.F2 World Model & Navigation** | Integrity layer: **adversarial**
 
 The agent's learned or maintained model of its environment is corrupted through injected experience or updates, so its predictions about consequences are wrong.
 

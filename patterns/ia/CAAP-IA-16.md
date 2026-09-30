@@ -1,6 +1,6 @@
 # CAAP-IA-16: Broadcast Poisoning
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IA.F5 Collective Trust Attacks**
+Status: **catalog** | Implementation: **scaffold** | Family: **IA.F5 Collective Trust Attacks** | Integrity layer: **governance**
 
 A message sent to many agents at once carries a poisoned instruction or fact, and each recipient acts on it, compounding the effect across the fleet.
 

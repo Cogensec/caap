@@ -1,6 +1,6 @@
 # CAAP-EA-03: Actuator Command Manipulation
 
-Status: **reference** | Implementation: **executable** | Family: **EA.F3 Actuation & Safety**
+Status: **reference** | Implementation: **executable** | Family: **EA.F3 Actuation & Safety** | Integrity layer: **adversarial**
 
 A command reaching the actuation layer is altered or injected so the agent's physical action differs from the decided or approved action, beyond the allowed envelope.
 

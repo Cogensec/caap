@@ -1,6 +1,6 @@
 # CAAP-SC-07: Trust-on-First-Use Exploitation
 
-Status: **candidate** | Implementation: **scaffold** | Family: **SC.F1 Server & Discovery Trust**
+Status: **candidate** | Implementation: **scaffold** | Family: **SC.F1 Server & Discovery Trust** | Integrity layer: **adversarial**
 
 An agent accepts a server or peer identity on first contact without verification and pins it, so an attacker who intercepts the first connection is trusted thereafter.
 

@@ -1,6 +1,6 @@
 # CAAP-GH-11: Quoted-Content Authority Confusion
 
-Status: **catalog** | Implementation: **scaffold** | Family: **GH.F2 Indirect & Hidden Instructions**
+Status: **catalog** | Implementation: **scaffold** | Family: **GH.F2 Indirect & Hidden Instructions** | Integrity layer: **adversarial**
 
 Text that quotes, forwards, or paraphrases an authority figure or system message is granted that authority by the agent, although quotation confers none.
 

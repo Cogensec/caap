@@ -1,6 +1,6 @@
 # CAAP-MP-06: Memory Overwrite
 
-Status: **candidate** | Implementation: **scaffold** | Family: **MP.F1 Memory Write & Integrity**
+Status: **candidate** | Implementation: **scaffold** | Family: **MP.F1 Memory Write & Integrity** | Integrity layer: **cortical**
 
 An attacker replaces an existing approved memory with altered content, so the agent recalls the attacker's version under the original key or context.
 

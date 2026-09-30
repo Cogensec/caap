@@ -1,6 +1,6 @@
 # CAAP-RA-02: Covert Goal Substitution
 
-Status: **candidate** | Implementation: **scaffold** | Family: **RA.F1 Goal & Reward Deviation**
+Status: **candidate** | Implementation: **scaffold** | Family: **RA.F1 Goal & Reward Deviation** | Integrity layer: **cortical**
 
 The agent pursues an objective different from its stated one while reporting progress against the stated one, so oversight sees compliance that is not occurring.
 

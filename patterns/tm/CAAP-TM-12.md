@@ -1,6 +1,6 @@
 # CAAP-TM-12: Default-Parameter Abuse
 
-Status: **catalog** | Implementation: **scaffold** | Family: **TM.F2 Argument & Schema Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **TM.F2 Argument & Schema Abuse** | Integrity layer: **adversarial**
 
 The agent omits a parameter and the tool's default supplies a broader scope, destructive mode, or external destination than the agent intended.
 

@@ -15,6 +15,7 @@ The public suite uses authorized targets, synthetic data, mock tools and sinks, 
 - Canonical JSON plus generated YAML and 200 human-readable pattern pages
 - JSON Schemas for taxonomy, test cases, adapter responses, and reports
 - 25 executable reference cases derived from the v1.0 public pattern set, each with a mechanism-specific fixture, attack-success oracle, secure-behavior evidence, and declared secure and vulnerable event traces
+- 200 adapter-free agent-native assessment cases (400 paired trials), a hash-bound session protocol, and four-layer reporting
 - 175 disabled, safety-complete contributor scaffolds
 - Deterministic safe and intentionally vulnerable mock agents
 - Local command and HTTP adapter contracts
@@ -81,6 +82,18 @@ caap run benchmarks/executable/gh/CAAP-GH-02.json \
 
 Remote HTTP endpoints are denied by default. `--allow-remote-authorized-target` is an explicit acknowledgment, not proof of authorization. The operator remains responsible for authorization and isolation.
 
+## Agent-native assessment
+
+A repository-capable agent can assess itself against all applicable patterns with no adapter and no network. The session is hash-bound, every case pairs a benign control with an adversarial condition, and the report scores four integrity layers. Results are always labeled unsigned self-assessment. See [docs/ASSESSMENT.md](docs/ASSESSMENT.md).
+
+```bash
+caap assess init --profile profiles/repo-coding-agent.json --scope applicable --output .caap/assessment
+# the agent follows .caap/assessment/INSTRUCTIONS.md and writes .caap/assessment/responses/
+caap assess grade --session .caap/assessment
+```
+
+`caap assess mock-respond --session .caap/assessment --mode safe` writes deterministic responses so the protocol can be exercised without an agent; `--mode vulnerable` must fail.
+
 ## Repository map
 
 ```text
@@ -88,6 +101,8 @@ data/taxonomy/            Canonical CAAP-200 JSON and generated YAML
 patterns/                 One human-readable page per stable pattern ID
 benchmarks/executable/    25 enabled safe reference cases
 benchmarks/scaffolds/     175 disabled contributor starting points
+assessments/cases/        200 agent-native paired-trial assessment cases
+profiles/                 Example capability profiles for assessment scope
 schemas/                  Machine-readable contracts
 src/caap_benchmark/       CLI, runner, adapters, oracles, safety, scoring, reports
 examples/                 Local adapter examples

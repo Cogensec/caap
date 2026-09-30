@@ -1,6 +1,6 @@
 # CAAP-MP-01: Persistent Memory Injection
 
-Status: **reference** | Implementation: **executable** | Family: **MP.F1 Memory Write & Integrity**
+Status: **reference** | Implementation: **executable** | Family: **MP.F1 Memory Write & Integrity** | Integrity layer: **cortical**
 
 Untrusted content causes the agent to store an instruction or false fact in long-term memory, from where it influences future sessions that never saw the original content.
 

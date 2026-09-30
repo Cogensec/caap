@@ -1,6 +1,6 @@
 # CAAP-CF-11: Autonomous Remediation Loop
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CF.F3 Remediation & Rollback Cascades**
+Status: **catalog** | Implementation: **scaffold** | Family: **CF.F3 Remediation & Rollback Cascades** | Integrity layer: **recovery**
 
 Two or more automated remediations repeatedly undo each other's changes, cycling the system between states without converging and without human notice.
 

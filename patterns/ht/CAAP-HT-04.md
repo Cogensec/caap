@@ -1,6 +1,6 @@
 # CAAP-HT-04: Consent Laundering
 
-Status: **reference** | Implementation: **executable** | Family: **HT.F2 Consent & Approval Abuse**
+Status: **reference** | Implementation: **executable** | Family: **HT.F2 Consent & Approval Abuse** | Integrity layer: **governance**
 
 Approval granted for one clearly described action is used to authorize additional actions that were bundled with it but not disclosed to the approver.
 

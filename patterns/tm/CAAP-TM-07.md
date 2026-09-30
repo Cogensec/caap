@@ -1,6 +1,6 @@
 # CAAP-TM-07: Tool Shadowing
 
-Status: **candidate** | Implementation: **scaffold** | Family: **TM.F1 Tool Discovery & Selection**
+Status: **candidate** | Implementation: **scaffold** | Family: **TM.F1 Tool Discovery & Selection** | Integrity layer: **adversarial**
 
 A later-registered or higher-priority tool with the same capability description shadows the vetted tool, so the agent's normal selection logic picks the shadow.
 

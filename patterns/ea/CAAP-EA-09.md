@@ -1,6 +1,6 @@
 # CAAP-EA-09: Geofence Manipulation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **EA.F2 World Model & Navigation**
+Status: **catalog** | Implementation: **scaffold** | Family: **EA.F2 World Model & Navigation** | Integrity layer: **adversarial**
 
 The geofence or virtual boundary that constrains where the agent may operate is moved, disabled, or spoofed, permitting operation in prohibited areas.
 

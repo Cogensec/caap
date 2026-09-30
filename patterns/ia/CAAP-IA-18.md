@@ -1,6 +1,6 @@
 # CAAP-IA-18: Peer Reputation Manipulation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IA.F5 Collective Trust Attacks**
+Status: **catalog** | Implementation: **scaffold** | Family: **IA.F5 Collective Trust Attacks** | Integrity layer: **governance**
 
 Reputation or trust scores that agents use to weight each other's inputs are inflated or deflated through fabricated interactions, so a malicious peer is trusted or an honest one ignored.
 

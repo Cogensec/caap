@@ -1,6 +1,6 @@
 # CAAP-MP-19: Cross-User Memory Bleed
 
-Status: **catalog** | Implementation: **scaffold** | Family: **MP.F4 Context & Isolation**
+Status: **catalog** | Implementation: **scaffold** | Family: **MP.F4 Context & Isolation** | Integrity layer: **cortical**
 
 Memory written during one user's session is retrievable during another user's session in a shared agent, exposing one user's data or instructions to the other.
 

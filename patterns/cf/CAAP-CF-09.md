@@ -1,6 +1,6 @@
 # CAAP-CF-09: Remediation Cascade
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CF.F3 Remediation & Rollback Cascades**
+Status: **catalog** | Implementation: **scaffold** | Family: **CF.F3 Remediation & Rollback Cascades** | Integrity layer: **recovery**
 
 An automated fix for one incident creates conditions that trigger another automated fix, and the chain of remediations causes more disruption than the original incident.
 

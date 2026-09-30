@@ -1,6 +1,6 @@
 # CAAP-TM-18: External Destination Substitution
 
-Status: **catalog** | Implementation: **scaffold** | Family: **TM.F3 Output & Composition Attacks**
+Status: **catalog** | Implementation: **scaffold** | Family: **TM.F3 Output & Composition Attacks** | Integrity layer: **adversarial**
 
 The destination of a send, upload, or write operation is replaced by an attacker-controlled endpoint that resembles the intended one, and the agent completes the operation.
 

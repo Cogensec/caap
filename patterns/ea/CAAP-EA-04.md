@@ -1,6 +1,6 @@
 # CAAP-EA-04: Audio Command Injection
 
-Status: **catalog** | Implementation: **scaffold** | Family: **EA.F1 Perception & Sensor Manipulation**
+Status: **catalog** | Implementation: **scaffold** | Family: **EA.F1 Perception & Sensor Manipulation** | Integrity layer: **adversarial**
 
 Speech or audio that a human cannot notice or would not recognize as a command is interpreted by the agent as an instruction and acted on.
 

@@ -1,6 +1,6 @@
 # CAAP-SC-05: MCP Registry Poisoning
 
-Status: **candidate** | Implementation: **scaffold** | Family: **SC.F1 Server & Discovery Trust**
+Status: **candidate** | Implementation: **scaffold** | Family: **SC.F1 Server & Discovery Trust** | Integrity layer: **adversarial**
 
 An entry in a registry the agent uses to discover servers or tools is added or altered so discovery resolves to an attacker-controlled component.
 

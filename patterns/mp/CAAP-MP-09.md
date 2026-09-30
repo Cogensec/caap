@@ -1,6 +1,6 @@
 # CAAP-MP-09: Poisoned Memory Resurrection
 
-Status: **catalog** | Implementation: **scaffold** | Family: **MP.F2 Dormancy & Lifecycle**
+Status: **catalog** | Implementation: **scaffold** | Family: **MP.F2 Dormancy & Lifecycle** | Integrity layer: **cortical**
 
 A memory that was removed or corrected is restored from a backup, cache, replica, or re-ingestion path, bringing the poisoned content back after remediation.
 

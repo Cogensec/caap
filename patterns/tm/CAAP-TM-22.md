@@ -1,6 +1,6 @@
 # CAAP-TM-22: Revoked Tool Capability Persistence
 
-Status: **catalog** | Implementation: **scaffold** | Family: **TM.F4 Capability & Side-Effect Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **TM.F4 Capability & Side-Effect Abuse** | Integrity layer: **adversarial**
 
 A tool capability revoked at the policy or registry level remains usable through a cached handle, token, or session the agent still holds.
 

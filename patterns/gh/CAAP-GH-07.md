@@ -1,6 +1,6 @@
 # CAAP-GH-07: Goal Shadowing
 
-Status: **candidate** | Implementation: **scaffold** | Family: **GH.F1 Direct Goal Manipulation**
+Status: **candidate** | Implementation: **scaffold** | Family: **GH.F1 Direct Goal Manipulation** | Integrity layer: **adversarial**
 
 Untrusted content introduces a secondary goal that resembles the approved objective closely enough that the agent pursues it in place of, or alongside, the real one.
 

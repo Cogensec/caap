@@ -1,6 +1,6 @@
 # CAAP-CE-04: Environment-Variable Command Injection
 
-Status: **candidate** | Implementation: **scaffold** | Family: **CE.F1 Interpreter Boundaries**
+Status: **candidate** | Implementation: **scaffold** | Family: **CE.F1 Interpreter Boundaries** | Integrity layer: **adversarial**
 
 Attacker-influenced content is placed in an environment variable that a later process expands into a command, path, or option, executing the injected value.
 

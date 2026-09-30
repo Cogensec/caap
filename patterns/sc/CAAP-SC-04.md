@@ -1,6 +1,6 @@
 # CAAP-SC-04: Prompt Template Supply-Chain Poisoning
 
-Status: **reference** | Implementation: **executable** | Family: **SC.F4 Dependency & Artifact Substitution**
+Status: **reference** | Implementation: **executable** | Family: **SC.F4 Dependency & Artifact Substitution** | Integrity layer: **adversarial**
 
 A prompt template pulled from a shared library, package, or repository contains injected instructions that every agent rendering the template inherits.
 

@@ -1,6 +1,6 @@
 # CAAP-IA-07: Message Reordering
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IA.F2 Message Integrity & Freshness**
+Status: **catalog** | Implementation: **scaffold** | Family: **IA.F2 Message Integrity & Freshness** | Integrity layer: **governance**
 
 Messages are delivered in an order different from the one sent, so a receiver applies an update before its precondition or acts on state that a later message revoked.
 

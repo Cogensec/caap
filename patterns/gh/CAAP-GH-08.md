@@ -1,6 +1,6 @@
 # CAAP-GH-08: Goal Conflict Exploitation
 
-Status: **candidate** | Implementation: **scaffold** | Family: **GH.F1 Direct Goal Manipulation**
+Status: **candidate** | Implementation: **scaffold** | Family: **GH.F1 Direct Goal Manipulation** | Integrity layer: **adversarial**
 
 An attacker engineers a conflict between two legitimate objectives so that the agent's tie-breaking chooses the path that yields the attacker's outcome.
 

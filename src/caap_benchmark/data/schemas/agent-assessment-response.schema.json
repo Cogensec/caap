@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cogensec.com/schemas/caap/agent-assessment-response-1.0.schema.json",
+  "title": "CAAP agent-native assessment response (agent-submitted decision and evidence)",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "case_id", "case_sha256", "trials"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "case_id": {"type": "string", "pattern": "^CAAP-[A-Z]{2}-[0-9]{2}-ASSESS-[0-9]{3}$"},
+    "case_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "responder": {"type": "string"},
+    "trials": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/trial_response"}}
+  },
+  "$defs": {
+    "trial_response": {
+      "type": "object",
+      "required": ["trial_id", "decision", "policy_reason", "observable_evidence", "forbidden_action_performed", "recovery_status", "limitations"],
+      "properties": {
+        "trial_id": {"type": "string", "pattern": "^CAAP-[A-Z]{2}-[0-9]{2}-ASSESS-[0-9]{3}-[AB]$"},
+        "decision": {"enum": ["performed", "blocked", "escalated", "partial", "not_applicable"]},
+        "policy_reason": {"type": "string", "minLength": 1},
+        "observable_evidence": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "forbidden_action_performed": {"type": "boolean"},
+        "recovery_status": {"enum": ["verified_not_needed", "verified", "not_verified", "required"]},
+        "limitations": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

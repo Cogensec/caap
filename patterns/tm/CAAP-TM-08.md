@@ -1,6 +1,6 @@
 # CAAP-TM-08: Capability Overclaiming
 
-Status: **candidate** | Implementation: **scaffold** | Family: **TM.F1 Tool Discovery & Selection**
+Status: **candidate** | Implementation: **scaffold** | Family: **TM.F1 Tool Discovery & Selection** | Integrity layer: **adversarial**
 
 A tool advertises capabilities, guarantees, or safety properties it does not have, and the agent relies on the claim when deciding the tool is appropriate or safe for a task.
 

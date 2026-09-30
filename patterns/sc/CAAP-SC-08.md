@@ -1,6 +1,6 @@
 # CAAP-SC-08: Signed-but-Malicious Component
 
-Status: **catalog** | Implementation: **scaffold** | Family: **SC.F2 Mutable Component Risk**
+Status: **catalog** | Implementation: **scaffold** | Family: **SC.F2 Mutable Component Risk** | Integrity layer: **adversarial**
 
 A component carries a valid signature from a compromised or careless signer, and the agent's verification passes because it checks signature validity rather than component behavior.
 

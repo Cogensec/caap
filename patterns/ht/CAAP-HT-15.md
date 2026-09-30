@@ -1,6 +1,6 @@
 # CAAP-HT-15: Recommendation Anchoring
 
-Status: **catalog** | Implementation: **scaffold** | Family: **HT.F3 Risk & Choice Manipulation**
+Status: **catalog** | Implementation: **scaffold** | Family: **HT.F3 Risk & Choice Manipulation** | Integrity layer: **governance**
 
 The agent presents options so that the attacker-preferred choice appears as the default, the first, or the only reasonable option, biasing the human's selection.
 

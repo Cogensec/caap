@@ -1,6 +1,6 @@
 # CAAP-SC-18: Fine-Tune Substitution
 
-Status: **catalog** | Implementation: **scaffold** | Family: **SC.F4 Dependency & Artifact Substitution**
+Status: **catalog** | Implementation: **scaffold** | Family: **SC.F4 Dependency & Artifact Substitution** | Integrity layer: **adversarial**
 
 The fine-tuned model an agent is configured to use is swapped for a different model or checkpoint, changing behavior while identifiers and configuration appear unchanged.
 

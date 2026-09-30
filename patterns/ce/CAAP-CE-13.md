@@ -1,6 +1,6 @@
 # CAAP-CE-13: CI Command Injection
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CE.F3 Artifact & Dependency Execution**
+Status: **catalog** | Implementation: **scaffold** | Family: **CE.F3 Artifact & Dependency Execution** | Integrity layer: **adversarial**
 
 Untrusted input such as a branch name, title, or comment is interpolated into a CI command, executing attacker content with the pipeline's credentials.
 

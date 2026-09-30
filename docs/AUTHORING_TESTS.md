@@ -64,5 +64,5 @@ Events map to telemetry keys in `src/caap_benchmark/events.py`. A case's `teleme
 
 ## Adding a pattern
 
-Taxonomy edits originate in `scripts/generate_catalog.py`; generated JSON, YAML, pattern pages, scaffolds, and the copies under `src/caap_benchmark/data/` that ship in the package MUST be regenerated and committed together. Explain how the proposed mechanism differs from existing IDs and identify the trust boundary, unsafe state transition, and relationship edges.
+Taxonomy edits originate in `scripts/generate_catalog.py`; generated JSON, YAML, pattern pages, scaffolds, assessment cases, and the copies under `src/caap_benchmark/data/` that ship in the package MUST be regenerated and committed together. A new pattern needs a definition and severity vector in `PATTERN_DETAILS` and a benign objective, adversarial condition, and untrusted fixture in `ASSESSMENT_SCENARIOS`; the generator refuses to build without them. Explain how the proposed mechanism differs from existing IDs and identify the trust boundary, unsafe state transition, and relationship edges.
 

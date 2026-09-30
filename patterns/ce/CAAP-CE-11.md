@@ -1,6 +1,6 @@
 # CAAP-CE-11: Archive Extraction Abuse
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CE.F3 Artifact & Dependency Execution**
+Status: **catalog** | Implementation: **scaffold** | Family: **CE.F3 Artifact & Dependency Execution** | Integrity layer: **adversarial**
 
 Extracting an untrusted archive writes files outside the intended directory, overwrites executables or configuration, or plants files that later steps execute.
 

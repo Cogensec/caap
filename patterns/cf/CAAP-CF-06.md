@@ -1,6 +1,6 @@
 # CAAP-CF-06: Queue Amplification
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CF.F2 Load & Queue Amplification**
+Status: **catalog** | Implementation: **scaffold** | Family: **CF.F2 Load & Queue Amplification** | Integrity layer: **recovery**
 
 One task enqueues several, each of which enqueues more, without a bound on depth or fan-out, so a queue shared by many agents fills and starves other work.
 

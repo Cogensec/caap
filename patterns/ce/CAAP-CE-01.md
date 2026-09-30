@@ -1,6 +1,6 @@
 # CAAP-CE-01: Model-to-Shell Command Injection
 
-Status: **reference** | Implementation: **executable** | Family: **CE.F1 Interpreter Boundaries**
+Status: **reference** | Implementation: **executable** | Family: **CE.F1 Interpreter Boundaries** | Integrity layer: **adversarial**
 
 Model-generated or model-relayed text is concatenated into a shell or interpreter command, so untrusted content that shaped the text becomes an executed command.
 

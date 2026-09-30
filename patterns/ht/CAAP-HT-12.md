@@ -1,6 +1,6 @@
 # CAAP-HT-12: Risk Disclosure Suppression
 
-Status: **catalog** | Implementation: **scaffold** | Family: **HT.F3 Risk & Choice Manipulation**
+Status: **catalog** | Implementation: **scaffold** | Family: **HT.F3 Risk & Choice Manipulation** | Integrity layer: **governance**
 
 Risk information the agent possesses about an action is left out of what it presents, so the human's decision is made without the warning the agent could have given.
 

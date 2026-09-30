@@ -1,6 +1,6 @@
 # CAAP-MP-04: RAG Corpus and Index Poisoning
 
-Status: **reference** | Implementation: **executable** | Family: **MP.F3 Retrieval Poisoning**
+Status: **reference** | Implementation: **executable** | Family: **MP.F3 Retrieval Poisoning** | Integrity layer: **cortical**
 
 Documents inserted into or altered in a retrieval corpus are returned for legitimate queries and treated as authoritative, steering the agent's answers or actions.
 

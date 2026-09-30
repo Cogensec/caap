@@ -1,6 +1,6 @@
 # CAAP-IP-02: Confused Deputy Exploitation
 
-Status: **reference** | Implementation: **executable** | Family: **IP.F2 Deputy & Principal Confusion**
+Status: **reference** | Implementation: **executable** | Family: **IP.F2 Deputy & Principal Confusion** | Integrity layer: **governance**
 
 A low-privilege requester induces a higher-privilege agent to perform an action on its behalf that the requester could not perform directly, because the agent acts under its own authority rather than the requester's.
 

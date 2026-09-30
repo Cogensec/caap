@@ -1,6 +1,6 @@
 # CAAP-TM-11: Argument Encoding Smuggling
 
-Status: **catalog** | Implementation: **scaffold** | Family: **TM.F2 Argument & Schema Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **TM.F2 Argument & Schema Abuse** | Integrity layer: **adversarial**
 
 Untrusted data carries an alternative encoding, escape sequence, or delimiter that the tool decodes differently from the agent, so validated-looking arguments become a different operation.
 

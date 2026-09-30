@@ -1,6 +1,6 @@
 # CAAP-IA-12: A2A Destination Confusion
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IA.F3 Routing & Protocol**
+Status: **catalog** | Implementation: **scaffold** | Family: **IA.F3 Routing & Protocol** | Integrity layer: **governance**
 
 Ambiguity in how a destination is identified causes a task or response to be delivered to a different agent than intended, disclosing content or triggering unintended work.
 

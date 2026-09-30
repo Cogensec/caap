@@ -1,6 +1,6 @@
 # CAAP-SC-17: Model Adapter Poisoning
 
-Status: **catalog** | Implementation: **scaffold** | Family: **SC.F4 Dependency & Artifact Substitution**
+Status: **catalog** | Implementation: **scaffold** | Family: **SC.F4 Dependency & Artifact Substitution** | Integrity layer: **adversarial**
 
 A fine-tuning adapter, weight delta, or plugin loaded into the model carries a backdoor or bias that alters behavior under attacker-chosen conditions.
 

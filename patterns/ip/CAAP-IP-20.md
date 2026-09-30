@@ -1,6 +1,6 @@
 # CAAP-IP-20: Tenant Context Confusion
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IP.F4 Authorization State**
+Status: **catalog** | Implementation: **scaffold** | Family: **IP.F4 Authorization State** | Integrity layer: **governance**
 
 The tenant context attached to a request is lost or replaced during processing, so an agent acts on one tenant's data using another tenant's authorization.
 

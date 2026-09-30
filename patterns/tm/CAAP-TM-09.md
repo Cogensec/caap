@@ -1,6 +1,6 @@
 # CAAP-TM-09: Tool-Choice Manipulation
 
-Status: **candidate** | Implementation: **scaffold** | Family: **TM.F1 Tool Discovery & Selection**
+Status: **candidate** | Implementation: **scaffold** | Family: **TM.F1 Tool Discovery & Selection** | Integrity layer: **adversarial**
 
 Untrusted content influences which tool the agent selects for a step, steering it toward a tool with broader side effects than the task requires.
 

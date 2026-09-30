@@ -1,6 +1,6 @@
 # CAAP-IA-17: Consensus Manipulation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IA.F5 Collective Trust Attacks**
+Status: **catalog** | Implementation: **scaffold** | Family: **IA.F5 Collective Trust Attacks** | Integrity layer: **governance**
 
 An attacker controls or influences enough participants in a vote, quorum, or agreement protocol to steer the collective decision.
 

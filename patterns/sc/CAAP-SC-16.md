@@ -1,6 +1,6 @@
 # CAAP-SC-16: Prompt Dependency Poisoning
 
-Status: **catalog** | Implementation: **scaffold** | Family: **SC.F4 Dependency & Artifact Substitution**
+Status: **catalog** | Implementation: **scaffold** | Family: **SC.F4 Dependency & Artifact Substitution** | Integrity layer: **adversarial**
 
 A fragment, example, or instruction file that a prompt includes by reference is poisoned, so the assembled prompt carries content its author never wrote.
 

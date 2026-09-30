@@ -1,6 +1,6 @@
 # CAAP-GH-16: Planner-Context Injection
 
-Status: **catalog** | Implementation: **scaffold** | Family: **GH.F3 Authority & Provenance Spoofing**
+Status: **catalog** | Implementation: **scaffold** | Family: **GH.F3 Authority & Provenance Spoofing** | Integrity layer: **adversarial**
 
 Untrusted content reaches the context the planner uses to decompose a goal, so the resulting plan contains attacker-chosen steps that executors carry out as legitimate work.
 

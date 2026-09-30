@@ -1,6 +1,6 @@
 # CAAP-HT-08: Consent Ambiguity
 
-Status: **catalog** | Implementation: **scaffold** | Family: **HT.F2 Consent & Approval Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **HT.F2 Consent & Approval Abuse** | Integrity layer: **governance**
 
 An approval prompt is worded so the human's answer can be read as consent to a broader or different action than the one they believed they were approving.
 

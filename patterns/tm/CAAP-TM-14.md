@@ -1,6 +1,6 @@
 # CAAP-TM-14: Tool Result Substitution
 
-Status: **catalog** | Implementation: **scaffold** | Family: **TM.F3 Output & Composition Attacks**
+Status: **catalog** | Implementation: **scaffold** | Family: **TM.F3 Output & Composition Attacks** | Integrity layer: **adversarial**
 
 The result the agent receives is not the result the tool produced, because an intermediary or a compromised tool replaced it, and the agent acts on the substituted data.
 

@@ -1,6 +1,6 @@
 # CAAP-TM-23: Recursive Tool Invocation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **TM.F5 Resource Amplification**
+Status: **catalog** | Implementation: **scaffold** | Family: **TM.F5 Resource Amplification** | Integrity layer: **adversarial**
 
 A tool call's output triggers another call of the same or a related tool without a termination condition, producing unbounded recursion under the agent's own authority.
 

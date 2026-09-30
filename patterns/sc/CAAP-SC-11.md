@@ -1,6 +1,6 @@
 # CAAP-SC-11: Malicious Agent Card
 
-Status: **catalog** | Implementation: **scaffold** | Family: **SC.F3 Manifest & Identity Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **SC.F3 Manifest & Identity Abuse** | Integrity layer: **adversarial**
 
 An agent's published card or manifest contains instructions, false capabilities, or endpoints that mislead the agents that read it during discovery or negotiation.
 

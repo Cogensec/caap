@@ -1,6 +1,6 @@
 # CAAP-HT-10: Escalation Fatigue
 
-Status: **catalog** | Implementation: **scaffold** | Family: **HT.F2 Consent & Approval Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **HT.F2 Consent & Approval Abuse** | Integrity layer: **governance**
 
 Repeated low-value escalations condition reviewers to dismiss them, so a genuine escalation that requires intervention is dismissed with the rest.
 

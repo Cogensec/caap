@@ -1,6 +1,6 @@
 # CAAP-EA-12: Sim-to-Real Exploitation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **EA.F4 Transfer & Fleet Effects**
+Status: **catalog** | Implementation: **scaffold** | Family: **EA.F4 Transfer & Fleet Effects** | Integrity layer: **adversarial**
 
 Behaviors that were safe in simulation are unsafe in the physical environment because of a gap the attacker widens or exploits, and the agent transfers them without revalidation.
 

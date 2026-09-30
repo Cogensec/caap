@@ -1,6 +1,6 @@
 # CAAP-IP-07: Delegation-Chain Forgery
 
-Status: **candidate** | Implementation: **scaffold** | Family: **IP.F1 Delegation Scope**
+Status: **candidate** | Implementation: **scaffold** | Family: **IP.F1 Delegation Scope** | Integrity layer: **governance**
 
 An actor fabricates a delegation link, claiming authority from a principal that never delegated, and downstream services honor the chain without verifying each hop.
 

@@ -1,6 +1,6 @@
 # CAAP-TM-19: Hidden Tool Side Effects
 
-Status: **catalog** | Implementation: **scaffold** | Family: **TM.F4 Capability & Side-Effect Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **TM.F4 Capability & Side-Effect Abuse** | Integrity layer: **adversarial**
 
 A tool performs an undeclared action, such as writing, sending, or persisting, in addition to its documented function, and the agent invokes it believing it to be read-only.
 

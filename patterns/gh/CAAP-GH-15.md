@@ -1,6 +1,6 @@
 # CAAP-GH-15: Task-Description Poisoning
 
-Status: **catalog** | Implementation: **scaffold** | Family: **GH.F3 Authority & Provenance Spoofing**
+Status: **catalog** | Implementation: **scaffold** | Family: **GH.F3 Authority & Provenance Spoofing** | Integrity layer: **adversarial**
 
 The task description an agent receives from a queue, ticket, or orchestrator is modified before the agent reads it, so the agent faithfully executes an objective its principal never set.
 

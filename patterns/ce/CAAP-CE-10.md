@@ -1,6 +1,6 @@
 # CAAP-CE-10: Unsafe Deserialization
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CE.F3 Artifact & Dependency Execution**
+Status: **catalog** | Implementation: **scaffold** | Family: **CE.F3 Artifact & Dependency Execution** | Integrity layer: **adversarial**
 
 The agent or a tool deserializes an untrusted artifact with a format that can instantiate arbitrary objects, and construction of those objects executes attacker code.
 

@@ -1,6 +1,6 @@
 # CAAP-HT-06: Reviewer Impersonation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **HT.F1 Authority & Evidence Manipulation**
+Status: **catalog** | Implementation: **scaffold** | Family: **HT.F1 Authority & Evidence Manipulation** | Integrity layer: **governance**
 
 Content claims that a required review or sign-off has already been performed by a named reviewer, and the workflow proceeds without the review taking place.
 

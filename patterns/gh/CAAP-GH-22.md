@@ -1,6 +1,6 @@
 # CAAP-GH-22: Goal Truncation Through Summarization
 
-Status: **catalog** | Implementation: **scaffold** | Family: **GH.F5 Temporal & Lifecycle Triggers**
+Status: **catalog** | Implementation: **scaffold** | Family: **GH.F5 Temporal & Lifecycle Triggers** | Integrity layer: **adversarial**
 
 Compression or summarization of a long context drops constraints, exclusions, or safety conditions from the objective, and the agent proceeds against the truncated goal.
 

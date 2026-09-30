@@ -1,6 +1,6 @@
 # CAAP-TM-01: Tool Descriptor Poisoning
 
-Status: **reference** | Implementation: **executable** | Family: **TM.F1 Tool Discovery & Selection**
+Status: **reference** | Implementation: **executable** | Family: **TM.F1 Tool Discovery & Selection** | Integrity layer: **adversarial**
 
 A tool's name, description, or schema, supplied by an untrusted registry or server, contains instructions or false claims that steer the agent's selection or invocation of tools.
 

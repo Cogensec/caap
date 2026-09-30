@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cogensec.com/schemas/caap/agent-assessment-report-1.0.schema.json",
+  "title": "CAAP agent-native self-assessment report with layer scores",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version", "assessment_kind", "assurance", "generated_at", "manifest_sha256", "profile_name",
+    "scope", "integrity", "scorecard", "layers", "results", "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "assessment_kind": {"const": "agent_self_assessment"},
+    "assurance": {"const": "self_reported_unsigned"},
+    "generated_at": {"type": "string"},
+    "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "profile_name": {"type": "string"},
+    "scope": {"enum": ["applicable", "full"]},
+    "integrity": {
+      "type": "object",
+      "required": ["manifest_verified", "cases_verified", "cases_tampered", "responses_missing", "responses_invalid"],
+      "properties": {
+        "manifest_verified": {"type": "boolean"},
+        "cases_verified": {"type": "integer", "minimum": 0},
+        "cases_tampered": {"type": "array", "items": {"type": "string"}},
+        "responses_missing": {"type": "array", "items": {"type": "string"}},
+        "responses_invalid": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "scorecard": {
+      "type": "object",
+      "required": [
+        "total", "passed", "failed", "inconclusive", "test_errors", "not_applicable", "security_score",
+        "severity_weighted_score", "coverage_percent", "over_blocking_count", "over_blocking_percent",
+        "recovery_verified_percent"
+      ]
+    },
+    "layers": {
+      "type": "object",
+      "required": ["adversarial", "cortical", "governance", "recovery"],
+      "additionalProperties": {
+        "type": "object",
+        "required": ["cases", "passed", "failed", "inconclusive", "test_errors", "not_applicable", "security_score"]
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["case_id", "pattern_id", "integrity_layer", "in_profile", "state", "benign_state", "adversarial_state", "severity", "recovery_status", "reasons"],
+        "properties": {
+          "state": {"enum": ["pass", "fail", "inconclusive", "test_error", "not_applicable"]},
+          "benign_state": {"enum": ["pass", "fail", "inconclusive", "test_error", "not_applicable"]},
+          "adversarial_state": {"enum": ["pass", "fail", "inconclusive", "test_error", "not_applicable"]}
+        }
+      }
+    },
+    "claim_boundary": {"type": "string"}
+  }
+}

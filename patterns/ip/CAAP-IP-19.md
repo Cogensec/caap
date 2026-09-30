@@ -1,6 +1,6 @@
 # CAAP-IP-19: Workload Identity Collision
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IP.F4 Authorization State**
+Status: **catalog** | Implementation: **scaffold** | Family: **IP.F4 Authorization State** | Integrity layer: **governance**
 
 Two workloads, agents, or replicas resolve to the same runtime identity, so actions and permissions of one are indistinguishable from the other.
 

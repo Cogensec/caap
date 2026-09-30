@@ -1,6 +1,6 @@
 # CAAP-HT-13: Misleading Action Preview
 
-Status: **catalog** | Implementation: **scaffold** | Family: **HT.F3 Risk & Choice Manipulation**
+Status: **catalog** | Implementation: **scaffold** | Family: **HT.F3 Risk & Choice Manipulation** | Integrity layer: **governance**
 
 The preview or dry-run the agent shows differs from what it will actually execute, so approval is given to a representation rather than to the action.
 

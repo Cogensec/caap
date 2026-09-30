@@ -1,6 +1,6 @@
 # CAAP-GH-12: Cross-Channel Injection
 
-Status: **catalog** | Implementation: **scaffold** | Family: **GH.F2 Indirect & Hidden Instructions**
+Status: **catalog** | Implementation: **scaffold** | Family: **GH.F2 Indirect & Hidden Instructions** | Integrity layer: **adversarial**
 
 An instruction arrives through a channel the agent monitors but that was never designated as a control channel, such as a ticket, log, calendar, or notification, and the agent obeys it.
 

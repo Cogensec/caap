@@ -1,6 +1,6 @@
 # CAAP-MP-16: Summary Poisoning
 
-Status: **catalog** | Implementation: **scaffold** | Family: **MP.F4 Context & Isolation**
+Status: **catalog** | Implementation: **scaffold** | Family: **MP.F4 Context & Isolation** | Integrity layer: **cortical**
 
 Untrusted content shapes a summary the agent produces and later relies on, so the compressed representation carries the attacker's framing into every subsequent step.
 

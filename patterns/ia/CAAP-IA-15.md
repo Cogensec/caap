@@ -1,6 +1,6 @@
 # CAAP-IA-15: Cross-Agent Instruction Injection
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IA.F4 Semantic & Negotiation Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **IA.F4 Semantic & Negotiation Abuse** | Integrity layer: **governance**
 
 Untrusted content processed by one agent is relayed to another as part of a result or message, and the second agent executes instructions in it that the first merely carried.
 

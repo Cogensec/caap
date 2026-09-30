@@ -1,6 +1,6 @@
 # CAAP-TM-20: Read-to-Write Escalation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **TM.F4 Capability & Side-Effect Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **TM.F4 Capability & Side-Effect Abuse** | Integrity layer: **adversarial**
 
 A capability granted for reading is used, through a tool option, mode, or related endpoint, to perform a write the grant never covered.
 

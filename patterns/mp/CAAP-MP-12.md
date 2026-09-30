@@ -1,6 +1,6 @@
 # CAAP-MP-12: RAG Duplicate Amplification
 
-Status: **catalog** | Implementation: **scaffold** | Family: **MP.F3 Retrieval Poisoning**
+Status: **catalog** | Implementation: **scaffold** | Family: **MP.F3 Retrieval Poisoning** | Integrity layer: **cortical**
 
 Near-duplicate copies of a poisoned document flood retrieval results, crowding out legitimate sources and making the poisoned claim appear corroborated.
 

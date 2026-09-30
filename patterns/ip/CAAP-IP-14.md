@@ -1,6 +1,6 @@
 # CAAP-IP-14: Cross-Agent Token Reuse
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IP.F3 Credential & Token Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **IP.F3 Credential & Token Abuse** | Integrity layer: **governance**
 
 A token obtained by one agent is presented by a different agent, and the receiving service cannot distinguish the legitimate holder from the reuser.
 

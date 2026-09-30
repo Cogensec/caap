@@ -1,6 +1,6 @@
 # CAAP-CF-14: Consensus Failure Amplification
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CF.F4 Fleet & Environment Spread**
+Status: **catalog** | Implementation: **scaffold** | Family: **CF.F4 Fleet & Environment Spread** | Integrity layer: **recovery**
 
 A failure in the mechanism agents use to agree on state causes each to act on a different view, and their divergent actions conflict and multiply the damage.
 

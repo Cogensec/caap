@@ -1,6 +1,6 @@
 # CAAP-MP-02: Sleeper Memory Trigger
 
-Status: **reference** | Implementation: **executable** | Family: **MP.F2 Dormancy & Lifecycle**
+Status: **reference** | Implementation: **executable** | Family: **MP.F2 Dormancy & Lifecycle** | Integrity layer: **cortical**
 
 A stored memory contains a conditional instruction that stays inert until a specific phrase, event, or context appears, then activates in a session with no visible connection to its origin.
 

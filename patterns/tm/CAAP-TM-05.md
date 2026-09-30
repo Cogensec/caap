@@ -1,6 +1,6 @@
 # CAAP-TM-05: Cross-Tool Exfiltration Chain
 
-Status: **reference** | Implementation: **executable** | Family: **TM.F3 Output & Composition Attacks**
+Status: **reference** | Implementation: **executable** | Family: **TM.F3 Output & Composition Attacks** | Integrity layer: **adversarial**
 
 Data read through one authorized tool is passed as an argument to another tool whose side effect moves it to an external destination, with no single call appearing unauthorized.
 

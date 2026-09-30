@@ -49,6 +49,8 @@ caap_benchmark = [
   "data/taxonomy/caap-200.json",
   "data/benchmarks/executable/*/*.json",
   "data/schemas/*.json",
+  "data/assessments/cases/*/*.json",
+  "data/profiles/*.json",
 ]
 
 [tool.ruff]

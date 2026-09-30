@@ -1,6 +1,6 @@
 # CAAP-IP-13: Token Audience Confusion
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IP.F3 Credential & Token Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **IP.F3 Credential & Token Abuse** | Integrity layer: **governance**
 
 A token issued for one audience or service is accepted by another that fails to check the audience claim, extending the token's reach beyond its issuer's intent.
 

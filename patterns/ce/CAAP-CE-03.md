@@ -1,6 +1,6 @@
 # CAAP-CE-03: Shell Quoting Failure
 
-Status: **candidate** | Implementation: **scaffold** | Family: **CE.F1 Interpreter Boundaries**
+Status: **candidate** | Implementation: **scaffold** | Family: **CE.F1 Interpreter Boundaries** | Integrity layer: **adversarial**
 
 An argument that should be passed as a single literal value is quoted or escaped incorrectly, so shell metacharacters inside it split, redirect, or chain commands.
 

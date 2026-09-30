@@ -1,6 +1,6 @@
 # CAAP-GH-06: Priority Inversion
 
-Status: **candidate** | Implementation: **scaffold** | Family: **GH.F1 Direct Goal Manipulation**
+Status: **candidate** | Implementation: **scaffold** | Family: **GH.F1 Direct Goal Manipulation** | Integrity layer: **adversarial**
 
 Conflicting instructions are resolved by recency, emphasis, or repetition rather than by source authority, so a lower-trust instruction outranks the approved objective.
 

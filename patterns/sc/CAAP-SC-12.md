@@ -1,6 +1,6 @@
 # CAAP-SC-12: Agent-Card Capability Forgery
 
-Status: **catalog** | Implementation: **scaffold** | Family: **SC.F3 Manifest & Identity Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **SC.F3 Manifest & Identity Abuse** | Integrity layer: **adversarial**
 
 A card claims capabilities, certifications, or safety properties the agent does not have, and peers route sensitive tasks to it on the strength of the claim.
 

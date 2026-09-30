@@ -1,6 +1,6 @@
 # CAAP-IP-01: Over-Scoped Delegation
 
-Status: **reference** | Implementation: **executable** | Family: **IP.F1 Delegation Scope**
+Status: **reference** | Implementation: **executable** | Family: **IP.F1 Delegation Scope** | Integrity layer: **governance**
 
 A delegating agent grants a delegate broader permissions than the delegated task requires, and the delegate, or anything that compromises it, can use the excess scope.
 
