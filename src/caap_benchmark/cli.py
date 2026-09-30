@@ -9,12 +9,21 @@ from pathlib import Path
 from typing import Any
 
 from .adapters import CommandAdapter, HttpAdapter, MockAdapter
-from .assess import AssessmentError, grade_session, init_session, write_mock_responses
+from .assess import (
+    AssessmentError,
+    grade_session,
+    import_responses,
+    init_session,
+    render_prompt,
+    write_mock_responses,
+)
+from .attest import BundleError, create_bundle, verify_bundle
 from .loaders import ValidationError, discover_tests, load_data, validate_test_case
 from .reports import write_html, write_json, write_junit
 from .runner import BenchmarkRunner
 from .schemas import validator_name
 from .scoring import score
+from .versions import TAXONOMY_VERSION, package_version
 
 
 def _repo_root() -> Path | None:
@@ -208,6 +217,46 @@ def cmd_assess_mock_respond(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_assess_prompt(args: argparse.Namespace) -> int:
+    try:
+        prompts = render_prompt(args.session, args.chunk_size)
+    except AssessmentError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    base = Path(args.output) if args.output else Path(args.session) / "prompt.md"
+    base.parent.mkdir(parents=True, exist_ok=True)
+    for label, text in prompts:
+        target = base
+        if len(prompts) > 1:
+            target = base.with_name(f"{base.stem}-{label[len('prompt-'):]}{base.suffix}")
+        target.write_text(text, encoding="utf-8")
+        print(f"{target} ({len(text.encode('utf-8'))} bytes)")
+    print(
+        "Give each prompt to the model under evaluation, save its reply, then run "
+        "`caap assess import` and `caap assess grade`."
+    )
+    return 0
+
+
+def cmd_assess_import(args: argparse.Namespace) -> int:
+    try:
+        summary = import_responses(args.session, args.files, args.responder)
+    except AssessmentError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    print(
+        f"Imported {len(summary['imported'])} response(s), replaced {len(summary['replaced'])}, "
+        f"skipped {len(summary['skipped'])} into {Path(args.session) / 'responses'}"
+    )
+    for case_id, reason in summary["skipped"]:
+        print(f"  skipped {case_id}: {reason}", file=sys.stderr)
+    for error in summary["errors"]:
+        print(f"ERROR: {error}", file=sys.stderr)
+    if summary["errors"]:
+        return 2
+    return 1 if summary["skipped"] else 0
+
+
 def cmd_assess_grade(args: argparse.Namespace) -> int:
     try:
         report = grade_session(args.session, args.report)
@@ -258,11 +307,71 @@ def cmd_assess_grade(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_attest_create(args: argparse.Namespace) -> int:
+    subject = {
+        "name": args.subject,
+        "version": args.subject_version,
+        "description": args.subject_description,
+    }
+    try:
+        submission = create_bundle(
+            args.output,
+            subject,
+            session=args.session,
+            report=args.report,
+            authorization_statement=args.authorization,
+            notes=args.notes,
+        )
+    except BundleError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    card = submission["scorecard"]
+    print(
+        f"Evidence bundle written to {Path(args.output).resolve()}\n"
+        f"Tier: {submission['assurance_tier']} ({', '.join(submission['labels'])})\n"
+        f"Subject: {submission['subject']['name']} {submission['subject']['version'] or ''}\n"
+        f"Taxonomy {submission['taxonomy_version']} | benchmark "
+        f"{submission['caap_benchmark_version']} | cases {submission['evaluation']['case_count']}"
+        f" | security score {card['security_score']} | coverage {card['coverage_percent']}%\n"
+        f"Badge: {submission['badge']['label']} | {submission['badge']['message']}\n"
+        f"Submission sha256: {submission['submission_sha256']}\n"
+        f"Verify with `caap attest verify {args.output}` before submitting."
+    )
+    return 0
+
+
+def cmd_attest_verify(args: argparse.Namespace) -> int:
+    try:
+        outcome = verify_bundle(args.bundle)
+    except BundleError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    if args.json:
+        print(json.dumps(outcome, indent=2))
+        return 0 if outcome["verified"] else 1
+    for check in outcome["checks"]:
+        print(f"{check['status'].upper():<5} {check['name']}: {check['detail']}")
+    submission = outcome["submission"]
+    if outcome["tier"]:
+        print(
+            f"\n{submission['subject']['name']} | {outcome['tier']} | "
+            f"taxonomy {submission['taxonomy_version']} | "
+            f"security score {submission['scorecard']['security_score']} | "
+            f"coverage {submission['scorecard']['coverage_percent']}%"
+        )
+    print("VERIFIED" if outcome["verified"] else "NOT VERIFIED")
+    return 0 if outcome["verified"] else 1
+
+
 def build_parser() -> argparse.ArgumentParser:
     taxonomy_path, executable_dir = default_paths()
     assessment_cases_dir, profiles_dir = default_assessment_paths()
     parser = argparse.ArgumentParser(prog="caap", description="Run safe CAAP agent benchmarks")
-    parser.add_argument("--version", action="version", version="caap-benchmark 0.1.0")
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"caap-benchmark {package_version()} (CAAP-200 taxonomy {TAXONOMY_VERSION})",
+    )
     sub = parser.add_subparsers(dest="subcommand", required=True)
 
     listing = sub.add_parser("list", help="list CAAP-200 patterns")
@@ -329,11 +438,51 @@ def build_parser() -> argparse.ArgumentParser:
     mock.add_argument("--mode", choices=["safe", "vulnerable"], default="safe")
     mock.set_defaults(func=cmd_assess_mock_respond)
 
+    prompt = assess_sub.add_parser(
+        "prompt", help="render the session as a self-contained prompt for any LLM"
+    )
+    prompt.add_argument("--session", required=True)
+    prompt.add_argument("--output", help="prompt path (default: <session>/prompt.md)")
+    prompt.add_argument(
+        "--chunk-size",
+        type=int,
+        help="split into numbered prompts of at most this many cases each",
+    )
+    prompt.set_defaults(func=cmd_assess_prompt)
+
+    imp = assess_sub.add_parser(
+        "import", help="import a model's JSON reply (or Markdown with a json block) as responses"
+    )
+    imp.add_argument("--session", required=True)
+    imp.add_argument("files", nargs="+", help="reply files saved from the model")
+    imp.add_argument("--responder", help="responder label to record when the reply omits one")
+    imp.set_defaults(func=cmd_assess_import)
+
     grade = assess_sub.add_parser("grade", help="verify hashes, grade responses, write the report")
     grade.add_argument("--session", required=True)
     grade.add_argument("--report", help="report path (default: <session>/report.json)")
     grade.add_argument("--fail-on", choices=["never", "fail", "non-pass"], default="fail")
     grade.set_defaults(func=cmd_assess_grade)
+
+    attest = sub.add_parser("attest", help="package a result as an evidence bundle, or verify one")
+    attest_sub = attest.add_subparsers(dest="attest_command", required=True)
+
+    create = attest_sub.add_parser("create", help="write an evidence bundle from a result")
+    source = create.add_mutually_exclusive_group(required=True)
+    source.add_argument("--session", help="graded agent-native assessment session directory")
+    source.add_argument("--report", help="observed benchmark report JSON from `caap run`")
+    create.add_argument("--subject", required=True, help="name of the agent that was evaluated")
+    create.add_argument("--subject-version", help="version of the evaluated agent")
+    create.add_argument("--subject-description", help="one sentence describing the subject")
+    create.add_argument("--authorization", help="authorization statement for the evaluation")
+    create.add_argument("--notes", help="free-text notes recorded in the submission")
+    create.add_argument("--output", default="caap-evidence.zip", help="bundle path to write")
+    create.set_defaults(func=cmd_attest_create)
+
+    verify = attest_sub.add_parser("verify", help="verify an evidence bundle's hashes and results")
+    verify.add_argument("bundle")
+    verify.add_argument("--json", action="store_true", help="print the verification as JSON")
+    verify.set_defaults(func=cmd_attest_verify)
     return parser
 
 

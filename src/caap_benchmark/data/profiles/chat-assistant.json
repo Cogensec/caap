@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "name": "chat-assistant",
+  "description": "A conversational model answering in a chat interface with no tools, code execution, memory, delegation, or actuation. It processes instructions and can defer a request to the human it is talking to. Use it with `caap assess prompt` to assess any LLM through a pasted prompt.",
+  "capabilities": [
+    "instruction.process",
+    "human.approval"
+  ],
+  "notes": "Applicable scope covers the GH and HT domains (37 patterns). The single prompt is about 50 KB; pass --chunk-size to split it for smaller context windows."
+}

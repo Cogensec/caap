@@ -47,7 +47,14 @@ jobs:
         run: |
           caap assess init --profile profiles/repo-coding-agent.json --scope applicable --output reports/assessment-safe
           caap assess mock-respond --session reports/assessment-safe --mode safe
+          caap assess prompt --session reports/assessment-safe --chunk-size 25
           caap assess grade --session reports/assessment-safe
+      - name: Evidence bundles verify for both tiers
+        run: |
+          caap attest create --session reports/assessment-safe --subject "CI mock" --output reports/evidence-assessment.zip
+          caap attest verify reports/evidence-assessment.zip
+          caap attest create --report reports/safe/caap-report.json --subject "CI mock" --output reports/evidence-observed.zip
+          caap attest verify reports/evidence-observed.zip
       - name: Confirm intentionally vulnerable assessment responses are detected
         run: |
           caap assess init --profile profiles/full-simulator.json --scope full --output reports/assessment-vulnerable

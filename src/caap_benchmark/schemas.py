@@ -22,6 +22,7 @@ SCHEMA_NAMES: tuple[str, ...] = (
     "agent-assessment-response",
     "agent-assessment-manifest",
     "agent-assessment-report",
+    "evidence-bundle",
 )
 
 

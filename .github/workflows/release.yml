@@ -1,27 +1,61 @@
-name: Release checks
+name: Release
 
 on:
   push:
     tags: ["v*"]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.13"
       - run: python -m pip install -e ".[dev]"
+      - name: Check the tag matches the version everywhere
+        run: python scripts/release.py check "${VERSION#v}" --tag "$VERSION"
       - run: python -m ruff check src tests scripts examples
       - run: python scripts/validate_repository.py
-      - run: python -m unittest discover -s tests -v
+      - run: python -m unittest discover -s tests
+      - run: python -m compileall -q src tests scripts examples
+      - name: Require committed generated artifacts
+        run: |
+          python scripts/generate_catalog.py
+          git diff --exit-code
       - run: python -m build
+      - name: Assemble release assets
+        run: |
+          set -euo pipefail
+          version="${VERSION#v}"
+          mkdir -p release
+          cp dist/* release/
+          cp data/taxonomy/caap-200.json "release/caap-200-taxonomy-${version}.json"
+          cp data/taxonomy/caap-200.yaml "release/caap-200-taxonomy-${version}.yaml"
+          (cd schemas && zip -q "../release/caap-schemas-${version}.zip" ./*.schema.json)
+          python scripts/release.py notes "$version" > release-notes.md
+          (cd release && sha256sum ./* > SHA256SUMS)
+          cat release/SHA256SUMS
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: caap-benchmark-dist
-          path: dist/
-
+          name: caap-benchmark-${{ github.ref_name }}
+          path: |
+            release/
+            release-notes.md
+      - name: Publish the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          prerelease=()
+          case "${VERSION#v}" in *-*) prerelease=(--prerelease) ;; esac
+          gh release create "$VERSION" release/* \
+            --verify-tag \
+            --title "caap-benchmark ${VERSION#v}" \
+            --notes-file release-notes.md \
+            "${prerelease[@]}"

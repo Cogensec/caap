@@ -7,6 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from .models import ResultState, RunResult, Scorecard
+from .versions import TAXONOMY_VERSION, package_version
 
 _HTML_STYLE = """
 :root{--ink:#17202a;--muted:#667085;--line:#e4e7ec;--paper:#fff;--bg:#f6f7f9;--brand:#b5472d}
@@ -35,6 +36,8 @@ def write_json(path: Path, results: list[RunResult], scorecard: Scorecard) -> No
     payload = {
         "schema_version": "1.0",
         "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "taxonomy_version": TAXONOMY_VERSION,
+        "caap_benchmark_version": package_version(),
         "scorecard": scorecard.to_dict(),
         "results": [result.to_dict() for result in results],
     }

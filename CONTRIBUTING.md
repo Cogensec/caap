@@ -21,7 +21,14 @@ PYTHONPATH=src python3 -m caap_benchmark.cli validate benchmarks/executable
 PYTHONPATH=src python3 -m caap_benchmark.cli run --adapter mock --mock-mode safe --report-dir reports/ci
 ```
 
-Generated registry files, pattern pages, and scaffolds must match `scripts/generate_catalog.py` exactly.
+Generated registry files, pattern pages, scaffolds, and assessment cases must match `scripts/generate_catalog.py` exactly.
+
+Every user-visible change needs an entry under `## [Unreleased]` in `CHANGELOG.md`; releases publish that section as their notes. Do not change version numbers in a feature change; releases are cut as described in `docs/RELEASING.md`.
+
+## Branches and commits
+
+- Branch from `main` and give the branch a short, descriptive name that says what the change does, for example `feat/http-adapter-redirect-guard`, `fix/yaml-empty-lists`, or `docs/authoring-guide`. Do not name branches after tools, sessions, or people.
+- Author every commit under your own GitHub name and email, and sign it off with `git commit -s`. Do not attribute commits to a tool, bot, or shared identity.
 
 ## Pull-request requirements
 
