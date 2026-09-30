@@ -96,9 +96,28 @@ class ReleaseScriptTests(unittest.TestCase):
         self.assertIn("- A new thing.", changelog)
         self.assertEqual(release.check("0.2.0", self.root, tag="v0.2.0"), [])
         with self.assertRaises(release.ReleaseError):
-            release.bump("0.2.0", self.root)
+            release.bump("0.2.0", self.root)  # already cut
         with self.assertRaises(release.ReleaseError):
             release.bump("0.3.0", self.root)  # nothing unreleased
+        self.assertIn('version = "0.2.0"', (self.root / "pyproject.toml").read_text())
+
+    def test_first_release_can_be_cut_at_the_current_version(self) -> None:
+        (self.root / "CHANGELOG.md").write_text(
+            "# Changelog\n\n## [Unreleased]\n\n### Added\n\n- Everything so far.\n"
+        )
+        changed = release.bump("0.1.0", self.root, today=date(2026, 9, 30))
+        self.assertIn("CHANGELOG.md", changed)
+        self.assertIn('version = "0.1.0"', (self.root / "pyproject.toml").read_text())
+        changelog = (self.root / "CHANGELOG.md").read_text()
+        self.assertIn("## [0.1.0] - 2026-09-30\n\n### Added\n\n- Everything so far.", changelog)
+        self.assertEqual(release.check("0.1.0", self.root, tag="v0.1.0"), [])
+
+    def test_refused_bump_writes_nothing(self) -> None:
+        (self.root / "CHANGELOG.md").write_text("# Changelog\n\n## [Unreleased]\n\nnothing\n")
+        before = (self.root / "pyproject.toml").read_text()
+        with self.assertRaises(release.ReleaseError):
+            release.bump("0.5.0", self.root)
+        self.assertEqual((self.root / "pyproject.toml").read_text(), before)
 
     def test_notes_render_the_section_with_versions(self) -> None:
         text = release.notes("0.1.0", self.root)
@@ -135,6 +154,13 @@ class ReleaseScriptTests(unittest.TestCase):
             shutil.copy(ROOT / name, copy / name)
         relative = "src/caap_benchmark/versions.py"
         shutil.copy(ROOT / relative, copy / relative)
+        # A freshly cut tree has nothing under Unreleased; seed one entry so the bump has work.
+        changelog = copy / "CHANGELOG.md"
+        changelog.write_text(
+            changelog.read_text().replace(
+                "## [Unreleased]\n", "## [Unreleased]\n\n### Added\n\n- Seeded test entry.\n", 1
+            )
+        )
         release.bump("0.9.9", copy, today=date(2026, 9, 30))
         self.assertEqual(release.check("0.9.9", copy, tag="v0.9.9"), [])
         text = release.notes("0.9.9", copy)

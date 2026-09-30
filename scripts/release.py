@@ -145,31 +145,32 @@ def bump(version: str, root: Path = ROOT, today: date | None = None) -> list[str
         )
     paths = _paths(root)
     when = (today or date.today()).isoformat()
-    changed = []
-    pyproject = paths["pyproject"].read_text()
-    current = _match(PYPROJECT_RE, pyproject, "pyproject.toml")
-    if current == version:
-        raise ReleaseError(f"pyproject.toml is already at {version}")
-    paths["pyproject"].write_text(PYPROJECT_RE.sub(f'version = "{version}"', pyproject, count=1))
-    changed.append(paths["pyproject"])
-    versions = paths["versions"].read_text()
-    _match(PACKAGE_RE, versions, "versions.py")
-    paths["versions"].write_text(
-        PACKAGE_RE.sub(f'PACKAGE_VERSION = "{version}"', versions, count=1)
-    )
-    changed.append(paths["versions"])
-    readme = paths["readme"].read_text()
-    _match(README_RE, readme, "README.md status")
-    paths["readme"].write_text(README_RE.sub(f"`v{version}` software", readme, count=1))
-    changed.append(paths["readme"])
+    # Validate everything before writing anything, so a refused bump leaves no partial edit.
     changelog = paths["changelog"].read_text()
+    if _section(changelog, version) is not None:
+        raise ReleaseError(f"CHANGELOG.md already has a [{version}] section; {version} was cut")
     unreleased = _section(changelog, "Unreleased")
     if unreleased is None:
         raise ReleaseError("CHANGELOG.md has no [Unreleased] section to cut")
     if not _has_entries(unreleased[1]):
         raise ReleaseError("CHANGELOG.md has nothing under [Unreleased] to release")
-    if _section(changelog, version) is not None:
-        raise ReleaseError(f"CHANGELOG.md already has a [{version}] section")
+    pyproject = paths["pyproject"].read_text()
+    _match(PYPROJECT_RE, pyproject, "pyproject.toml")
+    versions = paths["versions"].read_text()
+    _match(PACKAGE_RE, versions, "versions.py")
+    readme = paths["readme"].read_text()
+    _match(README_RE, readme, "README.md status")
+    # The version may already be set (a first release cut at the current version); the
+    # substitutions are then no-ops and only the changelog changes.
+    changed = []
+    paths["pyproject"].write_text(PYPROJECT_RE.sub(f'version = "{version}"', pyproject, count=1))
+    changed.append(paths["pyproject"])
+    paths["versions"].write_text(
+        PACKAGE_RE.sub(f'PACKAGE_VERSION = "{version}"', versions, count=1)
+    )
+    changed.append(paths["versions"])
+    paths["readme"].write_text(README_RE.sub(f"`v{version}` software", readme, count=1))
+    changed.append(paths["readme"])
     replacement = f"## [Unreleased]\n\n{UNRELEASED_PLACEHOLDER}\n\n## [{version}] - {when}"
     changelog = re.sub(
         r"^## \[Unreleased\][ \t]*$", replacement, changelog, count=1, flags=re.MULTILINE

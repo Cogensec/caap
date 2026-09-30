@@ -4,6 +4,12 @@ All notable changes are recorded here.
 
 ## [Unreleased]
 
+_No unreleased changes yet._
+
+## [0.1.0] - 2026-09-30
+
+First public release of the CAAP-200 benchmark, implementing the CAAP `2.0.0-draft.1` working taxonomy. The entries below record what was built and corrected on the way to this release.
+
 ### Added
 
 - A release process. Releases are git tags `vX.Y.Z` on `main`; the release workflow checks that the tag matches the version in `pyproject.toml`, `versions.py`, and the README, runs the full checks and the generated-files check, builds the distribution, and publishes a GitHub release with the wheel and sdist, the taxonomy JSON and YAML, the schemas, `SHA256SUMS`, and notes taken from the changelog section for that version. `scripts/release.py` provides `bump` (set the version everywhere and cut the changelog), `check` (readiness), and `notes`; repository validation now fails on version drift between those files; `caap --version` reports the package and taxonomy versions from one source. The procedure is in `docs/RELEASING.md`.
@@ -21,7 +27,7 @@ All notable changes are recorded here.
 ### Changed
 
 - Every one of the 200 pattern records now has a pattern-specific definition stating the mechanism, the trust boundary it crosses, and the unsafe result, replacing the single template sentence. Each record also has its own six-axis severity vector, and the baseline score is derived from the vector by the documented CAAP-200 method (impact and exploitability weighted double). The 25 v1.0 reference scores are unchanged and marked `caap-v1.0-baseline`; all other scores are `vector-derived`. Pattern pages show the severity, and validation enforces vector range, rating consistency, and the reference-score tolerance.
-- GitHub Actions in the CI, CodeQL, and release workflows are pinned to commit SHAs with the resolved version in a comment, and a Dependabot configuration keeps the pins and Python dependencies current.
+- GitHub Actions in the CI, CodeQL, and release workflows are pinned to commit SHAs with the resolved version in a comment, and a Dependabot configuration keeps the pins and Python dependencies current. The pins were then raised to `actions/checkout` v7.0.1, `actions/setup-python` v7.0.0, `actions/upload-artifact` v7.0.1, and `github/codeql-action` v4.38.2.
 - The published JSON Schemas are now enforced. The runner validates cases against the test-case schema, the HTTP and command adapters validate target payloads against the adapter-response schema and turn a malformed payload into `test_error`, and repository validation checks the registry against the taxonomy schema. Full validation uses the new `schema` extra (`jsonschema`), installed in CI; without it a structural fallback derives its required fields from the schema, which closes the previous gap where the hand-rolled check required three fewer fields than the schema. The schemas are bundled with the package.
 - The 25 executable reference cases now carry mechanism-specific fixtures, attack-success oracles, and secure-behavior evidence instead of one shared template. Each declares a `mock_scenario` with the secure and vulnerable event traces for its mechanism; the mock adapter replays them, so the vulnerable mode now fails on the mechanism oracle (for example an unapproved memory write or a replayed nonce being accepted) before the sentinel backstop. A shared event vocabulary in `caap_benchmark.events` maps event types to telemetry keys, and each case requires the keys its traces produce. Scaffolds are unchanged.
 - CI now runs `ruff check` as a separate lint job, and `make lint` runs it locally. Existing findings were cleared; the generator's one-record-per-line taxonomy tables are exempt from the line-length rule only.
