@@ -1,6 +1,6 @@
 # CAAP-MP-21: Self-Generated Evidence Reinforcement
 
-Status: **catalog** | Implementation: **scaffold** | Family: **MP.F4 Context & Isolation**
+Status: **catalog** | Implementation: **scaffold** | Family: **MP.F4 Context & Isolation** | Integrity layer: **cortical**
 
 The agent stores its own outputs as memories or corpus entries and later retrieves them as independent evidence, amplifying an initial error or injected claim.
 

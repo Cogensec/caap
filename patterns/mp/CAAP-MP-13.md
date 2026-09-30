@@ -1,6 +1,6 @@
 # CAAP-MP-13: Retriever Query Manipulation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **MP.F3 Retrieval Poisoning**
+Status: **catalog** | Implementation: **scaffold** | Family: **MP.F3 Retrieval Poisoning** | Integrity layer: **cortical**
 
 Untrusted content rewrites or steers the query the agent sends to the retriever, so the results serve the attacker's objective rather than the user's question.
 

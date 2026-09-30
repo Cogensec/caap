@@ -1,6 +1,6 @@
 # CAAP-SC-14: Namespace Takeover
 
-Status: **catalog** | Implementation: **scaffold** | Family: **SC.F3 Manifest & Identity Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **SC.F3 Manifest & Identity Abuse** | Integrity layer: **adversarial**
 
 An attacker registers or claims an abandoned, expired, or unclaimed name that agents still reference, receiving the traffic and trust that name carried.
 

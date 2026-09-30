@@ -1,6 +1,6 @@
 # CAAP-TM-04: Tool Alias Hijacking
 
-Status: **candidate** | Implementation: **scaffold** | Family: **TM.F1 Tool Discovery & Selection**
+Status: **candidate** | Implementation: **scaffold** | Family: **TM.F1 Tool Discovery & Selection** | Integrity layer: **adversarial**
 
 An alias, shortcut, or friendly name that the agent uses to reference a tool is re-pointed to a different implementation without changing the alias the agent sees.
 

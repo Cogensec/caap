@@ -1,6 +1,6 @@
 # CAAP-GH-09: Instruction Precedence Ambiguity
 
-Status: **candidate** | Implementation: **scaffold** | Family: **GH.F1 Direct Goal Manipulation**
+Status: **candidate** | Implementation: **scaffold** | Family: **GH.F1 Direct Goal Manipulation** | Integrity layer: **adversarial**
 
 The agent has no defined precedence among system, developer, user, and content instructions, and an attacker places instructions where the ambiguity resolves in their favor.
 

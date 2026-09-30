@@ -1,6 +1,6 @@
 # CAAP-GH-03: Hidden Multimodal Instruction
 
-Status: **reference** | Implementation: **executable** | Family: **GH.F2 Indirect & Hidden Instructions**
+Status: **reference** | Implementation: **executable** | Family: **GH.F2 Indirect & Hidden Instructions** | Integrity layer: **adversarial**
 
 Instructions concealed in image, audio, or file metadata, or in visually imperceptible regions of a multimodal input, are read by the agent and acted on although no human can see them.
 

@@ -1,6 +1,6 @@
 # CAAP-SC-02: Tool Rug Pull
 
-Status: **reference** | Implementation: **executable** | Family: **SC.F2 Mutable Component Risk**
+Status: **reference** | Implementation: **executable** | Family: **SC.F2 Mutable Component Risk** | Integrity layer: **adversarial**
 
 A tool that behaved correctly when vetted changes its behavior in a later version or on a later invocation, exploiting trust established by the earlier behavior.
 

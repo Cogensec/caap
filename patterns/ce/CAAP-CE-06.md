@@ -1,6 +1,6 @@
 # CAAP-CE-06: Generated Code Auto-Execution
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CE.F2 Generated & Retrieved Code**
+Status: **catalog** | Implementation: **scaffold** | Family: **CE.F2 Generated & Retrieved Code** | Integrity layer: **adversarial**
 
 Code the model generates in response to a task is executed without review, so any untrusted content that influenced generation controls what runs.
 

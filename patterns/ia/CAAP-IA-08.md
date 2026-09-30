@@ -1,6 +1,6 @@
 # CAAP-IA-08: Message Truncation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IA.F2 Message Integrity & Freshness**
+Status: **catalog** | Implementation: **scaffold** | Family: **IA.F2 Message Integrity & Freshness** | Integrity layer: **governance**
 
 A message is cut short so that constraints, exclusions, or the final instruction are missing, and the receiver acts on the incomplete content as if complete.
 

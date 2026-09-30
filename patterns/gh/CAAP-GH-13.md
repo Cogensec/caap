@@ -1,6 +1,6 @@
 # CAAP-GH-13: System-Message Impersonation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **GH.F3 Authority & Provenance Spoofing**
+Status: **catalog** | Implementation: **scaffold** | Family: **GH.F3 Authority & Provenance Spoofing** | Integrity layer: **adversarial**
 
 Untrusted content mimics the format or markers of a system or developer message so the agent assigns it system-level precedence.
 

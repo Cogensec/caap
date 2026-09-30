@@ -1,6 +1,6 @@
 # CAAP-SC-10: Compromised Remote Policy
 
-Status: **catalog** | Implementation: **scaffold** | Family: **SC.F2 Mutable Component Risk**
+Status: **catalog** | Implementation: **scaffold** | Family: **SC.F2 Mutable Component Risk** | Integrity layer: **adversarial**
 
 A policy document that governs what the agent may do is fetched from a remote source that has been compromised, and the agent enforces the attacker's policy.
 

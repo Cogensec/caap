@@ -1,6 +1,6 @@
 # CAAP-GH-17: Delegated Goal Mutation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **GH.F4 Delegation & Handoff Corruption**
+Status: **catalog** | Implementation: **scaffold** | Family: **GH.F4 Delegation & Handoff Corruption** | Integrity layer: **adversarial**
 
 When a task is delegated, the goal statement passed to the delegate is altered by an intermediary or by untrusted content in the handoff, so the delegate pursues a different objective from the principal's.
 

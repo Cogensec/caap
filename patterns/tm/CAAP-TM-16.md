@@ -1,6 +1,6 @@
 # CAAP-TM-16: Cross-Tool Authorization Confusion
 
-Status: **catalog** | Implementation: **scaffold** | Family: **TM.F3 Output & Composition Attacks**
+Status: **catalog** | Implementation: **scaffold** | Family: **TM.F3 Output & Composition Attacks** | Integrity layer: **adversarial**
 
 Authorization established for one tool is assumed to cover a different tool in the same workflow, letting a call proceed that would have been denied on its own.
 

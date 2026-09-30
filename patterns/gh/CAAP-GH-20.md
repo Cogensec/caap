@@ -1,6 +1,6 @@
 # CAAP-GH-20: Workflow-Resume Injection
 
-Status: **catalog** | Implementation: **scaffold** | Family: **GH.F5 Temporal & Lifecycle Triggers**
+Status: **catalog** | Implementation: **scaffold** | Family: **GH.F5 Temporal & Lifecycle Triggers** | Integrity layer: **adversarial**
 
 When a paused or checkpointed workflow resumes, instructions injected into the saved state or the resume message are treated as the continuation of approved work.
 

@@ -1,6 +1,6 @@
 # CAAP-IP-10: Authorization-Context Stripping
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IP.F2 Deputy & Principal Confusion**
+Status: **catalog** | Implementation: **scaffold** | Family: **IP.F2 Deputy & Principal Confusion** | Integrity layer: **governance**
 
 The context that scopes an authorization, such as tenant, resource, purpose, or time, is dropped in transit or storage, leaving a bare permission that applies more broadly than granted.
 

@@ -1,6 +1,6 @@
 # CAAP-CE-05: Sandbox Escape and Host Reachability
 
-Status: **reference** | Implementation: **executable** | Family: **CE.F4 Containment Failure**
+Status: **reference** | Implementation: **executable** | Family: **CE.F4 Containment Failure** | Integrity layer: **adversarial**
 
 Code running in the agent's sandbox reaches the host, its network, or its credentials through a boundary weakness, and containment no longer bounds the blast radius.
 

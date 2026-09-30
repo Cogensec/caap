@@ -1,6 +1,6 @@
 # CAAP-CE-12: Build-Script Injection
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CE.F3 Artifact & Dependency Execution**
+Status: **catalog** | Implementation: **scaffold** | Family: **CE.F3 Artifact & Dependency Execution** | Integrity layer: **adversarial**
 
 A build configuration, setup script, or install hook in a repository the agent builds runs attacker code as part of the build.
 

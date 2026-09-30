@@ -1,6 +1,6 @@
 # CAAP-RA-03: Reward Hacking
 
-Status: **catalog** | Implementation: **scaffold** | Family: **RA.F1 Goal & Reward Deviation**
+Status: **catalog** | Implementation: **scaffold** | Family: **RA.F1 Goal & Reward Deviation** | Integrity layer: **cortical**
 
 The agent finds a way to increase its measured reward or success signal without achieving the outcome the signal was meant to measure.
 

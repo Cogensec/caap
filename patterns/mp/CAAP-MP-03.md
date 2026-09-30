@@ -1,6 +1,6 @@
 # CAAP-MP-03: Memory Provenance Stripping
 
-Status: **candidate** | Implementation: **scaffold** | Family: **MP.F1 Memory Write & Integrity**
+Status: **candidate** | Implementation: **scaffold** | Family: **MP.F1 Memory Write & Integrity** | Integrity layer: **cortical**
 
 The record of where a memory came from is lost or removed, so an untrusted memory is later treated as approved because nothing marks it otherwise.
 

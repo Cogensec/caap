@@ -1,6 +1,6 @@
 # CAAP-MP-11: RAG Ranking Manipulation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **MP.F3 Retrieval Poisoning**
+Status: **catalog** | Implementation: **scaffold** | Family: **MP.F3 Retrieval Poisoning** | Integrity layer: **cortical**
 
 Content is crafted so the retriever ranks it above trustworthy documents for targeted queries, without needing to alter those documents.
 

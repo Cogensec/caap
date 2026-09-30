@@ -72,9 +72,57 @@ def main() -> None:
             if unknown:
                 fail(f"unknown {relation_type} relation in {pattern['id']}: {sorted(unknown)}")
     check_definitions_and_severity(patterns)
-    check_package_data(executable)
-    check_schemas(registry, executable + scaffolds)
-    print("Repository invariants validated: 200 patterns, 25 executable cases, 175 scaffolds.")
+    assessments = check_assessment_cases(patterns)
+    check_package_data(executable, assessments)
+    check_schemas(registry, executable + scaffolds, assessments)
+    print(
+        "Repository invariants validated: 200 patterns, 25 executable cases, 175 scaffolds, "
+        "200 assessment cases."
+    )
+
+
+LAYERS = ("adversarial", "cortical", "governance", "recovery")
+
+
+def check_assessment_cases(patterns: list[dict]) -> list[Path]:
+    """One paired-trial assessment case per pattern, with layer and sentinel consistency."""
+    paths = sorted((ROOT / "assessments/cases").rglob("*.json"))
+    if len(paths) != 200:
+        fail(f"expected 200 assessment cases, found {len(paths)}")
+    by_id = {pattern["id"]: pattern for pattern in patterns}
+    if {pattern["integrity_layer"] for pattern in patterns} - set(LAYERS):
+        fail("pattern integrity_layer outside the four layers")
+    trials = 0
+    for path in paths:
+        case = json.loads(path.read_text())
+        pattern = by_id.get(case["pattern_id"])
+        if pattern is None:
+            fail(f"assessment case {path.name} references an unknown pattern")
+        if case["integrity_layer"] != pattern["integrity_layer"]:
+            fail(f"{case['id']}: layer differs from the registry")
+        if case["required_capabilities"] != pattern["required_capabilities"]:
+            fail(f"{case['id']}: capabilities differ from the registry")
+        if not all(case["safety"].values()):
+            fail(f"unsafe or incomplete safety declaration: {path}")
+        kinds = [trial["kind"] for trial in case["trials"]]
+        if kinds != ["benign_control", "adversarial_condition"]:
+            fail(f"{case['id']}: trials must be a benign control then an adversarial condition")
+        adversarial = case["trials"][1]
+        content = adversarial["untrusted_content"]
+        if case["safe_sentinel"] not in content or "CAAP TEST ONLY" not in content:
+            fail(
+                f"{case['id']}: untrusted content must carry the sentinel "
+                "and the CAAP TEST ONLY label"
+            )
+        sinks = re.findall(r"\b\w+_sink\b", content)
+        if any(not sink.startswith("mock_") for sink in sinks):
+            fail(f"{case['id']}: untrusted content may name only mock sinks: {sinks}")
+        if re.search(r"\b\w+://", content):
+            fail(f"{case['id']}: untrusted content must not carry a URL")
+        trials += len(case["trials"])
+    if trials != 400:
+        fail(f"expected 400 assessment trials, found {trials}")
+    return paths
 
 
 SEVERITY_AXES = ("impact", "exploitability", "privilege", "autonomy", "persistence", "propagation")
@@ -120,7 +168,7 @@ def check_definitions_and_severity(patterns: list[dict]) -> None:
             fail(f"{pattern['id']}: score {score} does not equal the vector-derived {derived}")
 
 
-def check_schemas(registry: dict, cases: list[Path]) -> None:
+def check_schemas(registry: dict, cases: list[Path], assessments: list[Path]) -> None:
     """Validate the registry and every case against the published JSON Schemas."""
     registry_errors = schema_errors("taxonomy", registry)
     if registry_errors is None:
@@ -133,14 +181,26 @@ def check_schemas(registry: dict, cases: list[Path]) -> None:
         if errors:
             detail = "; ".join(errors[:5])
             fail(f"test-case schema violations in {path.relative_to(ROOT)}: {detail}")
-    print(f"JSON Schema validation passed: registry and {len(cases)} cases.")
+    for path in assessments:
+        errors = schema_errors("agent-assessment-case", json.loads(path.read_text()))
+        if errors:
+            detail = "; ".join(errors[:5])
+            fail(f"assessment-case schema violations in {path.relative_to(ROOT)}: {detail}")
+    print(
+        f"JSON Schema validation passed: registry, {len(cases)} cases, "
+        f"{len(assessments)} assessment cases."
+    )
 
 
-def check_package_data(executable: list[Path]) -> None:
+def check_package_data(executable: list[Path], assessments: list[Path]) -> None:
     """The copies bundled into the wheel must mirror the canonical files exactly."""
     expected = {ROOT / "data/taxonomy/caap-200.json": PACKAGE_DATA / "taxonomy/caap-200.json"}
     for source in sorted((ROOT / "schemas").glob("*.schema.json")):
         expected[source] = PACKAGE_DATA / "schemas" / source.name
+    for source in sorted((ROOT / "profiles").glob("*.json")):
+        expected[source] = PACKAGE_DATA / "profiles" / source.name
+    for source in assessments:
+        expected[source] = PACKAGE_DATA / "assessments" / source.relative_to(ROOT / "assessments")
     for source in executable:
         relative = source.relative_to(ROOT / "benchmarks")
         expected[source] = PACKAGE_DATA / "benchmarks" / relative

@@ -1,6 +1,6 @@
 # CAAP-HT-09: Human Confirmation Spoofing
 
-Status: **catalog** | Implementation: **scaffold** | Family: **HT.F2 Consent & Approval Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **HT.F2 Consent & Approval Abuse** | Integrity layer: **governance**
 
 A confirmation that must come from a human is supplied by the agent, by another agent, or by injected content, and the system cannot tell it from a genuine confirmation.
 

@@ -1,6 +1,6 @@
 # CAAP-TM-17: Tool-Context Data Leakage
 
-Status: **catalog** | Implementation: **scaffold** | Family: **TM.F3 Output & Composition Attacks**
+Status: **catalog** | Implementation: **scaffold** | Family: **TM.F3 Output & Composition Attacks** | Integrity layer: **adversarial**
 
 Sensitive data present in the agent's context is included in a tool call's arguments where it is unnecessary, reaching a tool or log that should never have seen it.
 

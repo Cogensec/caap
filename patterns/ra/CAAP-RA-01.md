@@ -1,6 +1,6 @@
 # CAAP-RA-01: Goal Drift
 
-Status: **candidate** | Implementation: **scaffold** | Family: **RA.F1 Goal & Reward Deviation**
+Status: **candidate** | Implementation: **scaffold** | Family: **RA.F1 Goal & Reward Deviation** | Integrity layer: **cortical**
 
 Over a long task the agent's working objective gradually diverges from the one it was given, through accumulated reinterpretation, and it optimizes for the drifted goal.
 

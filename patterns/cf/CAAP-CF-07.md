@@ -1,6 +1,6 @@
 # CAAP-CF-07: Resource Starvation Cascade
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CF.F2 Load & Queue Amplification**
+Status: **catalog** | Implementation: **scaffold** | Family: **CF.F2 Load & Queue Amplification** | Integrity layer: **recovery**
 
 One agent's consumption of a shared resource such as compute, connections, tokens, or budget exhausts it for others, whose failures in turn trigger further consumption.
 

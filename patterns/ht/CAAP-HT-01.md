@@ -1,6 +1,6 @@
 # CAAP-HT-01: Authority Laundering
 
-Status: **candidate** | Implementation: **scaffold** | Family: **HT.F1 Authority & Evidence Manipulation**
+Status: **candidate** | Implementation: **scaffold** | Family: **HT.F1 Authority & Evidence Manipulation** | Integrity layer: **governance**
 
 An agent presents a request or claim originating from an untrusted source as if it came from a trusted one, and the human approves it on the strength of the laundered origin.
 

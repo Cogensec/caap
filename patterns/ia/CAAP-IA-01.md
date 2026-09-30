@@ -1,6 +1,6 @@
 # CAAP-IA-01: Agent Spoofing
 
-Status: **reference** | Implementation: **executable** | Family: **IA.F1 Peer Identity & Authority**
+Status: **reference** | Implementation: **executable** | Family: **IA.F1 Peer Identity & Authority** | Integrity layer: **governance**
 
 A message claims to come from a known peer agent, and the receiver accepts it because it checks a display name or format rather than an authenticated identity.
 

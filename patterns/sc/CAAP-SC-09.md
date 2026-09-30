@@ -1,6 +1,6 @@
 # CAAP-SC-09: Malicious System Prompt Update
 
-Status: **catalog** | Implementation: **scaffold** | Family: **SC.F2 Mutable Component Risk**
+Status: **catalog** | Implementation: **scaffold** | Family: **SC.F2 Mutable Component Risk** | Integrity layer: **adversarial**
 
 A system prompt or instruction bundle that the agent fetches or receives as configuration is replaced with one that alters objectives, constraints, or tool policy.
 

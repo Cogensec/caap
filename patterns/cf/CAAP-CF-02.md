@@ -1,6 +1,6 @@
 # CAAP-CF-02: Shared-State Contamination
 
-Status: **candidate** | Implementation: **scaffold** | Family: **CF.F1 Plan & State Propagation**
+Status: **candidate** | Implementation: **scaffold** | Family: **CF.F1 Plan & State Propagation** | Integrity layer: **recovery**
 
 Corrupted state written to a store that several agents read propagates to every agent that consumes it, and each reproduces the corruption in its own work.
 

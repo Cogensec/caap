@@ -1,6 +1,6 @@
 # CAAP-IP-15: Cross-Tenant Credential Bleed
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IP.F3 Credential & Token Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **IP.F3 Credential & Token Abuse** | Integrity layer: **governance**
 
 A credential, connection, or cached session belonging to one tenant is reachable from a task executed for another tenant in a shared agent runtime.
 

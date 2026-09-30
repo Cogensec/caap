@@ -1,6 +1,6 @@
 # CAAP-IP-18: Privilege Accumulation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IP.F4 Authorization State**
+Status: **catalog** | Implementation: **scaffold** | Family: **IP.F4 Authorization State** | Integrity layer: **governance**
 
 An agent retains permissions granted for completed tasks and combines them over time, ending with an aggregate authority that no single grant was meant to confer.
 

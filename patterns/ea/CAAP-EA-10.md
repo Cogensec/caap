@@ -1,6 +1,6 @@
 # CAAP-EA-10: Safety-Controller Bypass
 
-Status: **catalog** | Implementation: **scaffold** | Family: **EA.F3 Actuation & Safety**
+Status: **catalog** | Implementation: **scaffold** | Family: **EA.F3 Actuation & Safety** | Integrity layer: **adversarial**
 
 The independent safety controller that enforces limits on the agent's physical actions is bypassed, disabled, or fed false state, removing the last check before actuation.
 

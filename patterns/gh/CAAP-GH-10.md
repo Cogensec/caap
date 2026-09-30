@@ -1,6 +1,6 @@
 # CAAP-GH-10: Nested Instruction Injection
 
-Status: **catalog** | Implementation: **scaffold** | Family: **GH.F2 Indirect & Hidden Instructions**
+Status: **catalog** | Implementation: **scaffold** | Family: **GH.F2 Indirect & Hidden Instructions** | Integrity layer: **adversarial**
 
 Instructions are placed inside an encoded, quoted, compressed, or otherwise wrapped layer that the agent unwraps during processing, bypassing filters applied only to the outer layer.
 

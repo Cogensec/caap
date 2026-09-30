@@ -1,6 +1,6 @@
 # CAAP-TM-15: Tool Sequence Manipulation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **TM.F3 Output & Composition Attacks**
+Status: **catalog** | Implementation: **scaffold** | Family: **TM.F3 Output & Composition Attacks** | Integrity layer: **adversarial**
 
 Untrusted content reorders or interleaves tool calls so that a check runs after the action it was meant to gate, or a cleanup step runs before the work it should clean up.
 

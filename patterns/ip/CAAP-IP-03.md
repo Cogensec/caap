@@ -1,6 +1,6 @@
 # CAAP-IP-03: Scope Inheritance
 
-Status: **candidate** | Implementation: **scaffold** | Family: **IP.F1 Delegation Scope**
+Status: **candidate** | Implementation: **scaffold** | Family: **IP.F1 Delegation Scope** | Integrity layer: **governance**
 
 A child task or agent inherits the parent's full scope by default rather than a narrowed subset, so every downstream step carries the parent's authority.
 

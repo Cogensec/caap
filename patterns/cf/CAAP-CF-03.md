@@ -1,6 +1,6 @@
 # CAAP-CF-03: Cascading Policy Bypass
 
-Status: **candidate** | Implementation: **scaffold** | Family: **CF.F1 Plan & State Propagation**
+Status: **candidate** | Implementation: **scaffold** | Family: **CF.F1 Plan & State Propagation** | Integrity layer: **recovery**
 
 An action permitted by one agent's policy produces an artifact or state that a second agent treats as pre-approved, chaining exceptions until a prohibited outcome is reached.
 

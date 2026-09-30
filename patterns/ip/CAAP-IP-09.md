@@ -1,6 +1,6 @@
 # CAAP-IP-09: Role Confusion
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IP.F2 Deputy & Principal Confusion**
+Status: **catalog** | Implementation: **scaffold** | Family: **IP.F2 Deputy & Principal Confusion** | Integrity layer: **governance**
 
 An agent that holds multiple roles applies the permissions of one role while performing a task that belongs to another, exceeding what either role alone permits for that task.
 

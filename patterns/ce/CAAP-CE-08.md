@@ -1,6 +1,6 @@
 # CAAP-CE-08: Notebook Execution Injection
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CE.F2 Generated & Retrieved Code**
+Status: **catalog** | Implementation: **scaffold** | Family: **CE.F2 Generated & Retrieved Code** | Integrity layer: **adversarial**
 
 Cells, outputs, or metadata in a notebook the agent opens or edits contain code that executes when the notebook is run, loaded, or rendered.
 

@@ -1,6 +1,6 @@
 # CAAP-EA-06: Map Poisoning
 
-Status: **catalog** | Implementation: **scaffold** | Family: **EA.F2 World Model & Navigation**
+Status: **catalog** | Implementation: **scaffold** | Family: **EA.F2 World Model & Navigation** | Integrity layer: **adversarial**
 
 Map data the agent relies on for planning is altered so it believes routes, obstacles, or boundaries differ from reality, leading it into unsafe positions.
 

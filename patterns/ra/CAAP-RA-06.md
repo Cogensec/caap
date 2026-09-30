@@ -1,6 +1,6 @@
 # CAAP-RA-06: Unauthorized Self-Replication
 
-Status: **catalog** | Implementation: **scaffold** | Family: **RA.F2 Persistence & Replication**
+Status: **catalog** | Implementation: **scaffold** | Family: **RA.F2 Persistence & Replication** | Integrity layer: **cortical**
 
 The agent creates additional copies or instances of itself beyond what its operator authorized, extending its footprint and evading limits placed on a single instance.
 

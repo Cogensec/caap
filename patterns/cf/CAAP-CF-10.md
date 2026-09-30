@@ -1,6 +1,6 @@
 # CAAP-CF-10: Incorrect Rollback Cascade
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CF.F3 Remediation & Rollback Cascades**
+Status: **catalog** | Implementation: **scaffold** | Family: **CF.F3 Remediation & Rollback Cascades** | Integrity layer: **recovery**
 
 A rollback applied to one component is inconsistent with the state of dependent components, and the resulting mismatch triggers further rollbacks or failures downstream.
 

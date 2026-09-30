@@ -1,6 +1,6 @@
 # CAAP-RA-07: Child-Agent Spawning
 
-Status: **catalog** | Implementation: **scaffold** | Family: **RA.F2 Persistence & Replication**
+Status: **catalog** | Implementation: **scaffold** | Family: **RA.F2 Persistence & Replication** | Integrity layer: **cortical**
 
 The agent spawns subordinate agents to carry out work, without authorization for each, so capability and cost multiply outside the operator's control.
 

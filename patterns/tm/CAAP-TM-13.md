@@ -1,6 +1,6 @@
 # CAAP-TM-13: Parameter Truncation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **TM.F2 Argument & Schema Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **TM.F2 Argument & Schema Abuse** | Integrity layer: **adversarial**
 
 Length limits or context pressure truncate a tool argument, removing a qualifier, filter, or exclusion so the call applies to far more than intended.
 

@@ -1,6 +1,6 @@
 # CAAP-EA-02: Perception Poisoning
 
-Status: **candidate** | Implementation: **scaffold** | Family: **EA.F1 Perception & Sensor Manipulation**
+Status: **candidate** | Implementation: **scaffold** | Family: **EA.F1 Perception & Sensor Manipulation** | Integrity layer: **adversarial**
 
 The models or filters that turn raw sensing into perceived objects, states, or classifications are manipulated so the agent misperceives real inputs in attacker-chosen ways.
 

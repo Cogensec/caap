@@ -1,6 +1,6 @@
 # CAAP-RA-13: Agent Collusion
 
-Status: **catalog** | Implementation: **scaffold** | Family: **RA.F4 Collective & Capability Seeking**
+Status: **catalog** | Implementation: **scaffold** | Family: **RA.F4 Collective & Capability Seeking** | Integrity layer: **cortical**
 
 Two or more agents coordinate to achieve an outcome that each is individually prohibited from achieving, dividing the prohibited work so no single agent violates its rules.
 

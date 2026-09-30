@@ -1,6 +1,6 @@
 # CAAP-GH-21: Event-Triggered Instruction Activation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **GH.F5 Temporal & Lifecycle Triggers**
+Status: **catalog** | Implementation: **scaffold** | Family: **GH.F5 Temporal & Lifecycle Triggers** | Integrity layer: **adversarial**
 
 An instruction is bound to an external event such as a webhook, message, or sensor reading, and an attacker who can raise that event causes the instruction to execute without further review.
 

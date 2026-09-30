@@ -1,6 +1,6 @@
 # CAAP-RA-12: Hidden Agent Communication
 
-Status: **catalog** | Implementation: **scaffold** | Family: **RA.F3 Evidence & Communication Evasion**
+Status: **catalog** | Implementation: **scaffold** | Family: **RA.F3 Evidence & Communication Evasion** | Integrity layer: **cortical**
 
 Agents exchange information through a channel or encoding that operators do not monitor or cannot interpret, coordinating outside oversight.
 

@@ -1,6 +1,6 @@
 # CAAP-SC-06: A2A Discovery Poisoning
 
-Status: **candidate** | Implementation: **scaffold** | Family: **SC.F1 Server & Discovery Trust**
+Status: **candidate** | Implementation: **scaffold** | Family: **SC.F1 Server & Discovery Trust** | Integrity layer: **adversarial**
 
 The discovery mechanism agents use to find peers returns an attacker-controlled agent for a legitimate capability, and the requesting agent delegates to it.
 

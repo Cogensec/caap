@@ -1,6 +1,6 @@
 # CAAP-MP-18: Security-Context Eviction
 
-Status: **catalog** | Implementation: **scaffold** | Family: **MP.F4 Context & Isolation**
+Status: **catalog** | Implementation: **scaffold** | Family: **MP.F4 Context & Isolation** | Integrity layer: **cortical**
 
 Security-relevant context, such as a denial, warning, or policy statement, is specifically evicted or de-prioritized by later content, removing a guard the agent had applied.
 

@@ -1,6 +1,6 @@
 # CAAP-MP-15: Source Authority Spoofing
 
-Status: **catalog** | Implementation: **scaffold** | Family: **MP.F3 Retrieval Poisoning**
+Status: **catalog** | Implementation: **scaffold** | Family: **MP.F3 Retrieval Poisoning** | Integrity layer: **cortical**
 
 A retrieved document carries markers of an authoritative source, such as a title, path, or template, that it did not originate from, and the agent weights it accordingly.
 

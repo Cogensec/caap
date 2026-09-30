@@ -1,6 +1,6 @@
 # CAAP-MP-08: Conditional Memory Activation
 
-Status: **candidate** | Implementation: **scaffold** | Family: **MP.F2 Dormancy & Lifecycle**
+Status: **candidate** | Implementation: **scaffold** | Family: **MP.F2 Dormancy & Lifecycle** | Integrity layer: **cortical**
 
 A memory is written to apply only under conditions chosen by the attacker, so it evades review during normal operation and takes effect when those conditions hold.
 

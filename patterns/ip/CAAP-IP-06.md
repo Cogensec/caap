@@ -1,6 +1,6 @@
 # CAAP-IP-06: Delegation-Chain Truncation
 
-Status: **candidate** | Implementation: **scaffold** | Family: **IP.F1 Delegation Scope**
+Status: **candidate** | Implementation: **scaffold** | Family: **IP.F1 Delegation Scope** | Integrity layer: **governance**
 
 Provenance for a multi-hop delegation is shortened so the final actor appears to act directly for the original principal, hiding the intermediaries that should constrain it.
 

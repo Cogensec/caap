@@ -1,6 +1,6 @@
 # CAAP-HT-03: Fabricated Explainability
 
-Status: **catalog** | Implementation: **scaffold** | Family: **HT.F1 Authority & Evidence Manipulation**
+Status: **catalog** | Implementation: **scaffold** | Family: **HT.F1 Authority & Evidence Manipulation** | Integrity layer: **governance**
 
 The agent produces a plausible explanation for an action or recommendation that does not reflect the actual reasoning or evidence, so review examines the wrong basis.
 

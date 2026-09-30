@@ -1,6 +1,6 @@
 # CAAP-SC-20: Dependency Confusion
 
-Status: **catalog** | Implementation: **scaffold** | Family: **SC.F4 Dependency & Artifact Substitution**
+Status: **catalog** | Implementation: **scaffold** | Family: **SC.F4 Dependency & Artifact Substitution** | Integrity layer: **adversarial**
 
 A package name that exists in a private index is published to a public index with a higher version, and the build or runtime resolves the public attacker package instead.
 

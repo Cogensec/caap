@@ -1,6 +1,6 @@
 # CAAP-IP-17: Session Identity Carryover
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IP.F4 Authorization State**
+Status: **catalog** | Implementation: **scaffold** | Family: **IP.F4 Authorization State** | Integrity layer: **governance**
 
 Identity established in one session persists into a subsequent session or task for a different principal, so actions are attributed to and authorized as the earlier identity.
 

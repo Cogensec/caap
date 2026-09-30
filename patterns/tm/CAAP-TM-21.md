@@ -1,6 +1,6 @@
 # CAAP-TM-21: Stale Tool Capability Use
 
-Status: **catalog** | Implementation: **scaffold** | Family: **TM.F4 Capability & Side-Effect Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **TM.F4 Capability & Side-Effect Abuse** | Integrity layer: **adversarial**
 
 The agent continues to use a tool binding whose underlying permissions, endpoint, or behavior have changed since it was vetted, so the call does something different from what was reviewed.
 

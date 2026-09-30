@@ -1,6 +1,6 @@
 # CAAP-TM-03: Tool Output Injection
 
-Status: **reference** | Implementation: **executable** | Family: **TM.F3 Output & Composition Attacks**
+Status: **reference** | Implementation: **executable** | Family: **TM.F3 Output & Composition Attacks** | Integrity layer: **adversarial**
 
 A tool's result contains instructions that the agent treats as the next step to take rather than as data returned by the call.
 

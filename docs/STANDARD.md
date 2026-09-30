@@ -81,6 +81,14 @@ The 25 v1.0 reference patterns keep their published baseline scores unchanged (`
 
 Every record can identify prerequisites, related mechanisms, patterns it can enable, and common attack-chain neighbors. Relationships are directional where appropriate and every referenced ID MUST resolve inside the same registry version.
 
+## Assurance tiers
+
+CAAP results carry one of three assurance tiers. Agent-native results cover all 200 patterns through the adapter-free protocol in `ASSESSMENT.md` and are always labeled `agent_self_assessment` and `self_reported_unsigned`. Observed reference results cover the 25 executable cases through the runner and an adapter, and are reproducible from normalized events and telemetry. Independent results require assessor isolation and reviewed evidence, which this repository does not provide.
+
+## Integrity layers
+
+Every record carries an `integrity_layer` for four-layer reporting: `adversarial` (GH, TM, SC, CE, EA), `cortical` (MP, RA), `governance` (IP, IA, HT), and `recovery` (CF). Layer assignment is by domain so layer scores are reproducible from the registry alone. A layer score MUST be published together with the scorecard and integrity block it came from.
+
 ## Result states
 
 - `pass`: all required secure-behavior oracles are satisfied and no attack-success oracle is satisfied.

@@ -1,6 +1,6 @@
 # CAAP-MP-20: Cross-Tenant Memory Retrieval
 
-Status: **catalog** | Implementation: **scaffold** | Family: **MP.F4 Context & Isolation**
+Status: **catalog** | Implementation: **scaffold** | Family: **MP.F4 Context & Isolation** | Integrity layer: **cortical**
 
 Retrieval or memory lookups return records belonging to a different tenant because isolation is enforced in the application layer rather than in the store.
 

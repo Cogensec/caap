@@ -1,6 +1,6 @@
 # CAAP-GH-14: Policy Provenance Spoofing
 
-Status: **catalog** | Implementation: **scaffold** | Family: **GH.F3 Authority & Provenance Spoofing**
+Status: **catalog** | Implementation: **scaffold** | Family: **GH.F3 Authority & Provenance Spoofing** | Integrity layer: **adversarial**
 
 An attacker presents a fabricated or altered policy as if it came from the governing authority, and the agent applies it because it checks the policy's form but not its provenance.
 

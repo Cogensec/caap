@@ -1,6 +1,6 @@
 # CAAP-CF-05: Multi-Agent Retry Storm
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CF.F2 Load & Queue Amplification**
+Status: **catalog** | Implementation: **scaffold** | Family: **CF.F2 Load & Queue Amplification** | Integrity layer: **recovery**
 
 Retries across many agents that share a failing dependency synchronize into a load spike that keeps the dependency down and spreads the outage to unrelated consumers.
 

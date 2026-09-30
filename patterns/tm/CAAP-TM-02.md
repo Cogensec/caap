@@ -1,6 +1,6 @@
 # CAAP-TM-02: Tool Namespace Collision
 
-Status: **candidate** | Implementation: **scaffold** | Family: **TM.F1 Tool Discovery & Selection**
+Status: **candidate** | Implementation: **scaffold** | Family: **TM.F1 Tool Discovery & Selection** | Integrity layer: **adversarial**
 
 Two tools share a name or near-identical name across registries or servers, and the agent binds a call intended for the trusted tool to the attacker's.
 

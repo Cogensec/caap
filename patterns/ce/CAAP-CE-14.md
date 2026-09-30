@@ -1,6 +1,6 @@
 # CAAP-CE-14: Dependency Installation Hijack
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CE.F3 Artifact & Dependency Execution**
+Status: **catalog** | Implementation: **scaffold** | Family: **CE.F3 Artifact & Dependency Execution** | Integrity layer: **adversarial**
 
 Installing a dependency the agent selected runs an install-time script or resolves to a package that executes attacker code on the agent's host.
 

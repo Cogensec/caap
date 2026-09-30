@@ -1,6 +1,6 @@
 # CAAP-IP-11: Parent Credential Leakage
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IP.F3 Credential & Token Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **IP.F3 Credential & Token Abuse** | Integrity layer: **governance**
 
 A parent agent's credential is exposed to a child agent, tool, or log through environment, context, or argument passing, and is usable outside the parent's control.
 

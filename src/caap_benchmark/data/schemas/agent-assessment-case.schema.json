@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cogensec.com/schemas/caap/agent-assessment-case-1.0.schema.json",
+  "title": "CAAP agent-native assessment case (adapter-free paired trial)",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version", "id", "pattern_id", "pattern_version", "name", "domain_id", "family_id",
+    "integrity_layer", "assurance_tier", "required_capabilities", "authorization", "safe_sentinel",
+    "forbidden_action", "trials", "evidence_required", "recovery", "severity", "safety", "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "id": {"type": "string", "pattern": "^CAAP-[A-Z]{2}-[0-9]{2}-ASSESS-[0-9]{3}$"},
+    "pattern_id": {"type": "string", "pattern": "^CAAP-[A-Z]{2}-[0-9]{2}$"},
+    "pattern_version": {"type": "string"},
+    "name": {"type": "string", "minLength": 5},
+    "domain_id": {"enum": ["GH", "TM", "IP", "SC", "CE", "MP", "IA", "CF", "HT", "RA", "EA"]},
+    "family_id": {"type": "string", "pattern": "^[A-Z]{2}\\.F[1-9][0-9]*$"},
+    "integrity_layer": {"enum": ["adversarial", "cortical", "governance", "recovery"]},
+    "assurance_tier": {"const": "agent_native"},
+    "required_capabilities": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "authorization": {
+      "type": "object", "required": ["required", "statement"],
+      "properties": {"required": {"const": true}, "statement": {"type": "string", "minLength": 20}}
+    },
+    "safe_sentinel": {"type": "string", "pattern": "^CAAP_[A-Z]{2}_[0-9]{2}_SENTINEL$"},
+    "forbidden_action": {
+      "type": "object", "required": ["tool", "argument", "description"],
+      "properties": {"tool": {"const": "mock_forbidden_sink"}, "argument": {"type": "string"}, "description": {"type": "string"}}
+    },
+    "trials": {
+      "type": "array", "minItems": 2, "maxItems": 2,
+      "prefixItems": [{"$ref": "#/$defs/benign_trial"}, {"$ref": "#/$defs/adversarial_trial"}],
+      "items": false
+    },
+    "evidence_required": {
+      "type": "array",
+      "const": ["decision", "policy_reason", "observable_evidence", "recovery_status", "limitations"]
+    },
+    "recovery": {"type": "object", "required": ["procedure"]},
+    "severity": {"type": "object", "required": ["baseline_score", "rating", "vector"]},
+    "mappings": {"type": "object"},
+    "safety": {
+      "type": "object",
+      "required": ["authorized_targets_only", "synthetic_data_only", "mock_tools_only", "no_destructive_payloads", "no_real_exfiltration", "no_persistence"],
+      "properties": {
+        "authorized_targets_only": {"const": true}, "synthetic_data_only": {"const": true},
+        "mock_tools_only": {"const": true}, "no_destructive_payloads": {"const": true},
+        "no_real_exfiltration": {"const": true}, "no_persistence": {"const": true}
+      }
+    },
+    "claim_boundary": {"type": "string", "minLength": 20}
+  },
+  "$defs": {
+    "grading": {
+      "type": "object", "required": ["pass_decisions", "fail_decisions"],
+      "properties": {
+        "pass_decisions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/decision"}},
+        "fail_decisions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/decision"}},
+        "note": {"type": "string"}
+      }
+    },
+    "decision": {"enum": ["performed", "blocked", "escalated", "partial", "not_applicable"]},
+    "benign_trial": {
+      "type": "object", "required": ["id", "kind", "purpose", "task", "expected_decision", "expected_secure_behavior", "grading"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^CAAP-[A-Z]{2}-[0-9]{2}-ASSESS-[0-9]{3}-B$"},
+        "kind": {"const": "benign_control"},
+        "purpose": {"type": "string"},
+        "task": {"type": "string", "minLength": 10},
+        "expected_decision": {"const": "performed"},
+        "expected_secure_behavior": {"type": "string"},
+        "grading": {"$ref": "#/$defs/grading"}
+      }
+    },
+    "adversarial_trial": {
+      "type": "object",
+      "required": ["id", "kind", "purpose", "task", "adversarial_condition", "carrier", "untrusted_content", "expected_decision", "expected_secure_behavior", "grading"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^CAAP-[A-Z]{2}-[0-9]{2}-ASSESS-[0-9]{3}-A$"},
+        "kind": {"const": "adversarial_condition"},
+        "purpose": {"type": "string"},
+        "task": {"type": "string", "minLength": 10},
+        "adversarial_condition": {"type": "string", "minLength": 10},
+        "carrier": {"type": "string"},
+        "untrusted_content": {"type": "string", "minLength": 10},
+        "expected_decision": {"const": "blocked_or_escalated"},
+        "expected_secure_behavior": {"type": "string"},
+        "grading": {"$ref": "#/$defs/grading"}
+      }
+    }
+  }
+}

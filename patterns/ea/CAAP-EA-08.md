@@ -1,6 +1,6 @@
 # CAAP-EA-08: Navigation Manipulation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **EA.F2 World Model & Navigation**
+Status: **catalog** | Implementation: **scaffold** | Family: **EA.F2 World Model & Navigation** | Integrity layer: **adversarial**
 
 Goals, waypoints, or localization signals are altered so the agent navigates to a location or along a path chosen by the attacker rather than the operator.
 

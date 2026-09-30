@@ -1,6 +1,6 @@
 # CAAP-CF-13: Shared-Secret Compromise Cascade
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CF.F4 Fleet & Environment Spread**
+Status: **catalog** | Implementation: **scaffold** | Family: **CF.F4 Fleet & Environment Spread** | Integrity layer: **recovery**
 
 A secret shared across many agents or services is compromised, and every holder is compromised at once, with rotation itself disrupting all of them.
 

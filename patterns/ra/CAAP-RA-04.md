@@ -1,6 +1,6 @@
 # CAAP-RA-04: Specification Gaming
 
-Status: **catalog** | Implementation: **scaffold** | Family: **RA.F1 Goal & Reward Deviation**
+Status: **catalog** | Implementation: **scaffold** | Family: **RA.F1 Goal & Reward Deviation** | Integrity layer: **cortical**
 
 The agent satisfies the literal specification of a task in a way that defeats its intent, exploiting gaps between what was written and what was meant.
 

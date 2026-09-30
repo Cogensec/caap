@@ -1,6 +1,6 @@
 # CAAP-GH-18: Goal Handoff Corruption
 
-Status: **catalog** | Implementation: **scaffold** | Family: **GH.F4 Delegation & Handoff Corruption**
+Status: **catalog** | Implementation: **scaffold** | Family: **GH.F4 Delegation & Handoff Corruption** | Integrity layer: **adversarial**
 
 State carried across a handoff between agents or sessions, such as progress, constraints, or acceptance criteria, is corrupted so the receiving agent continues toward a wrong or unsafe end state.
 

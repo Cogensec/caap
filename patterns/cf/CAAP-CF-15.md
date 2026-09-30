@@ -1,6 +1,6 @@
 # CAAP-CF-15: False-Positive Suppression Cascade
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CF.F4 Fleet & Environment Spread**
+Status: **catalog** | Implementation: **scaffold** | Family: **CF.F4 Fleet & Environment Spread** | Integrity layer: **recovery**
 
 Agents that learn to suppress alerts they judge to be false positives suppress a real incident's signals, and the absence of alerts is treated by others as evidence of health.
 

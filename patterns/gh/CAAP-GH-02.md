@@ -1,6 +1,6 @@
 # CAAP-GH-02: Indirect Content Injection
 
-Status: **reference** | Implementation: **executable** | Family: **GH.F2 Indirect & Hidden Instructions**
+Status: **reference** | Implementation: **executable** | Family: **GH.F2 Indirect & Hidden Instructions** | Integrity layer: **adversarial**
 
 Instructions embedded in a document, page, message, or record that the agent retrieves for a benign task are interpreted as commands rather than data and redirect the agent's actions.
 

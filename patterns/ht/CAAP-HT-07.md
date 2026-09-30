@@ -1,6 +1,6 @@
 # CAAP-HT-07: Approval Fatigue
 
-Status: **catalog** | Implementation: **scaffold** | Family: **HT.F2 Consent & Approval Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **HT.F2 Consent & Approval Abuse** | Integrity layer: **governance**
 
 The agent generates so many approval requests, or such repetitive ones, that the human begins approving without reading, and a harmful request passes among the routine ones.
 

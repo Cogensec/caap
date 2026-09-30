@@ -1,6 +1,6 @@
 # CAAP-IA-13: Capability Negotiation Manipulation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IA.F4 Semantic & Negotiation Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **IA.F4 Semantic & Negotiation Abuse** | Integrity layer: **governance**
 
 During capability negotiation a peer claims or requests capabilities that shift work, data, or authority to it beyond what the interaction requires.
 

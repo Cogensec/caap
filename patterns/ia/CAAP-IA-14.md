@@ -1,6 +1,6 @@
 # CAAP-IA-14: Semantic Ambiguity
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IA.F4 Semantic & Negotiation Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **IA.F4 Semantic & Negotiation Abuse** | Integrity layer: **governance**
 
 A message is well-formed but its meaning admits more than one interpretation, and an attacker crafts it so the receiver's interpretation yields the attacker's outcome.
 

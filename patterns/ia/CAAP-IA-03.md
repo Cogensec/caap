@@ -1,6 +1,6 @@
 # CAAP-IA-03: Delegation Replay
 
-Status: **reference** | Implementation: **executable** | Family: **IA.F2 Message Integrity & Freshness**
+Status: **reference** | Implementation: **executable** | Family: **IA.F2 Message Integrity & Freshness** | Integrity layer: **governance**
 
 A previously valid delegation or task message is re-sent, and the receiver performs the delegated work again because freshness is not bound to the message.
 

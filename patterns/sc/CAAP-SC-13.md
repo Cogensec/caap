@@ -1,6 +1,6 @@
 # CAAP-SC-13: Capability Manifest Downgrade
 
-Status: **catalog** | Implementation: **scaffold** | Family: **SC.F3 Manifest & Identity Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **SC.F3 Manifest & Identity Abuse** | Integrity layer: **adversarial**
 
 A manifest is replaced with an older or weaker version that omits security requirements, so peers and clients negotiate a less protected interaction.
 

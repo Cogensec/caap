@@ -1,6 +1,6 @@
 # CAAP-CE-09: Template-to-Code Injection
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CE.F2 Generated & Retrieved Code**
+Status: **catalog** | Implementation: **scaffold** | Family: **CE.F2 Generated & Retrieved Code** | Integrity layer: **adversarial**
 
 A templating engine evaluates attacker-controlled template content as expressions or code, turning a text-rendering step into execution.
 

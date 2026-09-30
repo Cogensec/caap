@@ -1,6 +1,6 @@
 # CAAP-IP-12: Stale Capability Token
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IP.F3 Credential & Token Abuse**
+Status: **catalog** | Implementation: **scaffold** | Family: **IP.F3 Credential & Token Abuse** | Integrity layer: **governance**
 
 A capability token continues to be accepted after the conditions that justified it, such as a task, session, or approval, have ended.
 

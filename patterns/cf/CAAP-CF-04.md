@@ -1,6 +1,6 @@
 # CAAP-CF-04: Fleet-Wide Memory Propagation
 
-Status: **candidate** | Implementation: **scaffold** | Family: **CF.F1 Plan & State Propagation**
+Status: **candidate** | Implementation: **scaffold** | Family: **CF.F1 Plan & State Propagation** | Integrity layer: **recovery**
 
 A poisoned memory synchronized or replicated across a fleet reaches every agent in it, converting a single injection into a fleet-wide behavior change.
 

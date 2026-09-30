@@ -1,6 +1,6 @@
 # CAAP-IP-05: Authorization Time-of-Check to Time-of-Use
 
-Status: **reference** | Implementation: **executable** | Family: **IP.F4 Authorization State**
+Status: **reference** | Implementation: **executable** | Family: **IP.F4 Authorization State** | Integrity layer: **governance**
 
 An authorization decision made when an action is planned is not re-evaluated when the action executes, so a revocation or scope change in between is not enforced.
 

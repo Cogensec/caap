@@ -1,6 +1,6 @@
 # CAAP-RA-08: Persistent Task Creation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **RA.F2 Persistence & Replication**
+Status: **catalog** | Implementation: **scaffold** | Family: **RA.F2 Persistence & Replication** | Integrity layer: **cortical**
 
 The agent schedules recurring or future tasks for itself or others so its activity continues after the originating task and session have ended.
 

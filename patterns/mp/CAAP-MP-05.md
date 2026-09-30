@@ -1,6 +1,6 @@
 # CAAP-MP-05: Memory Trust Escalation
 
-Status: **candidate** | Implementation: **scaffold** | Family: **MP.F1 Memory Write & Integrity**
+Status: **candidate** | Implementation: **scaffold** | Family: **MP.F1 Memory Write & Integrity** | Integrity layer: **cortical**
 
 A memory written at low trust is promoted to a higher-trust tier through summarization, consolidation, or repeated retrieval, gaining authority it never earned.
 

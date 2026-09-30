@@ -13,6 +13,7 @@
       "AML.T0051"
     ],
     "scope": "Manipulation of objectives, instruction priority, plans, and decision paths across trust boundaries.",
+    "integrity_layer": "adversarial",
     "pattern_count": 22
   },
   {
@@ -31,6 +32,7 @@
       "Exfiltration"
     ],
     "scope": "Unsafe selection, invocation, sequencing, parameterization, or repeated use of legitimate tools.",
+    "integrity_layer": "adversarial",
     "pattern_count": 24
   },
   {
@@ -49,6 +51,7 @@
       "Privilege Escalation"
     ],
     "scope": "Abuse of identities, delegated credentials, authorization state, tenant context, and inherited authority.",
+    "integrity_layer": "governance",
     "pattern_count": 20
   },
   {
@@ -67,6 +70,7 @@
       "Initial Access"
     ],
     "scope": "Compromise of models, prompts, agent cards, registries, tools, servers, packages, templates, adapters, or containers.",
+    "integrity_layer": "adversarial",
     "pattern_count": 20
   },
   {
@@ -83,6 +87,7 @@
       "Execution"
     ],
     "scope": "Unintended execution of generated, retrieved, embedded, or tool-supplied code and containment failure.",
+    "integrity_layer": "adversarial",
     "pattern_count": 15
   },
   {
@@ -101,6 +106,7 @@
       "Persistence"
     ],
     "scope": "Corruption of context, state, memory, retrieval corpora, indexes, summaries, or self-generated knowledge.",
+    "integrity_layer": "cortical",
     "pattern_count": 21
   },
   {
@@ -118,6 +124,7 @@
       "Command and Control"
     ],
     "scope": "Spoofing, tampering, replay, downgrade, routing manipulation, or ambiguity between agents and orchestrators.",
+    "integrity_layer": "governance",
     "pattern_count": 19
   },
   {
@@ -135,6 +142,7 @@
       "Impact"
     ],
     "scope": "Failures that propagate across agents, tasks, tools, queues, environments, users, or tenants.",
+    "integrity_layer": "recovery",
     "pattern_count": 16
   },
   {
@@ -152,6 +160,7 @@
       "Initial Access"
     ],
     "scope": "Manipulation of human oversight through misleading authority, explanations, approvals, consent, or risk suppression.",
+    "integrity_layer": "governance",
     "pattern_count": 15
   },
   {
@@ -171,6 +180,7 @@
       "Impact"
     ],
     "scope": "Unsafe autonomous behavior through goal drift, reward exploitation, collusion, replication, shutdown resistance, or evidence manipulation.",
+    "integrity_layer": "cortical",
     "pattern_count": 16
   },
   {
@@ -190,6 +200,7 @@
       "Impact"
     ],
     "scope": "Attacks on agents that perceive and act in physical or simulated environments.",
+    "integrity_layer": "adversarial",
     "pattern_count": 12
   }
 ]

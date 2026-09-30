@@ -1,6 +1,6 @@
 # CAAP-SC-19: Agent Container Substitution
 
-Status: **catalog** | Implementation: **scaffold** | Family: **SC.F4 Dependency & Artifact Substitution**
+Status: **catalog** | Implementation: **scaffold** | Family: **SC.F4 Dependency & Artifact Substitution** | Integrity layer: **adversarial**
 
 The container image or runtime environment an agent executes in is replaced, so every action the agent takes occurs inside attacker-controlled code.
 

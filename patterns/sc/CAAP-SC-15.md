@@ -1,6 +1,6 @@
 # CAAP-SC-15: Tool Dependency Substitution
 
-Status: **catalog** | Implementation: **scaffold** | Family: **SC.F4 Dependency & Artifact Substitution**
+Status: **catalog** | Implementation: **scaffold** | Family: **SC.F4 Dependency & Artifact Substitution** | Integrity layer: **adversarial**
 
 A library or package a tool depends on is replaced with a malicious version, changing the tool's behavior without any change to the tool the agent sees.
 

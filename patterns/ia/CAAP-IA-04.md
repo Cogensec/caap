@@ -1,6 +1,6 @@
 # CAAP-IA-04: Agent Endpoint Substitution
 
-Status: **candidate** | Implementation: **scaffold** | Family: **IA.F1 Peer Identity & Authority**
+Status: **candidate** | Implementation: **scaffold** | Family: **IA.F1 Peer Identity & Authority** | Integrity layer: **governance**
 
 The address an agent uses to reach a peer is changed to an attacker's endpoint, so messages intended for the peer are received, altered, or answered by the attacker.
 

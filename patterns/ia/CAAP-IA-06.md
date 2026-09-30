@@ -1,6 +1,6 @@
 # CAAP-IA-06: Message Tampering
 
-Status: **candidate** | Implementation: **scaffold** | Family: **IA.F2 Message Integrity & Freshness**
+Status: **candidate** | Implementation: **scaffold** | Family: **IA.F2 Message Integrity & Freshness** | Integrity layer: **governance**
 
 The content of an inter-agent message is modified in transit or at rest, and the receiver cannot detect the change because integrity is not protected end to end.
 

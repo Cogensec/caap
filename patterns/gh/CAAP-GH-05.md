@@ -1,6 +1,6 @@
 # CAAP-GH-05: Delayed or Scheduled Goal Trigger
 
-Status: **reference** | Implementation: **executable** | Family: **GH.F5 Temporal & Lifecycle Triggers**
+Status: **reference** | Implementation: **executable** | Family: **GH.F5 Temporal & Lifecycle Triggers** | Integrity layer: **adversarial**
 
 Untrusted content plants an instruction that stays inert until a later time, event, or condition, then activates after the original review or approval window has closed.
 

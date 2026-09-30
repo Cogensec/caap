@@ -1,6 +1,6 @@
 # CAAP-SC-01: Malicious MCP or A2A Server
 
-Status: **reference** | Implementation: **executable** | Family: **SC.F1 Server & Discovery Trust**
+Status: **reference** | Implementation: **executable** | Family: **SC.F1 Server & Discovery Trust** | Integrity layer: **adversarial**
 
 A server the agent connects to for tools or peer capabilities is attacker-controlled and returns instructions, results, or capabilities that the agent trusts because the connection was configured.
 

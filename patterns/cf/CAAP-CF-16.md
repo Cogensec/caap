@@ -1,6 +1,6 @@
 # CAAP-CF-16: Fleet Configuration Drift
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CF.F4 Fleet & Environment Spread**
+Status: **catalog** | Implementation: **scaffold** | Family: **CF.F4 Fleet & Environment Spread** | Integrity layer: **recovery**
 
 Configuration changes applied unevenly across a fleet leave agents with different policies or capabilities, and the inconsistency is exploited or causes coordinated tasks to fail unsafely.
 

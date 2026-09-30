@@ -1,6 +1,6 @@
 # CAAP-CF-08: Planner Cascade
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CF.F3 Remediation & Rollback Cascades**
+Status: **catalog** | Implementation: **scaffold** | Family: **CF.F3 Remediation & Rollback Cascades** | Integrity layer: **recovery**
 
 A planner reacts to the effects of its own earlier steps as if they were new external conditions, generating further steps that compound the original action.
 

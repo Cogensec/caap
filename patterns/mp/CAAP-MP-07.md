@@ -1,6 +1,6 @@
 # CAAP-MP-07: Memory Namespace Confusion
 
-Status: **candidate** | Implementation: **scaffold** | Family: **MP.F1 Memory Write & Integrity**
+Status: **candidate** | Implementation: **scaffold** | Family: **MP.F1 Memory Write & Integrity** | Integrity layer: **cortical**
 
 Memory intended for one user, task, or agent is written to or read from another's namespace because keys, scopes, or identifiers are ambiguous.
 

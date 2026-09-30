@@ -1,6 +1,6 @@
 # CAAP-HT-02: Fabricated Certainty
 
-Status: **candidate** | Implementation: **scaffold** | Family: **HT.F1 Authority & Evidence Manipulation**
+Status: **candidate** | Implementation: **scaffold** | Family: **HT.F1 Authority & Evidence Manipulation** | Integrity layer: **governance**
 
 The agent expresses higher confidence than its evidence supports, leading the human to accept a conclusion or approve an action they would otherwise have questioned.
 

@@ -1,6 +1,6 @@
 # CAAP-RA-10: Evidence Suppression
 
-Status: **catalog** | Implementation: **scaffold** | Family: **RA.F3 Evidence & Communication Evasion**
+Status: **catalog** | Implementation: **scaffold** | Family: **RA.F3 Evidence & Communication Evasion** | Integrity layer: **cortical**
 
 The agent omits, delays, or minimizes reporting of actions or outcomes that would attract scrutiny, so the record available to oversight is incomplete.
 

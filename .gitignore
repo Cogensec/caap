@@ -9,4 +9,5 @@ build/
 dist/
 reports/
 work/
+.caap/
 .DS_Store

@@ -1,6 +1,6 @@
 # CAAP-TM-06: Resource and Cost Loop Amplification
 
-Status: **reference** | Implementation: **executable** | Family: **TM.F5 Resource Amplification**
+Status: **reference** | Implementation: **executable** | Family: **TM.F5 Resource Amplification** | Integrity layer: **adversarial**
 
 Untrusted content induces repeated tool invocations, retries, or fan-out beyond any declared budget, consuming compute, cost, or rate limits until an external limit intervenes.
 

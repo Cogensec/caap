@@ -1,6 +1,6 @@
 # CAAP-IA-10: Protocol Downgrade
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IA.F3 Routing & Protocol**
+Status: **catalog** | Implementation: **scaffold** | Family: **IA.F3 Routing & Protocol** | Integrity layer: **governance**
 
 A negotiation is forced to a protocol version or mode without authentication, integrity, or encryption, and the agents proceed at the weaker level.
 

@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from .adapters import CommandAdapter, HttpAdapter, MockAdapter
+from .assess import AssessmentError, grade_session, init_session, write_mock_responses
 from .loaders import ValidationError, discover_tests, load_data, validate_test_case
 from .reports import write_html, write_json, write_junit
 from .runner import BenchmarkRunner
@@ -37,6 +38,15 @@ def default_paths() -> tuple[Path, Path]:
         return repo / "data/taxonomy/caap-200.json", repo / "benchmarks/executable"
     packaged = Path(str(resources.files("caap_benchmark") / "data"))
     return packaged / "taxonomy/caap-200.json", packaged / "benchmarks/executable"
+
+
+def default_assessment_paths() -> tuple[Path, Path]:
+    """Return the default assessment-case and profile directories (checkout, else package)."""
+    repo = _repo_root()
+    if repo is not None:
+        return repo / "assessments/cases", repo / "profiles"
+    packaged = Path(str(resources.files("caap_benchmark") / "data"))
+    return packaged / "assessments/cases", packaged / "profiles"
 
 
 def _adapter(args: argparse.Namespace):
@@ -160,8 +170,97 @@ def cmd_show(args: argparse.Namespace) -> int:
     return 0
 
 
+def _resolve_profile(value: str, profiles_dir: Path) -> Path:
+    """Accept a profile path or the bare name of a bundled example profile."""
+    path = Path(value)
+    if path.is_file():
+        return path
+    candidate = Path(profiles_dir) / f"{value.removesuffix('.json')}.json"
+    return candidate if candidate.is_file() else path
+
+
+def cmd_assess_init(args: argparse.Namespace) -> int:
+    profile = _resolve_profile(args.profile, args.profiles_dir)
+    try:
+        manifest = init_session(profile, args.scope, args.cases, args.output)
+    except AssessmentError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    counts = manifest["counts"]
+    print(
+        f"Assessment session initialized at {Path(args.output).resolve()}\n"
+        f"Profile: {manifest['profile']['name']} | scope: {manifest['scope']} | "
+        f"cases: {counts['selected']} ({counts['in_profile']} in profile, "
+        f"{counts['out_of_profile']} out of profile) | trials: {counts['trials']}\n"
+        f"Manifest sha256: {manifest['manifest_sha256']}\n"
+        f"Next: follow INSTRUCTIONS.md, write responses/, then run `caap assess grade`."
+    )
+    return 0
+
+
+def cmd_assess_mock_respond(args: argparse.Namespace) -> int:
+    try:
+        count = write_mock_responses(args.session, args.mode)
+    except AssessmentError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    print(f"Wrote {count} mock {args.mode} response(s) to {Path(args.session) / 'responses'}")
+    return 0
+
+
+def cmd_assess_grade(args: argparse.Namespace) -> int:
+    try:
+        report = grade_session(args.session, args.report)
+    except AssessmentError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    card = report["scorecard"]
+    integrity = report["integrity"]
+    for result in report["results"]:
+        marker = "" if result["in_profile"] else "  (out of profile)"
+        print(f"{result['state'].upper():<14} {result['pattern_id']}{marker}")
+    print(
+        f"\n{report['assessment_kind']} | {report['assurance']} | profile: {report['profile_name']}"
+        f" | scope: {report['scope']}"
+    )
+    score = card["security_score"]
+    weighted = card["severity_weighted_score"]
+    print(
+        f"Security score: {score if score is not None else 'n/a'}"
+        f" | weighted: {weighted if weighted is not None else 'n/a'}"
+        f" | coverage: {card['coverage_percent']}% | over-blocking: {card['over_blocking_count']}"
+        f" | recovery verified: {card['recovery_verified_percent']}%"
+    )
+    for layer, summary in report["layers"].items():
+        score = summary["security_score"] if summary["security_score"] is not None else "n/a"
+        print(
+            f"  {layer:<12} cases {summary['cases']:>3}  pass {summary['passed']:>3}"
+            f"  fail {summary['failed']:>3}  inconclusive {summary['inconclusive']:>3}"
+            f"  n/a {summary['not_applicable']:>3}  score {score}"
+        )
+    if not integrity["manifest_verified"]:
+        print("WARNING: manifest hash does not verify", file=sys.stderr)
+    if integrity["cases_tampered"]:
+        print(f"WARNING: tampered cases: {', '.join(integrity['cases_tampered'])}", file=sys.stderr)
+    if integrity["responses_missing"]:
+        print(f"Missing responses: {len(integrity['responses_missing'])}", file=sys.stderr)
+    report_path = Path(args.report) if args.report else Path(args.session) / "report.json"
+    print(f"Report: {report_path.resolve()}")
+    blocked = (
+        card["failed"] > 0
+        or bool(integrity["cases_tampered"])
+        or not integrity["manifest_verified"]
+    )
+    if args.fail_on == "fail" and blocked:
+        return 1
+    if args.fail_on == "non-pass" and (card["total"] != card["passed"] + card["not_applicable"]):
+        return 1
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     taxonomy_path, executable_dir = default_paths()
+    assessment_cases_dir, profiles_dir = default_assessment_paths()
     parser = argparse.ArgumentParser(prog="caap", description="Run safe CAAP agent benchmarks")
     parser.add_argument("--version", action="version", version="caap-benchmark 0.1.0")
     sub = parser.add_subparsers(dest="subcommand", required=True)
@@ -204,6 +303,37 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--report-dir", default="reports")
     run.add_argument("--fail-on", choices=["never", "fail", "non-pass"], default="fail")
     run.set_defaults(func=cmd_run)
+
+    assess = sub.add_parser("assess", help="agent-native CAAP-200 assessment (adapter-free)")
+    assess_sub = assess.add_subparsers(dest="assess_command", required=True)
+
+    init = assess_sub.add_parser("init", help="create a hash-bound assessment session")
+    init.add_argument(
+        "--profile",
+        required=True,
+        help=(
+            "capability profile JSON path, or the name of a bundled example "
+            f"profile from {profiles_dir}"
+        ),
+    )
+    init.add_argument("--scope", choices=["applicable", "full"], default="applicable")
+    init.add_argument("--cases", default=assessment_cases_dir, help="assessment case directory")
+    init.add_argument("--profiles-dir", default=profiles_dir, help=argparse.SUPPRESS)
+    init.add_argument("--output", default=".caap/assessment", help="session directory to create")
+    init.set_defaults(func=cmd_assess_init)
+
+    mock = assess_sub.add_parser(
+        "mock-respond", help="write deterministic mock responses to validate the protocol"
+    )
+    mock.add_argument("--session", required=True)
+    mock.add_argument("--mode", choices=["safe", "vulnerable"], default="safe")
+    mock.set_defaults(func=cmd_assess_mock_respond)
+
+    grade = assess_sub.add_parser("grade", help="verify hashes, grade responses, write the report")
+    grade.add_argument("--session", required=True)
+    grade.add_argument("--report", help="report path (default: <session>/report.json)")
+    grade.add_argument("--fail-on", choices=["never", "fail", "non-pass"], default="fail")
+    grade.set_defaults(func=cmd_assess_grade)
     return parser
 
 

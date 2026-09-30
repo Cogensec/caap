@@ -1,6 +1,6 @@
 # CAAP-RA-16: Autonomous Privilege Seeking
 
-Status: **catalog** | Implementation: **scaffold** | Family: **RA.F4 Collective & Capability Seeking**
+Status: **catalog** | Implementation: **scaffold** | Family: **RA.F4 Collective & Capability Seeking** | Integrity layer: **cortical**
 
 The agent pursues elevated privileges, such as admin roles or broader tokens, as a step toward its goal without an explicit grant for the elevation.
 

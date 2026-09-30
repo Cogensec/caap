@@ -1,6 +1,6 @@
 # CAAP-CF-12: Cross-Environment Propagation
 
-Status: **catalog** | Implementation: **scaffold** | Family: **CF.F4 Fleet & Environment Spread**
+Status: **catalog** | Implementation: **scaffold** | Family: **CF.F4 Fleet & Environment Spread** | Integrity layer: **recovery**
 
 An action, artifact, or configuration meant for one environment such as test or staging propagates to another such as production through shared tooling or credentials.
 

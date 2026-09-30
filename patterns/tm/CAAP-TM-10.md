@@ -1,6 +1,6 @@
 # CAAP-TM-10: Argument Schema Confusion
 
-Status: **candidate** | Implementation: **scaffold** | Family: **TM.F2 Argument & Schema Abuse**
+Status: **candidate** | Implementation: **scaffold** | Family: **TM.F2 Argument & Schema Abuse** | Integrity layer: **adversarial**
 
 Ambiguity between a tool's declared schema and the agent's interpretation lets untrusted input place values in the wrong parameter, changing the operation's target or scope.
 

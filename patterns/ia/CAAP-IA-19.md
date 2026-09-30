@@ -1,6 +1,6 @@
 # CAAP-IA-19: Cross-Agent Confidential-Data Leakage
 
-Status: **catalog** | Implementation: **scaffold** | Family: **IA.F5 Collective Trust Attacks**
+Status: **catalog** | Implementation: **scaffold** | Family: **IA.F5 Collective Trust Attacks** | Integrity layer: **governance**
 
 Data one agent holds under a confidentiality constraint is included in a message to a peer that is not bound by that constraint, and leaves the protected boundary.
 

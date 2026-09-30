@@ -1,6 +1,6 @@
 # CAAP-EA-11: Human-Presence Misclassification
 
-Status: **catalog** | Implementation: **scaffold** | Family: **EA.F3 Actuation & Safety**
+Status: **catalog** | Implementation: **scaffold** | Family: **EA.F3 Actuation & Safety** | Integrity layer: **adversarial**
 
 The agent fails to detect, or is induced to misclassify, a human in its operating area, so safety behaviors that depend on human presence are not triggered.
 

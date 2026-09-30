@@ -1,6 +1,6 @@
 # CAAP-GH-19: Cross-Session Goal Leakage
 
-Status: **catalog** | Implementation: **scaffold** | Family: **GH.F4 Delegation & Handoff Corruption**
+Status: **catalog** | Implementation: **scaffold** | Family: **GH.F4 Delegation & Handoff Corruption** | Integrity layer: **adversarial**
 
 An objective, instruction, or partial plan from one session or user carries into another through shared memory, cache, or context, and is pursued where it was never authorized.
 
