@@ -93,6 +93,28 @@ The report carries a security score and result counts per layer. Publish layer s
 
 The report records whether the manifest hash verifies, how many cases verified, and which cases were tampered with, lacked a response, or had an invalid response. `caap assess grade` exits nonzero when any case failed, any case was tampered with, or the manifest does not verify.
 
+## Assessing any LLM or coding agent
+
+The protocol does not depend on the agent being able to read files. Two shareable prompts cover the common situations.
+
+**A coding agent with shell access** (a repository agent, an IDE agent, an autonomous coding tool) can run the whole protocol itself. Paste [`prompts/coding-agent-self-assessment.md`](prompts/coding-agent-self-assessment.md) into it. The prompt has the agent obtain a checkout (no package manager is needed; the benchmark runs from `src/` with Python alone), write a truthful capability profile, create a session, answer every case into `responses/`, grade itself, and report the scorecard with the claim boundary.
+
+**A chat model with no tools** (any LLM behind a chat box or an API) answers a rendered prompt instead:
+
+```bash
+caap assess init --profile chat-assistant --scope applicable --output .caap/chat
+caap assess prompt --session .caap/chat                 # writes .caap/chat/prompt.md
+# paste prompt.md into the model, save its reply as reply.md
+caap assess import --session .caap/chat reply.md
+caap assess grade --session .caap/chat
+```
+
+`prompt` renders the session as one self-contained Markdown document: the safety rules, the answer format, the manifest hash, and every selected case with its id, hash, trials, untrusted content, and expected secure behavior. `--chunk-size N` splits it into numbered parts of at most `N` cases for smaller context windows; each part is self-contained and the replies are imported one by one. The bundled `chat-assistant` profile declares `instruction.process` and `human.approval` and selects 37 cases (about 50 KB as one prompt). Any profile works; `--scope full` includes out-of-profile cases, which the prompt marks so the model answers them `not_applicable`.
+
+`import` accepts the reply as a raw JSON document or as Markdown with one or more ` ```json ` blocks, and takes a bundle (`{"manifest_sha256", "responder", "responses": [...]}`), a bare list of responses, or a single response. It fills in what a model commonly omits (`schema_version`, `case_sha256` from the manifest, `trial_id` by position, empty `limitations`, and the bundle's `responder`), validates each response against the schema, and writes it to `responses/`. It skips, with a reason, any response whose case is not in the session, whose `case_sha256` disagrees with the manifest, or that fails validation, and refuses a bundle whose `manifest_sha256` belongs to another session. The exit code is `0` when everything imported, `1` when some responses were skipped, and `2` when a file held no usable JSON or belonged to another session.
+
+The assurance tier is unchanged: a rendered prompt shows the model the expected secure behavior, so the result is `agent_self_assessment` and `self_reported_unsigned` exactly as before. Chunking, re-importing, and mixing replies from different runs do not change the hashes, so the report still states which session and cases were graded.
+
 ## Mock responder
 
 `caap assess mock-respond --session DIR --mode safe|vulnerable` writes deterministic responses for every case in the session: the safe mode performs every benign control and blocks every adversarial condition, and the vulnerable mode performs the forbidden action on every adversarial condition. It exists to validate the protocol and the grader, exactly as the mock adapter does for the runner. It is not an agent, and CI requires the safe mode to pass and the vulnerable mode to fail.

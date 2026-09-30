@@ -9,7 +9,14 @@ from pathlib import Path
 from typing import Any
 
 from .adapters import CommandAdapter, HttpAdapter, MockAdapter
-from .assess import AssessmentError, grade_session, init_session, write_mock_responses
+from .assess import (
+    AssessmentError,
+    grade_session,
+    import_responses,
+    init_session,
+    render_prompt,
+    write_mock_responses,
+)
 from .loaders import ValidationError, discover_tests, load_data, validate_test_case
 from .reports import write_html, write_json, write_junit
 from .runner import BenchmarkRunner
@@ -208,6 +215,46 @@ def cmd_assess_mock_respond(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_assess_prompt(args: argparse.Namespace) -> int:
+    try:
+        prompts = render_prompt(args.session, args.chunk_size)
+    except AssessmentError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    base = Path(args.output) if args.output else Path(args.session) / "prompt.md"
+    base.parent.mkdir(parents=True, exist_ok=True)
+    for label, text in prompts:
+        target = base
+        if len(prompts) > 1:
+            target = base.with_name(f"{base.stem}-{label[len('prompt-'):]}{base.suffix}")
+        target.write_text(text, encoding="utf-8")
+        print(f"{target} ({len(text.encode('utf-8'))} bytes)")
+    print(
+        "Give each prompt to the model under evaluation, save its reply, then run "
+        "`caap assess import` and `caap assess grade`."
+    )
+    return 0
+
+
+def cmd_assess_import(args: argparse.Namespace) -> int:
+    try:
+        summary = import_responses(args.session, args.files, args.responder)
+    except AssessmentError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    print(
+        f"Imported {len(summary['imported'])} response(s), replaced {len(summary['replaced'])}, "
+        f"skipped {len(summary['skipped'])} into {Path(args.session) / 'responses'}"
+    )
+    for case_id, reason in summary["skipped"]:
+        print(f"  skipped {case_id}: {reason}", file=sys.stderr)
+    for error in summary["errors"]:
+        print(f"ERROR: {error}", file=sys.stderr)
+    if summary["errors"]:
+        return 2
+    return 1 if summary["skipped"] else 0
+
+
 def cmd_assess_grade(args: argparse.Namespace) -> int:
     try:
         report = grade_session(args.session, args.report)
@@ -328,6 +375,26 @@ def build_parser() -> argparse.ArgumentParser:
     mock.add_argument("--session", required=True)
     mock.add_argument("--mode", choices=["safe", "vulnerable"], default="safe")
     mock.set_defaults(func=cmd_assess_mock_respond)
+
+    prompt = assess_sub.add_parser(
+        "prompt", help="render the session as a self-contained prompt for any LLM"
+    )
+    prompt.add_argument("--session", required=True)
+    prompt.add_argument("--output", help="prompt path (default: <session>/prompt.md)")
+    prompt.add_argument(
+        "--chunk-size",
+        type=int,
+        help="split into numbered prompts of at most this many cases each",
+    )
+    prompt.set_defaults(func=cmd_assess_prompt)
+
+    imp = assess_sub.add_parser(
+        "import", help="import a model's JSON reply (or Markdown with a json block) as responses"
+    )
+    imp.add_argument("--session", required=True)
+    imp.add_argument("files", nargs="+", help="reply files saved from the model")
+    imp.add_argument("--responder", help="responder label to record when the reply omits one")
+    imp.set_defaults(func=cmd_assess_import)
 
     grade = assess_sub.add_parser("grade", help="verify hashes, grade responses, write the report")
     grade.add_argument("--session", required=True)

@@ -3,6 +3,7 @@ from __future__ import annotations
 import contextlib
 import io
 import json
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -11,8 +12,10 @@ from caap_benchmark.assess import (
     AssessmentError,
     canonical_sha256,
     grade_session,
+    import_responses,
     init_session,
     manifest_verified,
+    render_prompt,
     write_mock_responses,
 )
 from caap_benchmark.cli import main
@@ -298,6 +301,153 @@ class CliTests(unittest.TestCase):
         code, _, err = _run(["assess", "grade", "--session", self.session])
         self.assertEqual(code, 2)
         self.assertIn("manifest.json", err)
+
+
+class PromptAndImportTests(unittest.TestCase):
+    """The portable prompt for any LLM and the import of its reply."""
+
+    def setUp(self) -> None:
+        self._tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self._tmp.name)
+        self.session = self.root / "session"
+        init_session(PROFILES / "chat-assistant.json", "applicable", CASES, self.session)
+        self.manifest = json.loads((self.session / "manifest.json").read_text())
+
+    def tearDown(self) -> None:
+        self._tmp.cleanup()
+
+    def _reply_bundle(self, strip: bool = False) -> dict:
+        """Build a reply from the safe mock, optionally dropping fields a model may omit."""
+        write_mock_responses(self.session, "safe")
+        responses = []
+        for entry in self.manifest["cases"]:
+            path = self.session / "responses" / f"{entry['case_id']}.json"
+            response = json.loads(path.read_text())
+            if strip:
+                for key in ("schema_version", "case_sha256", "responder"):
+                    response.pop(key, None)
+                for trial in response["trials"]:
+                    trial.pop("trial_id", None)
+                    trial.pop("limitations", None)
+            responses.append(response)
+        shutil.rmtree(self.session / "responses")
+        (self.session / "responses").mkdir()
+        return {
+            "schema_version": "1.0",
+            "manifest_sha256": self.manifest["manifest_sha256"],
+            "responder": "example-model 1.0",
+            "responses": responses,
+        }
+
+    def test_prompt_is_self_contained(self) -> None:
+        (label, text), = render_prompt(self.session)
+        self.assertEqual(label, "prompt")
+        self.assertIn(self.manifest["manifest_sha256"], text)
+        self.assertIn("mock_forbidden_sink", text)
+        self.assertIn("CAAP TEST ONLY", text)
+        for entry in self.manifest["cases"]:
+            self.assertIn(f"### {entry['case_id']}:", text)
+            self.assertIn(entry["sha256"], text)
+            self.assertIn(f"{entry['case_id']}-A", text)
+            self.assertIn(f"{entry['case_id']}-B", text)
+        self.assertEqual(text.count("### CAAP-"), 37)
+        self.assertNotIn("OUTSIDE your profile: answer", text)
+
+    def test_prompt_marks_out_of_profile_cases_in_full_scope(self) -> None:
+        full = self.root / "full"
+        init_session(PROFILES / "chat-assistant.json", "full", CASES, full)
+        (_, text), = render_prompt(full)
+        self.assertEqual(text.count("### CAAP-"), 200)
+        self.assertEqual(text.count("OUTSIDE your profile: answer"), 163)
+
+    def test_prompt_chunks_partition_the_cases(self) -> None:
+        chunks = render_prompt(self.session, chunk_size=10)
+        self.assertEqual([label for label, _ in chunks], [
+            "prompt-01-of-04", "prompt-02-of-04", "prompt-03-of-04", "prompt-04-of-04",
+        ])
+        counts = [text.count("### CAAP-") for _, text in chunks]
+        self.assertEqual(counts, [10, 10, 10, 7])
+        self.assertIn("part 2 of 4", chunks[1][1])
+        for _, text in chunks:
+            self.assertIn(self.manifest["manifest_sha256"], text)
+        with self.assertRaises(AssessmentError):
+            render_prompt(self.session, chunk_size=0)
+
+    def test_import_markdown_reply_with_omitted_fields(self) -> None:
+        bundle = self._reply_bundle(strip=True)
+        reply = self.root / "reply.md"
+        reply.write_text("Sure.\n\n```json\n" + json.dumps(bundle) + "\n```\nDone.\n")
+        summary = import_responses(self.session, [reply])
+        self.assertEqual(len(summary["imported"]), 37)
+        self.assertEqual(summary["skipped"], [])
+        self.assertEqual(summary["errors"], [])
+        first = self.manifest["cases"][0]
+        written = json.loads((self.session / "responses" / f"{first['case_id']}.json").read_text())
+        self.assertEqual(written["case_sha256"], first["sha256"])
+        self.assertEqual(written["responder"], "example-model 1.0")
+        self.assertEqual(written["trials"][0]["trial_id"], f"{first['case_id']}-B")
+        self.assertEqual(written["trials"][1]["trial_id"], f"{first['case_id']}-A")
+        report = grade_session(self.session)
+        self.assertEqual(report["scorecard"]["passed"], 37)
+        self.assertEqual(report["integrity"]["responses_invalid"], [])
+
+    def test_import_accepts_bare_json_and_reports_replacements(self) -> None:
+        bundle = self._reply_bundle()
+        reply = self.root / "reply.json"
+        reply.write_text(json.dumps(bundle["responses"]))
+        first = import_responses(self.session, [reply], responder="r2")
+        self.assertEqual(len(first["imported"]), 37)
+        second = import_responses(self.session, [reply])
+        self.assertEqual(len(second["replaced"]), 37)
+        self.assertEqual(second["imported"], [])
+
+    def test_import_rejects_wrong_session_hash_mismatch_and_unknown_case(self) -> None:
+        bundle = self._reply_bundle()
+        good = bundle["responses"][0]
+        other = self.root / "other.json"
+        other.write_text(json.dumps({"manifest_sha256": "0" * 64, "responses": [good]}))
+        summary = import_responses(self.session, [other])
+        self.assertEqual(summary["imported"], [])
+        self.assertEqual(len(summary["errors"]), 1)
+        mixed = self.root / "mixed.json"
+        mixed.write_text(json.dumps([
+            dict(good, case_sha256="f" * 64),
+            dict(good, case_id="CAAP-XX-99-ASSESS-001"),
+            {"case_id": good["case_id"], "trials": [{"decision": "maybe"}, {}]},
+            "not an object",
+        ]))
+        summary = import_responses(self.session, [mixed])
+        self.assertEqual(summary["imported"], [])
+        reasons = [reason for _, reason in summary["skipped"]]
+        self.assertEqual(len(reasons), 4)
+        self.assertIn("case_sha256 does not match the manifest", reasons[0])
+        self.assertIn("not in this session", reasons[1])
+        self.assertIn("not an object", reasons[3])
+        prose = self.root / "prose.md"
+        prose.write_text("I cannot help with that.")
+        summary = import_responses(self.session, [prose])
+        self.assertIn("no JSON document", summary["errors"][0])
+
+    def test_cli_prompt_and_import_round_trip(self) -> None:
+        session = str(self.session)
+        code, out, _ = _run(["assess", "prompt", "--session", session, "--chunk-size", "20"])
+        self.assertEqual(code, 0)
+        self.assertTrue((self.session / "prompt-01-of-02.md").is_file())
+        self.assertTrue((self.session / "prompt-02-of-02.md").is_file())
+        self.assertIn("caap assess import", out)
+        bundle = self._reply_bundle()
+        reply = self.root / "reply.md"
+        reply.write_text("```json\n" + json.dumps(bundle) + "\n```\n")
+        code, out, err = _run(["assess", "import", "--session", session, str(reply)])
+        self.assertEqual(code, 0, err)
+        self.assertIn("Imported 37 response(s)", out)
+        code, out, _ = _run(["assess", "grade", "--session", session])
+        self.assertEqual(code, 0)
+        self.assertIn("Security score: 100.0", out)
+        reply.write_text(json.dumps([dict(bundle["responses"][0], case_id="CAAP-NO-00")]))
+        code, _, err = _run(["assess", "import", "--session", session, str(reply)])
+        self.assertEqual(code, 1)
+        self.assertIn("skipped CAAP-NO-00", err)
 
 
 if __name__ == "__main__":

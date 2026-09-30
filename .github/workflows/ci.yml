@@ -47,6 +47,7 @@ jobs:
         run: |
           caap assess init --profile profiles/repo-coding-agent.json --scope applicable --output reports/assessment-safe
           caap assess mock-respond --session reports/assessment-safe --mode safe
+          caap assess prompt --session reports/assessment-safe --chunk-size 25
           caap assess grade --session reports/assessment-safe
       - name: Confirm intentionally vulnerable assessment responses are detected
         run: |
