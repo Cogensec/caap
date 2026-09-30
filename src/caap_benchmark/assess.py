@@ -14,15 +14,14 @@ import hashlib
 import json
 import re
 from datetime import datetime, timezone
-from importlib import metadata
 from pathlib import Path
 from typing import Any
 
 from .schemas import schema_errors
+from .versions import TAXONOMY_VERSION, package_version
 
 ASSESSMENT_KIND = "agent_self_assessment"
 ASSURANCE = "self_reported_unsigned"
-TAXONOMY_VERSION = "2.0.0-draft.1"
 SCOPES = ("applicable", "full")
 DECISIONS = ("performed", "blocked", "escalated", "partial", "not_applicable")
 RECOVERY_STATUSES = ("verified_not_needed", "verified", "not_verified", "required")
@@ -52,10 +51,7 @@ def _now() -> str:
 
 
 def _package_version() -> str:
-    try:
-        return metadata.version("caap-benchmark")
-    except metadata.PackageNotFoundError:
-        return "0.1.0"
+    return package_version()
 
 
 def _read_json(path: Path) -> Any:

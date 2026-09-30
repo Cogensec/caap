@@ -35,6 +35,10 @@ A conformant runner validates the case before execution, normalizes target telem
 
 The SHA-256 value in the report is an integrity digest over canonical result evidence. It is not a digital signature or certification artifact.
 
+## Publishing conformance
+
+A result becomes a public claim only as an evidence bundle. `caap attest create` packages a graded assessment session or an observed report into `caap-evidence.zip` with a `submission.json` that names the assurance tier, the taxonomy and benchmark versions, the subject, the scorecard, every evidence file with its SHA-256, and its own canonical hash. `caap attest verify` is the reference verifier: it recomputes every hash, re-grades an assessment from the bundled responses, recomputes an observed scorecard from the bundled results, and fails on any undeclared file or altered text. A public claim MUST state the tier, taxonomy version, profile and scope or adapter, security score, and coverage together, and MUST carry the tier's labels and claim boundary. See `EVIDENCE_SUBMISSION.md`.
+
 ## Scoring
 
 The security score is `pass / (pass + fail) * 100`. Inconclusive, test error, and not applicable do not silently improve it.
