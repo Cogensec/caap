@@ -65,7 +65,7 @@ class RunCommandTests(unittest.TestCase):
             ]
         )
         self.assertEqual(code, 0)
-        self.assertIn("Skipped 18 disabled case(s)", err)
+        self.assertIn("Skipped 46 disabled case(s)", err)
         report = json.loads((self.report_dir / "caap-report.json").read_text(encoding="utf-8"))
         self.assertEqual(report["scorecard"]["total"], 4)
         self.assertTrue(all(item["test_id"].endswith("-REF-001") for item in report["results"]))
@@ -94,7 +94,7 @@ class PackagedDataTests(unittest.TestCase):
     def test_defaults_prefer_checkout_then_package(self) -> None:
         with _working_directory(ROOT / "docs"):
             taxonomy, executable = default_paths()
-        self.assertEqual(taxonomy, ROOT / "data/taxonomy/caap-200.json")
+        self.assertEqual(taxonomy, ROOT / "data/taxonomy/caap-501.json")
         self.assertEqual(executable, ROOT / "benchmarks/executable")
         with _working_directory(self.outside):
             taxonomy, executable = default_paths()
@@ -102,14 +102,14 @@ class PackagedDataTests(unittest.TestCase):
         self.assertTrue(executable.is_dir(), executable)
         self.assertIn("caap_benchmark", taxonomy.parts)
         self.assertEqual(
-            taxonomy.read_bytes(), (ROOT / "data/taxonomy/caap-200.json").read_bytes()
+            taxonomy.read_bytes(), (ROOT / "data/taxonomy/caap-501.json").read_bytes()
         )
 
     def test_list_show_validate_and_run_outside_checkout(self) -> None:
         with _working_directory(self.outside):
             code, out, _ = _run(["list"])
             self.assertEqual(code, 0)
-            self.assertIn("200 pattern(s)", out)
+            self.assertIn("501 pattern(s)", out)
             code, out, _ = _run(["show", "CAAP-GH-01"])
             self.assertEqual(code, 0)
             self.assertEqual(json.loads(out)["id"], "CAAP-GH-01")

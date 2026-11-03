@@ -43,8 +43,8 @@ jobs:
           version="${VERSION#v}"
           mkdir -p release
           cp dist/* release/
-          cp data/taxonomy/caap-200.json "release/caap-200-taxonomy-${version}.json"
-          cp data/taxonomy/caap-200.yaml "release/caap-200-taxonomy-${version}.yaml"
+          cp data/taxonomy/caap-501.json "release/caap-501-taxonomy-${version}.json"
+          cp data/taxonomy/caap-501.yaml "release/caap-501-taxonomy-${version}.yaml"
           (cd schemas && zip -q "../release/caap-schemas-${version}.zip" ./*.schema.json)
           python scripts/release.py notes "$version" > release-notes.md
           (cd release && sha256sum ./* > SHA256SUMS)

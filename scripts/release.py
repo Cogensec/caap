@@ -125,7 +125,7 @@ def notes(version: str, root: Path = ROOT) -> str:
     if when:
         header += f" ({when})"
     lines = [
-        f"**{header}** implementing the CAAP-200 working taxonomy `{taxonomy}`.",
+        f"**{header}** implementing the CAAP-501 working taxonomy `{taxonomy}`.",
         "",
         body,
         "",

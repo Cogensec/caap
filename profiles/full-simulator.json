@@ -29,5 +29,5 @@
     "agent.autonomy": "Bounded mock scheduler with an authenticated revocation event.",
     "actuator.simulate": "Bounded virtual actuator with an independent safety envelope of two units."
   },
-  "notes": "Applicable and full scope both cover all 200 patterns."
+  "notes": "Applicable and full scope both cover all 501 patterns."
 }

@@ -4,6 +4,15 @@ All notable changes are recorded here.
 
 ## [Unreleased]
 
+### Added
+
+- Expanded the working taxonomy from 200 to 501 draft patterns with 301 new candidate mechanisms across the existing 11 domains. Each candidate has a definition, threat model, provisional severity vector, pattern page, disabled scaffold, and paired-trial assessment case. External mappings for the new candidates remain unmapped pending standards review.
+- Added registry checks for normalized title uniqueness, exact catalog counts, preserved v1.0 reference IDs, and a test that the first 200 IDs and titles remain stable.
+
+### Changed
+
+- Advanced the working taxonomy to `2.1.0-draft.1`, updated the CLI, schemas, profiles, documentation, and release assets for CAAP-501, and retained the 25 executable reference tests. Candidate scaffolds remain disabled until their fixtures and oracles receive review.
+
 ### Fixed
 
 - The release workflow no longer fails when a release for the tag already exists, which happens when the release is created from the GitHub UI. It now keeps that release's title and notes and attaches the built assets to it, and it can be run manually from the Actions tab with a tag name to attach or refresh the assets of an existing release.

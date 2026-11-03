@@ -86,7 +86,7 @@ def _read_json_bytes(data: bytes, label: str) -> Any:
 
 def badge_for(tier: str, case_count: int, taxonomy_version: str) -> dict[str, str]:
     return {
-        "label": "CAAP-200",
+        "label": "CAAP-501",
         "message": f"{TIERS[tier]['badge']} · {case_count} cases · {taxonomy_version}",
         "tier": tier,
     }

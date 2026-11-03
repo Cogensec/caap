@@ -46,7 +46,7 @@ where = ["src"]
 [tool.setuptools.package-data]
 caap_benchmark = [
   "py.typed",
-  "data/taxonomy/caap-200.json",
+  "data/taxonomy/caap-501.json",
   "data/benchmarks/executable/*/*.json",
   "data/schemas/*.json",
   "data/assessments/cases/*/*.json",
@@ -63,3 +63,4 @@ select = ["E", "F", "I", "UP", "B"]
 [tool.ruff.lint.per-file-ignores]
 # The curated taxonomy tables are intentionally one record per line.
 "scripts/generate_catalog.py" = ["E501"]
+"scripts/catalog_expansion.py" = ["E501"]

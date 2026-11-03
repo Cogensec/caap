@@ -28,16 +28,40 @@ def _derived(vector: dict) -> float:
 class TaxonomyTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.registry = json.loads((ROOT / "data/taxonomy/caap-200.json").read_text())
+        cls.registry = json.loads((ROOT / "data/taxonomy/caap-501.json").read_text())
 
-    def test_exactly_200_unique_patterns(self) -> None:
+    def test_exactly_501_unique_patterns(self) -> None:
         patterns = self.registry["patterns"]
-        self.assertEqual(len(patterns), 200)
-        self.assertEqual(len({pattern["id"] for pattern in patterns}), 200)
+        self.assertEqual(len(patterns), 501)
+        self.assertEqual(len({pattern["id"] for pattern in patterns}), 501)
 
     def test_expected_maturity_distribution(self) -> None:
         maturity = Counter(pattern["maturity"] for pattern in self.registry["patterns"])
-        self.assertEqual(maturity, Counter(reference=25, candidate=40, catalog=135))
+        self.assertEqual(maturity, Counter(reference=25, candidate=341, catalog=135))
+
+    def test_original_records_are_preserved(self) -> None:
+        baseline = json.loads((ROOT / "data/taxonomy/caap-200.json").read_text())
+        current = {pattern["id"]: pattern for pattern in self.registry["patterns"]}
+        for original in baseline["patterns"]:
+            self.assertEqual(current[original["id"]], original)
+
+    def test_candidate_names_and_mechanisms_are_unique(self) -> None:
+        import re
+
+        patterns = self.registry["patterns"]
+        names = [re.sub(r"[^a-z0-9]+", "", item["name"].casefold()) for item in patterns]
+        self.assertEqual(len(names), len(set(names)))
+        self.assertEqual(len({item["definition"] for item in patterns}), len(patterns))
+        new = [item for item in patterns if item["first_version"] == "2.1.0-draft.1"]
+        self.assertEqual(len(new), 301)
+        self.assertTrue(all(item["maturity"] == "candidate" for item in new))
+        self.assertTrue(all(item["implementation_status"] == "scaffold" for item in new))
+        self.assertTrue(all(item["mappings"]["mapping_status"] == "unmapped" for item in new))
+        self.assertTrue(all(item["severity"]["review_status"] == "provisional" for item in new))
+        self.assertTrue(all(item["sources"] == [] for item in new))
+        self.assertTrue(all(not any(item["mappings"][key] for key in (
+            "owasp_agentic", "nist_ai_rmf_functions", "mitre_atlas"
+        )) for item in new))
 
     def test_every_relationship_resolves(self) -> None:
         ids = {pattern["id"] for pattern in self.registry["patterns"]}
@@ -69,12 +93,12 @@ class TaxonomyTests(unittest.TestCase):
             self.assertEqual(set(vector), set(AXES), pattern["id"])
             self.assertTrue(all(1 <= vector[axis] <= 5 for axis in AXES), pattern["id"])
             vectors.add(tuple(vector[axis] for axis in AXES))
-        # Previously every one of the 200 records shared a single vector.
+        # The original 200 already had pattern-specific vectors.
         self.assertGreater(len(vectors), 50)
 
     def test_definitions_are_specific_and_unique(self) -> None:
         definitions = [pattern["definition"] for pattern in self.registry["patterns"]]
-        self.assertEqual(len(set(definitions)), 200)
+        self.assertEqual(len(set(definitions)), 501)
         for pattern in self.registry["patterns"]:
             definition = pattern["definition"]
             self.assertFalse(definition.startswith("Tests whether"), pattern["id"])
@@ -86,7 +110,7 @@ class TaxonomyTests(unittest.TestCase):
             import yaml
         except ImportError:
             self.skipTest("PyYAML is not installed")
-        parsed = yaml.safe_load((ROOT / "data/taxonomy/caap-200.yaml").read_text(encoding="utf-8"))
+        parsed = yaml.safe_load((ROOT / "data/taxonomy/caap-501.yaml").read_text(encoding="utf-8"))
         self.assertEqual(parsed, self.registry)
 
 
