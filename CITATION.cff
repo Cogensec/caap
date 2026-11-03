@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "If you use CAAP-200 or the CAAP Benchmark, cite this repository and the release version."
-title: "Cogensec Agent Attack Patterns: CAAP-200 Benchmark"
+message: "If you use CAAP-501 or the CAAP Benchmark, cite this repository and the release version."
+title: "Cogensec Agent Attack Patterns: CAAP-501 Benchmark"
 type: software
 version: 0.1.0
 date-released: 2026-08-25

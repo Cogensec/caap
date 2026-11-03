@@ -30,7 +30,7 @@ def _repo_root() -> Path | None:
     """Return the repository checkout containing the working directory, if any."""
     current = Path.cwd()
     for candidate in (current, *current.parents):
-        if (candidate / "data" / "taxonomy" / "caap-200.json").exists():
+        if (candidate / "data" / "taxonomy" / "caap-501.json").exists():
             return candidate
     return None
 
@@ -44,9 +44,9 @@ def default_paths() -> tuple[Path, Path]:
     """
     repo = _repo_root()
     if repo is not None:
-        return repo / "data/taxonomy/caap-200.json", repo / "benchmarks/executable"
+        return repo / "data/taxonomy/caap-501.json", repo / "benchmarks/executable"
     packaged = Path(str(resources.files("caap_benchmark") / "data"))
-    return packaged / "taxonomy/caap-200.json", packaged / "benchmarks/executable"
+    return packaged / "taxonomy/caap-501.json", packaged / "benchmarks/executable"
 
 
 def default_assessment_paths() -> tuple[Path, Path]:
@@ -370,11 +370,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--version",
         action="version",
-        version=f"caap-benchmark {package_version()} (CAAP-200 taxonomy {TAXONOMY_VERSION})",
+        version=f"caap-benchmark {package_version()} (CAAP-501 taxonomy {TAXONOMY_VERSION})",
     )
     sub = parser.add_subparsers(dest="subcommand", required=True)
 
-    listing = sub.add_parser("list", help="list CAAP-200 patterns")
+    listing = sub.add_parser("list", help="list CAAP-501 patterns")
     listing.add_argument("--taxonomy", default=taxonomy_path)
     listing.add_argument("--domain")
     listing.add_argument("--maturity", choices=["reference", "candidate", "catalog"])
@@ -413,7 +413,7 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--fail-on", choices=["never", "fail", "non-pass"], default="fail")
     run.set_defaults(func=cmd_run)
 
-    assess = sub.add_parser("assess", help="agent-native CAAP-200 assessment (adapter-free)")
+    assess = sub.add_parser("assess", help="agent-native CAAP-501 assessment (adapter-free)")
     assess_sub = assess.add_subparsers(dest="assess_command", required=True)
 
     init = assess_sub.add_parser("init", help="create a hash-bound assessment session")

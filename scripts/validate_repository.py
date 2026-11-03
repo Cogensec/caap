@@ -15,8 +15,8 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from caap_benchmark.schemas import schema_errors  # noqa: E402
 
 EXPECTED = {
-    "GH": 22, "TM": 24, "IP": 20, "SC": 20, "CE": 15, "MP": 21,
-    "IA": 19, "CF": 16, "HT": 15, "RA": 16, "EA": 12,
+    "GH": 50, "TM": 52, "IP": 48, "SC": 48, "CE": 43, "MP": 49,
+    "IA": 46, "CF": 43, "HT": 42, "RA": 43, "EA": 37,
 }
 REFERENCE_IDS = {
     "CAAP-CE-01", "CAAP-CE-05", "CAAP-CF-01", "CAAP-EA-03", "CAAP-GH-01",
@@ -34,21 +34,30 @@ def fail(message: str) -> None:
 
 
 def main() -> None:
-    registry = json.loads((ROOT / "data/taxonomy/caap-200.json").read_text())
+    registry = json.loads((ROOT / "data/taxonomy/caap-501.json").read_text())
     patterns = registry["patterns"]
-    if len(patterns) != 200:
-        fail(f"expected 200 patterns, got {len(patterns)}")
+    if len(patterns) != 501:
+        fail(f"expected 501 patterns, got {len(patterns)}")
     ids = [pattern["id"] for pattern in patterns]
     if len(ids) != len(set(ids)):
         fail("pattern IDs are not unique")
+    names = [re.sub(r"[^a-z0-9]+", "", p["name"].casefold()) for p in patterns]
+    if len(names) != len(set(names)):
+        fail("normalized pattern names are not unique")
     if any(not ID_PATTERN.fullmatch(value) for value in ids):
         fail("invalid stable ID")
     domains = Counter(pattern["domain_id"] for pattern in patterns)
     if dict(domains) != EXPECTED:
         fail(f"domain counts differ: {dict(domains)}")
     maturity = Counter(pattern["maturity"] for pattern in patterns)
-    if maturity != Counter({"reference": 25, "candidate": 40, "catalog": 135}):
+    if maturity != Counter({"reference": 25, "candidate": 341, "catalog": 135}):
         fail(f"maturity counts differ: {dict(maturity)}")
+    if registry["counts"] != {
+        "total": 501, "domains": 11, "reference": 25, "candidate": 341,
+        "catalog": 135, "executable": 25, "scaffold": 476,
+        "assessment_cases": 501, "assessment_trials": 1002,
+    }:
+        fail("registry counts do not match the actual catalog")
     references = {pattern["id"] for pattern in patterns if pattern["maturity"] == "reference"}
     if references != REFERENCE_IDS:
         fail("v1.0 reference ID set changed")
@@ -56,7 +65,7 @@ def main() -> None:
     scaffolds = list((ROOT / "benchmarks/scaffolds").rglob("*.json"))
     pages = list((ROOT / "patterns").rglob("CAAP-*.md"))
     counts = (len(executable), len(scaffolds), len(pages))
-    if counts != (25, 175, 200):
+    if counts != (25, 476, 501):
         fail(
             "artifact counts differ: "
             f"executable={counts[0]}, scaffolds={counts[1]}, pages={counts[2]}"
@@ -78,8 +87,8 @@ def main() -> None:
     check_schemas(registry, executable + scaffolds, assessments)
     check_versions()
     print(
-        "Repository invariants validated: 200 patterns, 25 executable cases, 175 scaffolds, "
-        "200 assessment cases."
+        "Repository invariants validated: 501 patterns, 25 executable cases, 476 scaffolds, "
+        "501 assessment cases."
     )
 
 
@@ -89,8 +98,8 @@ LAYERS = ("adversarial", "cortical", "governance", "recovery")
 def check_assessment_cases(patterns: list[dict]) -> list[Path]:
     """One paired-trial assessment case per pattern, with layer and sentinel consistency."""
     paths = sorted((ROOT / "assessments/cases").rglob("*.json"))
-    if len(paths) != 200:
-        fail(f"expected 200 assessment cases, found {len(paths)}")
+    if len(paths) != 501:
+        fail(f"expected 501 assessment cases, found {len(paths)}")
     by_id = {pattern["id"]: pattern for pattern in patterns}
     if {pattern["integrity_layer"] for pattern in patterns} - set(LAYERS):
         fail("pattern integrity_layer outside the four layers")
@@ -122,8 +131,8 @@ def check_assessment_cases(patterns: list[dict]) -> list[Path]:
         if re.search(r"\b\w+://", content):
             fail(f"{case['id']}: untrusted content must not carry a URL")
         trials += len(case["trials"])
-    if trials != 400:
-        fail(f"expected 400 assessment trials, found {trials}")
+    if trials != 1002:
+        fail(f"expected 1002 assessment trials, found {trials}")
     return paths
 
 
@@ -196,7 +205,7 @@ def check_schemas(registry: dict, cases: list[Path], assessments: list[Path]) ->
 
 def check_package_data(executable: list[Path], assessments: list[Path]) -> None:
     """The copies bundled into the wheel must mirror the canonical files exactly."""
-    expected = {ROOT / "data/taxonomy/caap-200.json": PACKAGE_DATA / "taxonomy/caap-200.json"}
+    expected = {ROOT / "data/taxonomy/caap-501.json": PACKAGE_DATA / "taxonomy/caap-501.json"}
     for source in sorted((ROOT / "schemas").glob("*.schema.json")):
         expected[source] = PACKAGE_DATA / "schemas" / source.name
     for source in sorted((ROOT / "profiles").glob("*.json")):

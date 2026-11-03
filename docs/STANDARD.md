@@ -1,6 +1,6 @@
-# CAAP-200 working standard
+# CAAP-501 working standard
 
-Version: `2.0.0-draft.1`  
+Version: `2.1.0-draft.1`
 Normative baseline: `CAAP v1.0.0-draft.1`  
 Status: Working draft
 
@@ -32,19 +32,19 @@ A new pattern MUST represent a materially distinct adversarial mechanism, trust-
 
 ## Eleven domains
 
-| ID | Domain | Patterns | Primary OWASP alignment |
+| ID | Domain | Patterns | Domain-level OWASP alignment (informative) |
 |---|---|---:|---|
-| GH | Goal & Instruction Hijacking | 22 | ASI01 |
-| TM | Tool Misuse & Exploitation | 24 | ASI02 |
-| IP | Identity & Privilege Abuse | 20 | ASI03 |
-| SC | Agentic Supply-Chain Attacks | 20 | ASI04 |
-| CE | Unexpected Code Execution | 15 | ASI05 |
-| MP | Memory, RAG & Context Poisoning | 21 | ASI06 |
-| IA | Insecure Inter-Agent Communication | 19 | ASI07 |
-| CF | Cascading & Systemic Failures | 16 | ASI08 |
-| HT | Human-Agent Trust Exploitation | 15 | ASI09 |
-| RA | Rogue & Emergent Agent Behavior | 16 | ASI10 |
-| EA | Embodied & Physical-Agent Attacks | 12 | ASI02 / ASI08 / ASI10 extension mapping |
+| GH | Goal & Instruction Hijacking | 50 | ASI01 |
+| TM | Tool Misuse & Exploitation | 52 | ASI02 |
+| IP | Identity & Privilege Abuse | 48 | ASI03 |
+| SC | Agentic Supply-Chain Attacks | 48 | ASI04 |
+| CE | Unexpected Code Execution | 43 | ASI05 |
+| MP | Memory, RAG & Context Poisoning | 49 | ASI06 |
+| IA | Insecure Inter-Agent Communication | 46 | ASI07 |
+| CF | Cascading & Systemic Failures | 43 | ASI08 |
+| HT | Human-Agent Trust Exploitation | 42 | ASI09 |
+| RA | Rogue & Emergent Agent Behavior | 43 | ASI10 |
+| EA | Embodied & Physical-Agent Attacks | 37 | ASI02 / ASI08 / ASI10 extension mapping |
 
 ## Maturity
 
@@ -53,6 +53,8 @@ A new pattern MUST represent a materially distinct adversarial mechanism, trust-
 - `catalog`: admitted working record with a stable draft ID and contributor scaffold.
 
 Maturity changes are reviewable metadata changes. Deprecation preserves the record and points to a replacement; IDs are never recycled.
+
+The 301 patterns added in `2.1.0-draft.1` are `candidate` records pending standards review. Their severity vectors are provisional estimates, their external mappings are empty, and their scaffolds are disabled. The paired assessment cases are self-report prompts, not observed tests or evidence of independent coverage.
 
 ## Severity
 
@@ -67,7 +69,7 @@ Every record carries a six-axis severity vector and a baseline score from 0 to 1
 | persistence | How long does the effect last after the triggering input is gone? |
 | propagation | How far does the effect spread beyond the agent, session, or tenant where it started? |
 
-The CAAP-200 working method derives the baseline score from the vector, weighting impact and exploitability double:
+The CAAP-501 working method derives the baseline score from the vector, weighting impact and exploitability double:
 
 ```text
 score = 10 * (2*impact + 2*exploitability + privilege + autonomy + persistence + propagation) / 40
@@ -83,7 +85,7 @@ Every record can identify prerequisites, related mechanisms, patterns it can ena
 
 ## Assurance tiers
 
-CAAP results carry one of three assurance tiers. Agent-native results cover all 200 patterns through the adapter-free protocol in `ASSESSMENT.md` and are always labeled `agent_self_assessment` and `self_reported_unsigned`. Observed reference results cover the 25 executable cases through the runner and an adapter, and are reproducible from normalized events and telemetry. Independent results require assessor isolation and reviewed evidence, which this repository does not provide.
+CAAP results carry one of three assurance tiers. Agent-native results cover all 501 patterns through the adapter-free protocol in `ASSESSMENT.md` and are always labeled `agent_self_assessment` and `self_reported_unsigned`. Observed reference results cover the 25 executable cases through the runner and an adapter, and are reproducible from normalized events and telemetry. Independent results require assessor isolation and reviewed evidence, which this repository does not provide.
 
 ## Integrity layers
 

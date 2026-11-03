@@ -5,7 +5,7 @@ Releases are tracked on the GitHub Releases page. Each one is a git tag `vX.Y.Z`
 ## Two version numbers
 
 - **Software version** (`X.Y.Z`): the `caap-benchmark` package. It lives in `pyproject.toml`, `src/caap_benchmark/versions.py` (`PACKAGE_VERSION`), the README status line, and `CHANGELOG.md`. Tags and releases carry this number. Before `1.0.0`, a minor bump may change CLI or report fields; a patch bump never does.
-- **Taxonomy version** (`TAXONOMY_VERSION` in `versions.py`, `docs/STANDARD.md`, and every record): the CAAP-200 working taxonomy, for example `2.0.0-draft.1`. It changes only through a standards decision under `GOVERNANCE.md`, and every software release states which taxonomy version it implements. A taxonomy change is listed in the changelog like any other change.
+- **Taxonomy version** (`TAXONOMY_VERSION` in `versions.py`, `docs/STANDARD.md`, and every record): the CAAP-501 working taxonomy, for example `2.1.0-draft.1`. It changes only through a standards decision under `GOVERNANCE.md`, and every software release states which taxonomy version it implements. A taxonomy change is listed in the changelog like any other change.
 
 A pre-release uses a suffix, for example `0.2.0-rc.1`; the workflow marks it as a pre-release on GitHub.
 

@@ -68,17 +68,17 @@ class AssessmentBundleTests(unittest.TestCase):
         sub = self.submission
         self.assertEqual(sub["assurance_tier"], "agent_native")
         self.assertEqual(sub["labels"], ["agent_self_assessment", "self_reported_unsigned"])
-        self.assertEqual(sub["evaluation"]["case_count"], 37)
+        self.assertEqual(sub["evaluation"]["case_count"], 92)
         self.assertEqual(sub["evaluation"]["profile"]["name"], "chat-assistant")
         self.assertEqual(sub["scorecard"]["security_score"], 100.0)
-        self.assertEqual(sub["badge"]["message"], "self-assessed · 37 cases · 2.0.0-draft.1")
+        self.assertEqual(sub["badge"]["message"], "self-assessed · 92 cases · 2.1.0-draft.1")
         self.assertEqual(sub["claim_rule"], CLAIM_RULE)
         self.assertEqual(sub["claim_boundary"], TIERS["agent_native"]["claim_boundary"])
         paths = {entry["path"] for entry in sub["files"]}
         self.assertIn("evidence/manifest.json", paths)
         self.assertIn("evidence/report.json", paths)
-        self.assertEqual(sum(p.startswith("evidence/cases/") for p in paths), 37)
-        self.assertEqual(sum(p.startswith("evidence/responses/") for p in paths), 37)
+        self.assertEqual(sum(p.startswith("evidence/cases/") for p in paths), 92)
+        self.assertEqual(sum(p.startswith("evidence/responses/") for p in paths), 92)
         outcome = verify_bundle(self.bundle)
         self.assertTrue(outcome["verified"], _failed(outcome))
         names = {check["name"] for check in outcome["checks"]}
@@ -162,7 +162,7 @@ class ObservedBundleTests(unittest.TestCase):
         self.assertEqual(sub["labels"], ["observed_reference", "reproducible_unsigned"])
         self.assertEqual(sub["evaluation"]["adapters"], ["mock"])
         self.assertEqual(sub["evaluation"]["case_count"], 25)
-        self.assertEqual(sub["taxonomy_version"], "2.0.0-draft.1")
+        self.assertEqual(sub["taxonomy_version"], "2.1.0-draft.1")
         self.assertIsNone(sub["layers"])
         self.assertEqual([entry["path"] for entry in sub["files"]], ["evidence/report.json"])
         outcome = verify_bundle(self.bundle)
@@ -173,7 +173,7 @@ class ObservedBundleTests(unittest.TestCase):
 
     def test_report_carries_versions(self) -> None:
         report = json.loads(self.report.read_text())
-        self.assertEqual(report["taxonomy_version"], "2.0.0-draft.1")
+        self.assertEqual(report["taxonomy_version"], "2.1.0-draft.1")
         self.assertTrue(report["caap_benchmark_version"])
 
     def test_edited_result_fails_recomputation(self) -> None:
@@ -218,7 +218,7 @@ class CliTests(unittest.TestCase):
         )
         self.assertEqual(code, 0, err)
         self.assertIn("Tier: agent_native", out)
-        self.assertIn("self-assessed · 37 cases", out)
+        self.assertIn("self-assessed · 92 cases", out)
         code, out, _ = _run(["attest", "verify", str(bundle)])
         self.assertEqual(code, 0)
         self.assertIn("VERIFIED", out)

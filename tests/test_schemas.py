@@ -75,7 +75,7 @@ class ValidateTestCaseTests(unittest.TestCase):
 @unittest.skipUnless(jsonschema_available(), "jsonschema is not installed")
 class FullSchemaTests(unittest.TestCase):
     def test_registry_validates(self) -> None:
-        registry = json.loads((ROOT / "data/taxonomy/caap-200.json").read_text())
+        registry = json.loads((ROOT / "data/taxonomy/caap-501.json").read_text())
         self.assertEqual(schema_errors("taxonomy", registry), [])
 
     def test_schema_catches_constraints_the_fallback_does_not(self) -> None:

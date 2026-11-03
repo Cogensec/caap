@@ -1,14 +1,10 @@
-<p align="center">
-  <img src="docs/assets/caap-200-banner.webp" alt="CAAP-200: Cogensec Agent Attack Patterns, a repeatable security-testing layer for autonomous AI agents. 200 patterns, 11 domains, 25 executable tests, 400 assessment trials. Safe-sentinel, framework-neutral." width="100%">
-</p>
-
-# Cogensec Agent Attack Patterns (CAAP-200)
+# Cogensec Agent Attack Patterns (CAAP-501)
 
 [![CI](https://github.com/Cogensec/caap/actions/workflows/ci.yml/badge.svg)](https://github.com/Cogensec/caap/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/code-Apache--2.0-blue.svg)](LICENSE)
 [![Taxonomy: CC BY 4.0](https://img.shields.io/badge/taxonomy-CC%20BY%204.0-lightgrey.svg)](TAXONOMY-LICENSE.md)
 
-CAAP is a repeatable security-testing layer for autonomous AI agents. This repository holds the CAAP-200 working taxonomy, which expands the Cogensec Agent Attack Patterns standard from its v1.0 public-review baseline to 200 stable patterns, and a safe, framework-neutral benchmark that turns those patterns into evidence.
+CAAP is a repeatable security-testing layer for autonomous AI agents. This repository holds the CAAP-501 working taxonomy, which expands the Cogensec Agent Attack Patterns standard from its v1.0 public-review baseline to 501 draft patterns, and a safe, framework-neutral benchmark that turns those patterns into evidence.
 
 Everything in the public suite is synthetic: authorized targets, mock tools and sinks, harmless sentinel tokens, and ephemeral state. It contains no destructive payloads, no real exfiltration, no production persistence, and no approval-bypass procedures.
 
@@ -16,12 +12,12 @@ Everything in the public suite is synthetic: authorized targets, mock tools and 
 
 | | |
 |---|---|
-| Patterns | 200 stable IDs across 11 domains and 46 attack families |
+| Patterns | 501 draft IDs across 11 domains and 91 attack families |
 | Reference patterns | 25 preserved from CAAP v1.0, each with an executable safe-sentinel test |
-| Agent-native assessment | 200 paired-trial cases (400 trials) any agent or LLM can answer without an adapter |
+| Agent-native assessment | 501 paired-trial cases (1,002 trials) any agent or LLM can answer without an adapter |
 | Result states | `pass`, `fail`, `inconclusive`, `test_error`, `not_applicable` |
 | Reporting | Security score, severity-weighted score, coverage, over-blocking, four integrity layers, evidence hashes |
-| Formats | Canonical JSON, generated YAML, 200 pattern pages, nine JSON Schemas, JSON, HTML, and JUnit reports, verifiable evidence bundles |
+| Formats | Canonical JSON, generated YAML, 501 pattern pages, nine JSON Schemas, JSON, HTML, and JUnit reports, verifiable evidence bundles |
 | Requirements | Python 3.10 or newer, no runtime dependencies |
 
 ## Three ways to test an agent
@@ -32,7 +28,7 @@ Everything in the public suite is synthetic: authorized targets, mock tools and 
 
 **3. Any LLM through a prompt.** Render a session as a self-contained prompt, paste it into any model, and import the reply. No tools, file access, or shell are required of the model.
 
-Tiers 2 and 3 are always labeled `agent_self_assessment` and `self_reported_unsigned`. See [docs/ASSESSMENT.md](docs/ASSESSMENT.md) for the protocol and its claim boundary.
+The 301 added patterns are candidates with disabled scaffolds and provisional severity estimates; their external mappings are deliberately empty pending review. Tiers 2 and 3 are always labeled `agent_self_assessment` and `self_reported_unsigned`. See [docs/ASSESSMENT.md](docs/ASSESSMENT.md) for the protocol and its claim boundary.
 
 ## Quick start
 
@@ -79,7 +75,7 @@ For a model that cannot read files, render the session as a prompt and import it
 
 ```bash
 caap assess init --profile chat-assistant --output .caap/chat
-caap assess prompt --session .caap/chat --chunk-size 10    # prompt-01-of-04.md ...
+caap assess prompt --session .caap/chat --chunk-size 10    # prompt-01-of-10.md ...
 # paste each part into the model and save each reply
 caap assess import --session .caap/chat reply-1.md reply-2.md reply-3.md reply-4.md
 caap assess grade --session .caap/chat
@@ -102,11 +98,11 @@ The bundle carries the assurance tier, versions, scorecard, every evidence file 
 ## Repository map
 
 ```text
-data/taxonomy/            Canonical CAAP-200 JSON and generated YAML
+data/taxonomy/            Canonical CAAP-501 JSON and generated YAML
 patterns/                 One human-readable page per stable pattern ID
 benchmarks/executable/    25 enabled safe reference cases
-benchmarks/scaffolds/     175 disabled contributor starting points
-assessments/cases/        200 agent-native paired-trial assessment cases
+benchmarks/scaffolds/     476 disabled contributor starting points
+assessments/cases/        501 agent-native paired-trial assessment cases
 profiles/                 Capability profiles for assessment scope
 schemas/                  Machine-readable contracts (taxonomy, cases, adapters, reports, assessment)
 src/caap_benchmark/       CLI, runner, adapters, oracles, safety, scoring, reports, assessment
@@ -141,7 +137,7 @@ Missing required telemetry or evidence produces `inconclusive`, never `pass`. A 
 
 ## Status
 
-This repository is `v0.1.0` software implementing the CAAP `2.0.0-draft.1` working taxonomy. It is suitable for public review and controlled evaluation, not certification claims. External mappings are informative and require periodic review.
+This repository is `v0.1.0` software implementing the CAAP `2.1.0-draft.1` working taxonomy. It is suitable for public review and controlled evaluation, not certification claims. External mappings are informative and require periodic review.
 
 Releases are tagged `vX.Y.Z` and published on the [GitHub Releases page](https://github.com/Cogensec/caap/releases) with the wheel, the taxonomy, the schemas, checksums, and notes from the changelog. The software version and the taxonomy version are tracked separately; `caap --version` reports both. See [docs/RELEASING.md](docs/RELEASING.md).
 

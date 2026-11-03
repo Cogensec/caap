@@ -6,5 +6,5 @@
     "instruction.process",
     "human.approval"
   ],
-  "notes": "Applicable scope covers the GH and HT domains (37 patterns). The single prompt is about 50 KB; pass --chunk-size to split it for smaller context windows."
+  "notes": "Applicable scope covers the GH and HT domains (92 patterns). The full prompt is large; pass --chunk-size to split it for smaller context windows."
 }

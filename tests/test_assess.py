@@ -51,9 +51,9 @@ class SessionTests(unittest.TestCase):
         manifest = json.loads((session / "manifest.json").read_text())
         self.assertEqual(
             manifest["counts"],
-            {"selected": 96, "in_profile": 96, "out_of_profile": 0, "trials": 192},
+            {"selected": 235, "in_profile": 235, "out_of_profile": 0, "trials": 470},
         )
-        self.assertEqual(len(list((session / "cases").glob("*.json"))), 96)
+        self.assertEqual(len(list((session / "cases").glob("*.json"))), 235)
         self.assertTrue((session / "INSTRUCTIONS.md").is_file())
         self.assertTrue((session / "responses").is_dir())
         self.assertTrue(manifest_verified(manifest))
@@ -65,13 +65,13 @@ class SessionTests(unittest.TestCase):
     def test_full_scope_includes_out_of_profile_cases(self) -> None:
         session = self._init(scope="full")
         manifest = json.loads((session / "manifest.json").read_text())
-        self.assertEqual(manifest["counts"]["selected"], 200)
-        self.assertEqual(manifest["counts"]["out_of_profile"], 104)
+        self.assertEqual(manifest["counts"]["selected"], 501)
+        self.assertEqual(manifest["counts"]["out_of_profile"], 266)
 
     def test_full_simulator_profile_covers_all_patterns(self) -> None:
         session = self._init("full-simulator")
         manifest = json.loads((session / "manifest.json").read_text())
-        self.assertEqual(manifest["counts"]["selected"], 200)
+        self.assertEqual(manifest["counts"]["selected"], 501)
         self.assertEqual(manifest["counts"]["out_of_profile"], 0)
 
     def test_case_hashes_are_canonical(self) -> None:
@@ -131,9 +131,9 @@ class GradingTests(unittest.TestCase):
         write_mock_responses(self.session, "safe")
         report = grade_session(self.session)
         card = report["scorecard"]
-        self.assertEqual(card["passed"], 96)
+        self.assertEqual(card["passed"], 235)
         self.assertEqual(card["failed"], 0)
-        self.assertEqual(card["not_applicable"], 104)
+        self.assertEqual(card["not_applicable"], 266)
         self.assertEqual(card["inconclusive"], 0)
         self.assertEqual(card["security_score"], 100.0)
         self.assertEqual(card["over_blocking_count"], 0)
@@ -142,14 +142,14 @@ class GradingTests(unittest.TestCase):
         self.assertEqual(report["integrity"]["cases_tampered"], [])
         self.assertEqual(report["layers"]["adversarial"]["security_score"], 100.0)
         self.assertEqual(report["layers"]["cortical"]["passed"], 0)
-        self.assertEqual(report["layers"]["cortical"]["not_applicable"], 37)
+        self.assertEqual(report["layers"]["cortical"]["not_applicable"], 92)
         self.assertTrue((self.session / "report.json").is_file())
 
     def test_vulnerable_mock_fails_every_in_profile_case(self) -> None:
         write_mock_responses(self.session, "vulnerable")
         report = grade_session(self.session)
         card = report["scorecard"]
-        self.assertEqual(card["failed"], 96)
+        self.assertEqual(card["failed"], 235)
         self.assertEqual(card["passed"], 0)
         self.assertEqual(card["security_score"], 0.0)
         self.assertEqual(card["recovery_verified_percent"], 0.0)
@@ -165,7 +165,7 @@ class GradingTests(unittest.TestCase):
         result = next(r for r in report["results"] if r["case_id"] == entry["case_id"])
         self.assertEqual(result["state"], "inconclusive")
         self.assertIn(entry["case_id"], report["integrity"]["responses_missing"])
-        self.assertEqual(report["scorecard"]["passed"], 95)
+        self.assertEqual(report["scorecard"]["passed"], 234)
 
     def test_tampered_case_is_a_test_error(self) -> None:
         write_mock_responses(self.session, "safe")
@@ -178,7 +178,7 @@ class GradingTests(unittest.TestCase):
         result = next(r for r in report["results"] if r["case_id"] == entry["case_id"])
         self.assertEqual(result["state"], "test_error")
         self.assertEqual(report["integrity"]["cases_tampered"], [entry["case_id"]])
-        self.assertEqual(report["integrity"]["cases_verified"], 199)
+        self.assertEqual(report["integrity"]["cases_verified"], 500)
 
     def test_edited_manifest_does_not_verify(self) -> None:
         write_mock_responses(self.session, "safe")
@@ -273,7 +273,7 @@ class CliTests(unittest.TestCase):
         profile = str(PROFILES / "enterprise-assistant.json")
         code, out, _ = _run(["assess", "init", "--profile", profile, "--output", self.session])
         self.assertEqual(code, 0)
-        self.assertIn("cases: 102", out)
+        self.assertIn("cases: 241", out)
         code, _, _ = _run(["assess", "mock-respond", "--session", self.session, "--mode", "safe"])
         self.assertEqual(code, 0)
         code, out, _ = _run(["assess", "grade", "--session", self.session])
@@ -350,24 +350,25 @@ class PromptAndImportTests(unittest.TestCase):
             self.assertIn(entry["sha256"], text)
             self.assertIn(f"{entry['case_id']}-A", text)
             self.assertIn(f"{entry['case_id']}-B", text)
-        self.assertEqual(text.count("### CAAP-"), 37)
+        self.assertEqual(text.count("### CAAP-"), 92)
         self.assertNotIn("OUTSIDE your profile: answer", text)
 
     def test_prompt_marks_out_of_profile_cases_in_full_scope(self) -> None:
         full = self.root / "full"
         init_session(PROFILES / "chat-assistant.json", "full", CASES, full)
         (_, text), = render_prompt(full)
-        self.assertEqual(text.count("### CAAP-"), 200)
-        self.assertEqual(text.count("OUTSIDE your profile: answer"), 163)
+        self.assertEqual(text.count("### CAAP-"), 501)
+        self.assertEqual(text.count("OUTSIDE your profile: answer"), 409)
 
     def test_prompt_chunks_partition_the_cases(self) -> None:
         chunks = render_prompt(self.session, chunk_size=10)
-        self.assertEqual([label for label, _ in chunks], [
-            "prompt-01-of-04", "prompt-02-of-04", "prompt-03-of-04", "prompt-04-of-04",
-        ])
+        self.assertEqual(
+            [label for label, _ in chunks],
+            [f"prompt-{index:02d}-of-10" for index in range(1, 11)],
+        )
         counts = [text.count("### CAAP-") for _, text in chunks]
-        self.assertEqual(counts, [10, 10, 10, 7])
-        self.assertIn("part 2 of 4", chunks[1][1])
+        self.assertEqual(counts, [10] * 9 + [2])
+        self.assertIn("part 2 of 10", chunks[1][1])
         for _, text in chunks:
             self.assertIn(self.manifest["manifest_sha256"], text)
         with self.assertRaises(AssessmentError):
@@ -378,7 +379,7 @@ class PromptAndImportTests(unittest.TestCase):
         reply = self.root / "reply.md"
         reply.write_text("Sure.\n\n```json\n" + json.dumps(bundle) + "\n```\nDone.\n")
         summary = import_responses(self.session, [reply])
-        self.assertEqual(len(summary["imported"]), 37)
+        self.assertEqual(len(summary["imported"]), 92)
         self.assertEqual(summary["skipped"], [])
         self.assertEqual(summary["errors"], [])
         first = self.manifest["cases"][0]
@@ -388,7 +389,7 @@ class PromptAndImportTests(unittest.TestCase):
         self.assertEqual(written["trials"][0]["trial_id"], f"{first['case_id']}-B")
         self.assertEqual(written["trials"][1]["trial_id"], f"{first['case_id']}-A")
         report = grade_session(self.session)
-        self.assertEqual(report["scorecard"]["passed"], 37)
+        self.assertEqual(report["scorecard"]["passed"], 92)
         self.assertEqual(report["integrity"]["responses_invalid"], [])
 
     def test_import_accepts_bare_json_and_reports_replacements(self) -> None:
@@ -396,9 +397,9 @@ class PromptAndImportTests(unittest.TestCase):
         reply = self.root / "reply.json"
         reply.write_text(json.dumps(bundle["responses"]))
         first = import_responses(self.session, [reply], responder="r2")
-        self.assertEqual(len(first["imported"]), 37)
+        self.assertEqual(len(first["imported"]), 92)
         second = import_responses(self.session, [reply])
-        self.assertEqual(len(second["replaced"]), 37)
+        self.assertEqual(len(second["replaced"]), 92)
         self.assertEqual(second["imported"], [])
 
     def test_import_rejects_wrong_session_hash_mismatch_and_unknown_case(self) -> None:
@@ -432,15 +433,15 @@ class PromptAndImportTests(unittest.TestCase):
         session = str(self.session)
         code, out, _ = _run(["assess", "prompt", "--session", session, "--chunk-size", "20"])
         self.assertEqual(code, 0)
-        self.assertTrue((self.session / "prompt-01-of-02.md").is_file())
-        self.assertTrue((self.session / "prompt-02-of-02.md").is_file())
+        self.assertTrue((self.session / "prompt-01-of-05.md").is_file())
+        self.assertTrue((self.session / "prompt-05-of-05.md").is_file())
         self.assertIn("caap assess import", out)
         bundle = self._reply_bundle()
         reply = self.root / "reply.md"
         reply.write_text("```json\n" + json.dumps(bundle) + "\n```\n")
         code, out, err = _run(["assess", "import", "--session", session, str(reply)])
         self.assertEqual(code, 0, err)
-        self.assertIn("Imported 37 response(s)", out)
+        self.assertIn("Imported 92 response(s)", out)
         code, out, _ = _run(["assess", "grade", "--session", session])
         self.assertEqual(code, 0)
         self.assertIn("Security score: 100.0", out)
