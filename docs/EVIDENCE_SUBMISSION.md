@@ -52,7 +52,7 @@ A bundle is a zip file containing exactly `submission.json` plus the files it de
 | `integrity` | The report's integrity block (agent-native) or result and digest counts (observed) |
 | `authorization_statement`, `notes` | Free text supplied at creation |
 | `claim_boundary`, `claim_rule` | The published text for the tier and the claim rule below. A bundle whose text differs fails verification. |
-| `badge` | `label` `CAAP-501`, `message` such as `self-assessed · 96 cases · 2.1.0-draft.1`, `tier` |
+| `badge` | `label` `CAAP-501`, `message` such as `self-assessed · 92 cases · 2.1.0-draft.1`, `tier` |
 | `files` | Every evidence file with its path, SHA-256, and size |
 | `submission_sha256` | Canonical SHA-256 of the record without this field |
 
